@@ -3,7 +3,7 @@ import assertRevert from "./helpers/assertRevert";
 const KernelStakes = artifacts.require('KernelStakes');
 const shouldBehaveLikeOwnable = require('zos-core/test/ownership/Ownable.behavior');
 
-contract('KernelStakes', ([_, stakeOwner, someone, instance]) => {
+contract('KernelStakes', ([_, stakeOwner, someone, anotherone, instance]) => {
 
   beforeEach(async function () {
     this.stakes = await KernelStakes.new({ from: stakeOwner })
@@ -23,19 +23,15 @@ contract('KernelStakes', ([_, stakeOwner, someone, instance]) => {
     describe('when the sender is the stakes owner', function () {
       const from = stakeOwner
 
-      it('unstakes the requested amount', async function () {
-        const previousStake = await this.stakes.stakedFor(someone, instance)
-        const previousTotalStake = await this.stakes.totalStaked()
-        const previousTotalInstanceStake = await this.stakes.totalStakedFor(instance)
-
+      it('stakes the requested amount', async function () {
         await this.stakes.stake(someone, instance, amount, '', { from })
         const stake = await this.stakes.stakedFor(someone, instance)
         const totalStake = await this.stakes.totalStaked()
         const totalInstanceStake = await this.stakes.totalStakedFor(instance)
 
-        assert(stake.eq(previousStake.plus(amount)))
-        assert(totalStake.eq(previousTotalStake.plus(amount)))
-        assert(totalInstanceStake.eq(previousTotalInstanceStake.plus(amount)))
+        assert(stake.eq(amount))
+        assert(totalStake.eq(amount))
+        assert(totalInstanceStake.eq(amount))
       })
 
       it('emits an Staked event', async function () {
@@ -50,13 +46,51 @@ contract('KernelStakes', ([_, stakeOwner, someone, instance]) => {
         assert.equal(logs[0].args.instance, instance)
         assert(logs[0].args.total.eq(totalInstanceStake))
       })
+
+      describe('when the staker had already staked for the same instance before', function () {
+        const previousStake = 100
+
+        beforeEach(async function () {
+          await this.stakes.stake(someone, instance, previousStake, '', { from })
+        })
+
+        it('add the requested amount to the current stake', async function () {
+          await this.stakes.stake(someone, instance, amount, '', { from })
+          const stake = await this.stakes.stakedFor(someone, instance)
+          const totalStake = await this.stakes.totalStaked()
+          const totalInstanceStake = await this.stakes.totalStakedFor(instance)
+
+          assert(stake.eq(previousStake + amount))
+          assert(totalStake.eq(previousStake + amount))
+          assert(totalInstanceStake.eq(previousStake + amount))
+        })
+      })
+
+      describe('when another staker had already staked for the same instance before', function () {
+        const previousStake = 100
+
+        beforeEach(async function () {
+          await this.stakes.stake(anotherone, instance, previousStake, '', { from })
+        })
+
+        it('add the requested amount to the current stake', async function () {
+          await this.stakes.stake(someone, instance, amount, '', { from })
+          const stake = await this.stakes.stakedFor(someone, instance)
+          const totalStake = await this.stakes.totalStaked()
+          const totalInstanceStake = await this.stakes.totalStakedFor(instance)
+
+          assert(stake.eq(amount))
+          assert(totalStake.eq(previousStake + amount))
+          assert(totalInstanceStake.eq(previousStake + amount))
+        })
+      })
     })
 
     describe('when the sender is not the stakes owner', function () {
       const from = someone
 
       it('reverts', async function () {
-        await assertRevert(this.stakes.unstake(someone, instance, amount, '', { from }))
+        await assertRevert(this.stakes.stake(someone, instance, amount, '', { from }))
       })
     })
   })
@@ -113,7 +147,7 @@ contract('KernelStakes', ([_, stakeOwner, someone, instance]) => {
         })
       })
 
-      describe('when the staker did not have any stake', function () {
+      describe('when the staker did not stake before', function () {
         it('reverts', async function () {
           await assertRevert(this.stakes.unstake(someone, instance, 100, '', { from }))
         })
@@ -121,10 +155,12 @@ contract('KernelStakes', ([_, stakeOwner, someone, instance]) => {
     })
 
     describe('when the sender is not the stakes owner', function () {
+      const amount = 100
       const from = someone
 
       it('reverts', async function () {
-        await assertRevert(this.stakes.unstake(someone, instance, 100, '', { from }))
+        await this.stakes.stake(someone, instance, amount, '', { from: stakeOwner })
+        await assertRevert(this.stakes.unstake(someone, instance, amount, '', { from }))
       })
     })
   })
