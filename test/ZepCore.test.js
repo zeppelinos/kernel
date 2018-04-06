@@ -1,3 +1,5 @@
+import assertRevert from './helpers/assertRevert';
+
 const BigNumber = web3.BigNumber;
 const ZepCore = artifacts.require('ZepCore');
 const ZepToken = artifacts.require('ZepToken');
@@ -27,9 +29,6 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
     const tokenAddress = await this.zepCore.token();
     this.token = await ZepToken.at(tokenAddress);
     await this.token.mint(owner, 10000, { from: owner });
-    await this.token.transfer(developer, 100, { from: owner });
-    await this.token.approve(this.zepCore.address, 100, { from: developer });
-    await this.token.transfer(user, 1000, { from: owner });
   });
 
   it('has a ZepToken', async function () {
@@ -39,53 +38,96 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
   });
 
   it('registers instances', async function () {
+    await this.token.transfer(developer, newVersionCost, { from: owner });
+    await this.token.approve(this.zepCore.address, newVersionCost, { from: developer });    
     await this.zepCore.register(this.kernelInstance.address, { from: developer }).should.be.fulfilled;
   });
 
-  it('should accept stakes', async function () {
-    const stakeValue = 42;
-    const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction);
-    await this.token.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    
-    const staked = await this.stakes.totalStakedFor(this.kernelInstance.address);
-    staked.should.be.bignumber.equal(effectiveStake);
-    const totalStaked = await this.stakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(effectiveStake);
-  });
-
-  it('should accept unstakes', async function () {
+  describe('staking for registered instances', async function() {
     const stakeValue = 42;
     const unstakeValue = 24;
-    const effectiveStake = stakeValue-Math.floor(stakeValue/developerFraction)-unstakeValue;
-    await this.token.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    await this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user });
+    const transferValue = 10;
     
-    const staked = await this.stakes.totalStakedFor(this.kernelInstance.address);
-    staked.should.be.bignumber.equal(effectiveStake);
-    const totalStaked = await this.stakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(effectiveStake);
+    beforeEach(async function () {
+      await this.token.transfer(developer, newVersionCost, { from: owner });
+      await this.token.transfer(anotherDeveloper, newVersionCost, { from: owner });
+      await this.token.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.token.approve(this.zepCore.address, newVersionCost, { from: anotherDeveloper });      
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+      await this.zepCore.register(this.anotherKernelInstance.address, { from: anotherDeveloper });
+
+      await this.token.transfer(user, stakeValue, { from: owner });
+      await this.token.approve(this.zepCore.address, stakeValue, { from: user });
+    });
+
+    it('should accept stakes', async function () {
+      const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction);
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      const staked = await this.stakes.totalStakedFor(this.kernelInstance.address);
+      staked.should.be.bignumber.equal(effectiveStake);
+      const totalStaked = await this.stakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(effectiveStake);
+    });
+  
+    it('should accept unstakes', async function () {
+      const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction) - unstakeValue;
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user });
+      
+      const staked = await this.stakes.totalStakedFor(this.kernelInstance.address);
+      staked.should.be.bignumber.equal(effectiveStake);
+      const totalStaked = await this.stakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(effectiveStake);
+    });
+  
+    it('should transfer stakes', async function () {
+      const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
+      const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
+      const totalEffectivelyStaked = effectiveStakeFirst + effectiveStakeSecond;
+  
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user });
+      
+      const stakedToFirst = await this.stakes.totalStakedFor(this.kernelInstance.address);
+      stakedToFirst.should.be.bignumber.equal(effectiveStakeFirst);
+  
+      const stakedToSecond = await this.stakes.totalStakedFor(this.anotherKernelInstance.address);
+      stakedToSecond.should.be.bignumber.equal(effectiveStakeSecond);
+  
+      const totalStaked = await this.stakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(totalEffectivelyStaked);
+    });
+
+  });
+  
+  describe('staking for unregistered instances', async function() {
+    const stakeValue = 42;
+    const unstakeValue = 24;
+    const transferValue = 10;
+    
+    beforeEach(async function () {
+      await this.token.transfer(developer, newVersionCost, { from: owner });
+      await this.token.transfer(anotherDeveloper, newVersionCost, { from: owner });
+      await this.token.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.token.approve(this.zepCore.address, newVersionCost, { from: anotherDeveloper });      
+      
+      await this.token.transfer(user, stakeValue, { from: owner });
+      await this.token.approve(this.zepCore.address, stakeValue, { from: user });
+    });
+
+    it('should reject stakes', async function () {
+      await assertRevert(this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user }));
+    });
+  
+    it('should reject unstakes', async function () {
+      await assertRevert(this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user }));
+    });
+  
+    it('should reject stake transfers', async function () {
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await assertRevert(this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user }));
+    });
   });
 
-  it('should transfer stakes', async function () {
-    const stakeValue = 420;
-    const transferValue = 20;
-    const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
-    const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
-    const totalEffectivelyStaked = effectiveStakeFirst+effectiveStakeSecond;
-
-    await this.token.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    await this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user });
-    
-    const stakedToFirst = await this.stakes.totalStakedFor(this.kernelInstance.address);
-    stakedToFirst.should.be.bignumber.equal(effectiveStakeFirst);
-
-    const stakedToSecond = await this.stakes.totalStakedFor(this.anotherKernelInstance.address);
-    stakedToSecond.should.be.bignumber.equal(effectiveStakeSecond);
-
-    const totalStaked = await this.stakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(totalEffectivelyStaked);
-  });
 });
