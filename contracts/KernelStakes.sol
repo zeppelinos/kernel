@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./ZepToken.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
@@ -33,7 +33,7 @@ contract KernelStakes is Ownable {
     _instanceVouches[instance] = _instanceVouches[instance].add(amount);
     _stakerVouches[staker][instance] = _stakerVouches[staker][instance].add(amount);
 
-    Staked(staker, instance, amount, _instanceVouches[instance], data);
+    emit Staked(staker, instance, amount, _instanceVouches[instance], data);
   }
 
   function unstake(address staker, address instance, uint256 amount, bytes data) public onlyOwner {
@@ -44,6 +44,6 @@ contract KernelStakes is Ownable {
     _instanceVouches[instance] = _instanceVouches[instance].sub(amount);
     _stakerVouches[staker][instance] = currentStake.sub(amount);
 
-    Unstaked(staker, instance, amount, _instanceVouches[instance], data);
+    emit Unstaked(staker, instance, amount, _instanceVouches[instance], data);
   }
 }

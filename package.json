@@ -19,11 +19,11 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
-    "truffle": "^4.0.4",
+    "truffle": "^4.1.5",
     "web3": "^0.18.4"
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-core": "git://github.com/zeppelinos/core.git#853b3efebef52fce68633fe008ae23d4d4f0adae"
+    "zos-core": "git://github.com/zeppelinos/core.git#140bf5977edfe329878f48e723c1aeea4d45c1b6"
   }
 }
