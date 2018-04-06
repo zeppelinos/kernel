@@ -69,12 +69,14 @@ export default async function(args) {
   await kernelStakes.transferOwnership(zepCore.address, { from: owner })
   await kernelRegistry.transferOwnership(zepCore.address, { from: owner })
 
+  // TODO: Review naming
   return {
     ZepCore: zepCore,
     ZepToken: zepToken,
     KernelRegistry: kernelRegistry,
     KernelStakes: kernelStakes,
     ProjectController: controllerContract,
+    Registry: registry,
     UpgradeabilityProxyFactory: factory
   }
 }

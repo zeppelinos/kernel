@@ -1,4 +1,5 @@
 import deploy from '../deploy/deployer';
+import { RegistryManager } from '../deploy/deployer';
 
 const BigNumber = web3.BigNumber;
 const ZepCore = artifacts.require('ZepCore');
@@ -9,6 +10,7 @@ const KernelInstance = artifacts.require('KernelInstance');
 const Registry = artifacts.require('Registry');
 const ProjectController = artifacts.require('ProjectController');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
+const MockZepCoreV2 = artifacts.require('MockZepCoreV2');
 
 const should = require('chai')
   .use(require('chai-as-promised'))
@@ -25,6 +27,8 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
     this.kernelRegistry = deployed.KernelRegistry;
     this.zepToken = deployed.ZepToken;
     this.zepCore = deployed.ZepCore;
+    this.controller = deployed.ProjectController;
+    this.registry = deployed.Registry;
 
     const name = "Zeppelin";
     const version = "0.1";
@@ -96,5 +100,33 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
 
     const totalStaked = await this.kernelStakes.totalStaked();
     totalStaked.should.be.bignumber.equal(totalEffectivelyStaked);
+  });
+
+  describe('core upgradeability', function () {
+
+    beforeEach(async function () {
+      const registryManager = new RegistryManager(this.registry, { version: '1' }, { from: owner });
+      await registryManager.deployAndRegister(MockZepCoreV2, 'ZepCore');
+      await this.controller.upgradeTo(this.zepCore.address, 'ZeppelinOS', '1', 'ZepCore', { from: owner });
+    });
+
+    it('should duplicate payout', async function () {
+      const stakeValue = 42;
+      const developerPayout = Math.floor(stakeValue / developerFraction) * 2;
+      const effectiveStake = stakeValue - developerPayout;
+      const developerBalanceBefore = await this.zepToken.balanceOf(developer);
+      
+      await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      
+      const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
+      staked.should.be.bignumber.equal(effectiveStake);
+      const totalStaked = await this.kernelStakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(effectiveStake);
+      
+      const developerBalanceAfter = await this.zepToken.balanceOf(developer);
+      developerBalanceAfter.should.be.bignumber.equal(developerBalanceBefore.plus(developerPayout));
+    });
+
   });
 });

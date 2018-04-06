@@ -82,7 +82,7 @@ contract ZepCore is Initializable, ImplementationProvider {
     _payoutAndStake(msg.sender, to, amount, data);
   }
 
-  function _payoutAndStake(address staker, KernelInstance instance, uint256 amount, bytes data) private {
+  function _payoutAndStake(address staker, KernelInstance instance, uint256 amount, bytes data) internal {
     uint256 developerPayout = amount.div(developerFraction);
     require(developerPayout > 0);
     // TODO: Think how we can manage remainders in a better way
