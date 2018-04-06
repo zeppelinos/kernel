@@ -24,6 +24,6 @@
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-core": "git://github.com/zeppelinos/core.git#140bf5977edfe329878f48e723c1aeea4d45c1b6"
+    "zos-core": "git://github.com/zeppelinos/core.git#2b13dd860a74a63cee407bd6fdabe6423e8bdbb5"
   }
 }
