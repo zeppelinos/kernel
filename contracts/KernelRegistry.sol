@@ -22,4 +22,9 @@ contract KernelRegistry is Ownable {
     instances[hash] = _instance;
     emit NewInstance(_instance);
   }
+
+  function isRegistered(KernelInstance _instance) public view returns (bool) {
+    bytes32 hash = _instance.getHash();
+    return instances[hash] != address(0);
+  }
 }
