@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic interface

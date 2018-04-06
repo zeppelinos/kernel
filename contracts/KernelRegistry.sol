@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "./KernelInstance.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
@@ -20,6 +20,6 @@ contract KernelRegistry is Ownable {
     require(instances[hash] == address(0));
 
     instances[hash] = _instance;
-    NewInstance(_instance);
+    emit NewInstance(_instance);
   }
 }

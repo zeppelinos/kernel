@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
@@ -37,7 +37,7 @@ contract KernelInstance is Ownable {
     require(implementation != address(0));
     require(implementations[contractName] == address(0));
     implementations[contractName] = implementation;
-    ImplementationAdded(contractName, implementation);
+    emit ImplementationAdded(contractName, implementation);
   }
 
   function getImplementation(string contractName) public view returns(address) {
