@@ -1,11 +1,10 @@
 // Deploy registry with sample kernel instance to target network
 // Run as: `npx truffle exec scripts/deploy.js --network NETWORK`
 
-import Deployer from "../deploy/Deployer";
-import ZepCoreManager from "../deploy/ZepCoreManager";
-import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } from '../deploy/constants'
-
+const Deployer = require("../deploy/Deployer");
 const ERC721Token = artifacts.require('ERC721Token');
+const ZepCoreManager = require("../deploy/ZepCoreManager");
+const { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } = require('../deploy/constants')
 
 async function deploy() {
   console.log('Deploying zepCore...')
