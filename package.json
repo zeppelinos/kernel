@@ -20,10 +20,11 @@
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
     "truffle": "^4.1.5",
+    "ethereumjs-abi": "^0.6.5",
     "web3": "^0.18.4"
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-core": "git://github.com/zeppelinos/core.git#2b13dd860a74a63cee407bd6fdabe6423e8bdbb5"
+    "zos-core": "git://github.com/zeppelinos/core.git#519f4a0005113b4c0c7a6f315c30f56032239911"
   }
 }

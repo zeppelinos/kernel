@@ -1,14 +1,19 @@
 pragma solidity ^0.4.21;
 
 import "./KernelInstance.sol";
+import "zos-core/contracts/Initializable.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract KernelRegistry is Ownable {
+contract KernelRegistry is Initializable, Ownable {
   event NewInstance(KernelInstance indexed instance);
 
   mapping(bytes32 => address) private instances;
 
   function KernelRegistry() public {}
+
+  function initialize(address _owner) public isInitializer {
+    owner = _owner;
+  }
 
   function getInstance(string name, string version) public view returns (KernelInstance) {
     bytes32 hash = keccak256(name, version);

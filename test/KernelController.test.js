@@ -1,4 +1,6 @@
-import decodeLogs from './helpers/decodeLogs';
+import decodeLogs from '../helpers/decodeLogs';
+import deploy from '../deploy/deployer';
+
 const ZepCore = artifacts.require('ZepCore');
 const Registry = artifacts.require('zos-core/contracts/Registry.sol');
 const ZepToken = artifacts.require('ZepToken');
@@ -12,10 +14,12 @@ const should = require('chai')
   .use(require('chai-as-promised'))
   .should();
 
-contract('KernelProxy', ([_, zeppelin, developer, someone, anotherone]) => {
+contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => {
   const version = '1.8.0';
   const distribution = 'Zeppelin';
   const contractName = 'ERC721Token';
+  const newVersionCost = 2;
+  const developerFraction = 10;
 
   beforeEach(async function () {
     // deploy kernel instance
@@ -24,21 +28,19 @@ contract('KernelProxy', ([_, zeppelin, developer, someone, anotherone]) => {
     await instance.addImplementation(contractName, erc721.address, { from: developer });
 
     // register a new kernel instance
-    const newVersionCost = 2;
-    const developerFraction = 10;
-    this.zepCore = await ZepCore.new(newVersionCost, developerFraction, { from: zeppelin });
-    const zepTokenAddress = await this.zepCore.token();
-    const zepToken = await ZepToken.at(zepTokenAddress);
+    const deployed = await deploy({ newVersionCost, developerFraction, owner: zeppelin });
+    this.zepCore = deployed.ZepCore;
+    const zepToken = deployed.ZepToken;
     await zepToken.mint(developer, newVersionCost, { from: zeppelin });
     await zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
     await this.zepCore.register(instance.address, { from: developer });
 
     // deploy a testing contract that uses zos
-    this.factory = await UpgradeabilityProxyFactory.new();
+    const factory = deployed.UpgradeabilityProxyFactory;
     this.registry = await Registry.new({ from: zeppelin })
-    this.controller = await ProjectController.new('My Project', this.registry.address, this.factory.address, this.zepCore.address);
+    this.controller = await ProjectController.new('My Project', this.registry.address, factory.address, this.zepCore.address);
     const { receipt } = await this.controller.create(distribution, version, contractName);
-    const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, this.factory.address);
+    const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, factory.address);
     const proxyAddress = logs.find(l => l.event === 'ProxyCreated').args.proxy;
     this.mock = await PickACard.new(proxyAddress);
   });
@@ -61,7 +63,7 @@ contract('KernelProxy', ([_, zeppelin, developer, someone, anotherone]) => {
   describe('when creating another instance of the testing contract', function () {
     beforeEach(async function () {
       const { receipt } = await this.controller.create(distribution, version, contractName);
-      const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, this.factory.address);
+      const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, 0x0);
       this.anotherProxyAddress = logs.find(l => l.event === 'ProxyCreated').args.proxy;
       this.anotherMock = await PickACard.new(this.anotherProxyAddress);
     })
