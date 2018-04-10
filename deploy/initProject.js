@@ -1,14 +1,15 @@
 // Create a project controller for your project on top of zOS
 // Run as: `npx truffle exec scripts/init_project.js --network NETWORK`
 
-const Deployer = require("../deploy/Deployer");
+import Deployer from "../deploy/Deployer";
+import ZepCoreManager from "../deploy/ZepCoreManager";
+import { PROJECT_ACCOUNT, PROJECT_NAME, ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } from '../deploy/constants'
+
 const ERC721Token = artifacts.require('ERC721Token');
-const ZepCoreManager = require("../deploy/ZepCoreManager");
-const { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } = require('../deploy/constants')
 
 async function deploy() {
   console.log('Deploying zepCore...')
-  const zepCore = await Deployer.zepCore(ZEPPELIN_ACCOUNT, NEW_VERSION_COST, DEVELOPER_FRACTION, DISTRIBUTION)
+  const { zepCore } = await Deployer.zepCore(ZEPPELIN_ACCOUNT, NEW_VERSION_COST, DEVELOPER_FRACTION, DISTRIBUTION)
   console.log('ZepCore address: ', zepCore.address)
   const zepCoreManager = new ZepCoreManager(zepCore, ZEPPELIN_ACCOUNT)
   await zepCoreManager.mintZepTokens(DEVELOPER_ACCOUNT, NEW_VERSION_COST)
