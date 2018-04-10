@@ -1,6 +1,8 @@
 const ZepToken = artifacts.require('ZepToken');
 const KernelInstance = artifacts.require('KernelInstance');
 
+const log = require('./logger');
+
 export default class ZepCoreManager {
   constructor(zepCore, owner) {
     this.zepCore = zepCore;
@@ -12,25 +14,25 @@ export default class ZepCoreManager {
   }
 
   async mintZepTokens(to, amount) {
-    console.log("\nMinting ZEP tokens for the developer...");
+    log("\nMinting ZEP tokens for the developer...");
     const zepToken = await this.zepToken();
-    console.log("  ZepToken:", zepToken.address);
+    log("  ZepToken:", zepToken.address);
     const mintTx = await zepToken.mint(to, amount, { from: this.owner });
-    console.log("  Tokens minted: ", mintTx.transactionHash)
+    log("  Tokens minted: ", mintTx.tx)
   }
 
   async registerKernelInstance(distribution, version, contractKlazz, contractName, developer, parent = 0) {
-    console.log(`\nDeploying a new kernel instance including ${contractKlazz}...`);
+    log(`\nDeploying a new kernel instance including ${contractName}...`);
     const implementation = await contractKlazz.new();
-    console.log(`  ${contractName} implementation: `, implementation.address);
+    log(`  ${contractName} implementation: `, implementation.address);
     const instance = await KernelInstance.new(distribution, version, parent, { from: developer });
-    console.log("  Kernel instance: ", instance.address);
+    log("  Kernel instance: ", instance.address);
     await instance.addImplementation(contractName, implementation.address, { from: developer });
-    console.log("\nRegistering the new kernel instance...");
+    log("\nRegistering the new kernel instance...");
     const zepToken = await this.zepToken();
     const newVersionCost = await this.zepCore.newVersionCost()
     await zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
     const registrationTx = await this.zepCore.register(instance.address, { from: developer });
-    console.log("  Kernel instance registered: ", registrationTx.transactionHash)
+    log("  Kernel instance registered: ", registrationTx.tx)
   }
 }
