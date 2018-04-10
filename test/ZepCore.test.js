@@ -1,16 +1,9 @@
-import deploy from '../deploy/deployer';
-import { RegistryManager } from '../deploy/deployer';
+import Deployer from '../deploy/Deployer';
+import RegistryManager from '../deploy/RegistryManager';
 
 const BigNumber = web3.BigNumber;
-const ZepCore = artifacts.require('ZepCore');
-const ZepToken = artifacts.require('ZepToken');
-const KernelStakes = artifacts.require('KernelStakes');
-const KernelRegistry = artifacts.require('KernelRegistry');
-const KernelInstance = artifacts.require('KernelInstance');
-const Registry = artifacts.require('Registry');
-const ProjectController = artifacts.require('ProjectController');
-const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 const MockZepCoreV2 = artifacts.require('MockZepCoreV2');
+const KernelInstance = artifacts.require('KernelInstance');
 
 const should = require('chai')
   .use(require('chai-as-promised'))
@@ -22,25 +15,19 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
   const developerFraction = 10;
 
   beforeEach(async function () {
-    const deployed = await deploy({ newVersionCost, developerFraction, owner });
-    this.kernelStakes = deployed.KernelStakes;
-    this.kernelRegistry = deployed.KernelRegistry;
-    this.zepToken = deployed.ZepToken;
-    this.zepCore = deployed.ZepCore;
-    this.controller = deployed.ProjectController;
-    this.registry = deployed.Registry;
+    // deploy ZepCore instance
+    const deployed = await Deployer.zepCore(owner, newVersionCost, developerFraction)
+    Object.assign(this, deployed)
 
+    // deploy a new kernel instances
     const name = "Zeppelin";
-    const version = "0.1";
-    this.kernelInstance = await KernelInstance.new(name, version, 0, { from: developer });
+    this.kernelInstance = await KernelInstance.new(name, "0.1", 0, { from: developer });
+    this.anotherKernelInstance = await KernelInstance.new(name, "0.2", 0, { from: anotherDeveloper });
 
-    const anotherVersion = "0.2";
-    this.anotherKernelInstance = await KernelInstance.new(name, anotherVersion, 0, {from: anotherDeveloper});
-
-    await this.zepToken.mint(owner, 10000, { from: owner });
-    await this.zepToken.transfer(developer, 100, { from: owner });
+    // mint ZEP tokens
+    await this.zepToken.mint(user, 1000, { from: owner });
+    await this.zepToken.mint(developer, 100, { from: owner });
     await this.zepToken.approve(this.zepCore.address, 100, { from: developer });
-    await this.zepToken.transfer(user, 1000, { from: owner });
   });
 
   it('has a ZepToken', async function () {
@@ -91,7 +78,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
     await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
     await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
     await this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user });
-    
+
     const stakedToFirst = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
     stakedToFirst.should.be.bignumber.equal(effectiveStakeFirst);
 
@@ -105,8 +92,8 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
   describe('core upgradeability', function () {
 
     beforeEach(async function () {
-      const registryManager = new RegistryManager(this.registry, { version: '1' }, { from: owner });
-      await registryManager.deployAndRegister(MockZepCoreV2, 'ZepCore');
+      const registryManager = new RegistryManager(this.registry);
+      await registryManager.deployAndRegister(MockZepCoreV2, 'ZepCore', '1');
       await this.controller.upgradeTo(this.zepCore.address, 'ZeppelinOS', '1', 'ZepCore', { from: owner });
     });
 
@@ -115,18 +102,17 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
       const developerPayout = Math.floor(stakeValue / developerFraction) * 2;
       const effectiveStake = stakeValue - developerPayout;
       const developerBalanceBefore = await this.zepToken.balanceOf(developer);
-      
+
       await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
       await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-      
+
       const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
       staked.should.be.bignumber.equal(effectiveStake);
       const totalStaked = await this.kernelStakes.totalStaked();
       totalStaked.should.be.bignumber.equal(effectiveStake);
-      
+
       const developerBalanceAfter = await this.zepToken.balanceOf(developer);
       developerBalanceAfter.should.be.bignumber.equal(developerBalanceBefore.plus(developerPayout));
     });
-
   });
 });
