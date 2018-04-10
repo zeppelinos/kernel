@@ -1,4 +1,6 @@
 # zOS Kernel v1.0
+[![Build Status](https://travis-ci.org/zeppelinos/kernel-registry.svg?branch=master)](https://travis-ci.org/zeppelinos/kernel-registry)
+[![Coverage Status](https://coveralls.io/repos/github/zeppelinos/kernel-registry/badge.svg?branch=master)](https://coveralls.io/github/zeppelinos/kernel-registry?branch=master)
 
 Design for the zOS Kernel. Work in progress, all the specs below are subject to discussion (especially the names).
 
