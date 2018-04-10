@@ -1,9 +1,9 @@
 import Deployer from '../deploy/Deployer';
+import ZepCoreManager from "../deploy/ZepCoreManager";
 import ProjectControllerManager from "../deploy/ProjectControllerManager";
 
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');
-const KernelInstance = artifacts.require('KernelInstance');
 
 const should = require('chai')
   .use(require('chai-as-promised'))
@@ -21,18 +21,12 @@ contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => 
     const deployed = await Deployer.zepCore(zeppelin, newVersionCost, developerFraction);
     this.zepCore = deployed.zepCore;
 
-    // mint ZEP tokens and approve
-    const zepToken = deployed.zepToken;
-    await zepToken.mint(developer, newVersionCost, { from: zeppelin });
-    await zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
-
     // register a new kernel instance
-    const erc721 = await ERC721Token.new();
-    const instance = await KernelInstance.new(zeppelinDistro, version_180, 0, { from: developer });
-    await instance.addImplementation(erc721Name, erc721.address, { from: developer });
-    await this.zepCore.register(instance.address, { from: developer });
+    const zepCoreManager = new ZepCoreManager(this.zepCore, zeppelin)
+    await zepCoreManager.mintZepTokens(developer, newVersionCost)
+    await zepCoreManager.registerKernelInstance(zeppelinDistro, version_180, ERC721Token, erc721Name, developer)
 
-    // deploy a testing contract that uses zos
+    // deploy a project controller using zos
     const controller = await Deployer.projectController(someone, 'My Project', this.zepCore.address)
     this.controllerManager = new ProjectControllerManager(controller, someone);
     const erc721Proxy = await this.controllerManager.createProxy(ERC721Token, erc721Name, zeppelinDistro, version_180)
