@@ -1,48 +1,36 @@
-import decodeLogs from '../helpers/decodeLogs';
-import deploy from '../deploy/deployer';
+import Deployer from '../deploy/objects/Deployer';
+import ZepCoreManager from "../deploy/objects/ZepCoreManager";
+import ProjectControllerManager from "../deploy/objects/ProjectControllerManager";
 
-const ZepCore = artifacts.require('ZepCore');
-const Registry = artifacts.require('zos-core/contracts/Registry.sol');
-const ZepToken = artifacts.require('ZepToken');
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');
-const KernelInstance = artifacts.require('KernelInstance');
-const ProjectController = artifacts.require('ProjectController');
-const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 
 const should = require('chai')
   .use(require('chai-as-promised'))
   .should();
 
 contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => {
-  const version = '1.8.0';
-  const distribution = 'Zeppelin';
-  const contractName = 'ERC721Token';
+  const version_180 = '1.8.0';
+  const zeppelinDistro = 'Zeppelin';
+  const erc721Name = 'ERC721Token';
   const newVersionCost = 2;
   const developerFraction = 10;
 
   beforeEach(async function () {
-    // deploy kernel instance
-    const erc721 = await ERC721Token.new();
-    const instance = await KernelInstance.new(distribution, version, 0, { from: developer });
-    await instance.addImplementation(contractName, erc721.address, { from: developer });
+    // deploy ZepCore instance
+    const deployed = await Deployer.zepCore(zeppelin, newVersionCost, developerFraction);
+    this.zepCore = deployed.zepCore;
 
     // register a new kernel instance
-    const deployed = await deploy({ newVersionCost, developerFraction, owner: zeppelin });
-    this.zepCore = deployed.ZepCore;
-    const zepToken = deployed.ZepToken;
-    await zepToken.mint(developer, newVersionCost, { from: zeppelin });
-    await zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
-    await this.zepCore.register(instance.address, { from: developer });
+    const zepCoreManager = new ZepCoreManager(this.zepCore, zeppelin)
+    await zepCoreManager.mintZepTokens(developer, newVersionCost)
+    await zepCoreManager.registerKernelInstance(zeppelinDistro, version_180, ERC721Token, erc721Name, developer)
 
-    // deploy a testing contract that uses zos
-    const factory = deployed.UpgradeabilityProxyFactory;
-    this.registry = await Registry.new({ from: zeppelin })
-    this.controller = await ProjectController.new('My Project', this.registry.address, factory.address, this.zepCore.address);
-    const { receipt } = await this.controller.create(distribution, version, contractName);
-    const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, factory.address);
-    const proxyAddress = logs.find(l => l.event === 'ProxyCreated').args.proxy;
-    this.mock = await PickACard.new(proxyAddress);
+    // deploy a project controller using zos
+    const controller = await Deployer.projectController(someone, 'My Project', this.zepCore.address)
+    this.controllerManager = new ProjectControllerManager(controller, someone);
+    const erc721Proxy = await this.controllerManager.createProxy(ERC721Token, erc721Name, zeppelinDistro, version_180)
+    this.mock = await PickACard.new(erc721Proxy.address);
   });
 
   it('uses the selected zos kernel instance', async function () {
@@ -62,10 +50,8 @@ contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => 
 
   describe('when creating another instance of the testing contract', function () {
     beforeEach(async function () {
-      const { receipt } = await this.controller.create(distribution, version, contractName);
-      const logs = decodeLogs([receipt.logs[0]], UpgradeabilityProxyFactory, 0x0);
-      this.anotherProxyAddress = logs.find(l => l.event === 'ProxyCreated').args.proxy;
-      this.anotherMock = await PickACard.new(this.anotherProxyAddress);
+      this.anotherERC721Proxy = await this.controllerManager.createProxy(ERC721Token, erc721Name, zeppelinDistro, version_180)
+      this.anotherMock = await PickACard.new(this.anotherERC721Proxy.address);
     })
 
     it('creates different instances of the proxy', async function () {
@@ -87,7 +73,7 @@ contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => 
       const newkey = web3.sha3(key + ind, { encoding: "hex" })
 
       await this.anotherMock.pick(7, { from: someone });
-      const storage = await web3.eth.getStorageAt(this.anotherProxyAddress, newkey);
+      const storage = await web3.eth.getStorageAt(this.anotherERC721Proxy.address, newkey);
       assert.equal(storage, someone);
     });
   });
