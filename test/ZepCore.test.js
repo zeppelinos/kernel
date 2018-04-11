@@ -1,3 +1,4 @@
+import assertRevert from './helpers/assertRevert';
 import Deployer from '../deploy/objects/Deployer';
 import RegistryManager from '../deploy/objects/RegistryManager';
 
@@ -15,19 +16,11 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
   const developerFraction = 10;
 
   beforeEach(async function () {
-    // deploy ZepCore instance
     const deployed = await Deployer.zepCore(owner, newVersionCost, developerFraction)
     Object.assign(this, deployed)
-
-    // deploy a new kernel instances
-    const name = "Zeppelin";
-    this.kernelInstance = await KernelInstance.new(name, "0.1", 0, { from: developer });
-    this.anotherKernelInstance = await KernelInstance.new(name, "0.2", 0, { from: anotherDeveloper });
-
-    // mint ZEP tokens
-    await this.zepToken.mint(user, 1000, { from: owner });
-    await this.zepToken.mint(developer, 100, { from: owner });
-    await this.zepToken.approve(this.zepCore.address, 100, { from: developer });
+    this.kernelInstance = await KernelInstance.new("Zeppelin", "0.1", 0, { from: developer });
+    this.anotherKernelInstance = await KernelInstance.new("Zeppelin", "0.2", 0, { from: anotherDeveloper });
+    await this.zepToken.mint(owner, 10000, { from: owner });
   });
 
   it('has a ZepToken', async function () {
@@ -39,58 +32,98 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
   });
 
   it('registers instances', async function () {
+    await this.zepToken.transfer(developer, newVersionCost, { from: owner });
+    await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
     await this.zepCore.register(this.kernelInstance.address, { from: developer }).should.be.fulfilled;
   });
 
-  it('should accept stakes', async function () {
-    const stakeValue = 42;
-    const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction);
-    await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    
-    const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
-    staked.should.be.bignumber.equal(effectiveStake);
-    const totalStaked = await this.kernelStakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(effectiveStake);
-  });
-
-  it('should accept unstakes', async function () {
+  describe('staking for registered instances', async function() {
     const stakeValue = 42;
     const unstakeValue = 24;
-    const effectiveStake = stakeValue-Math.floor(stakeValue/developerFraction)-unstakeValue;
-    await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    await this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user });
-    
-    const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
-    staked.should.be.bignumber.equal(effectiveStake);
-    const totalStaked = await this.kernelStakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(effectiveStake);
+    const transferValue = 10;
+
+    beforeEach(async function () {
+      await this.zepToken.transfer(developer, newVersionCost, { from: owner });
+      await this.zepToken.transfer(anotherDeveloper, newVersionCost, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: anotherDeveloper });
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+      await this.zepCore.register(this.anotherKernelInstance.address, { from: anotherDeveloper });
+
+      await this.zepToken.transfer(user, stakeValue, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
+    });
+
+    it('should accept stakes', async function () {
+      const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction);
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
+      staked.should.be.bignumber.equal(effectiveStake);
+      const totalStaked = await this.kernelStakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(effectiveStake);
+    });
+
+    it('should accept unstakes', async function () {
+      const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction) - unstakeValue;
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user });
+
+      const staked = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
+      staked.should.be.bignumber.equal(effectiveStake);
+      const totalStaked = await this.kernelStakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(effectiveStake);
+    });
+
+    it('should transfer stakes', async function () {
+      const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
+      const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
+      const totalEffectivelyStaked = effectiveStakeFirst + effectiveStakeSecond;
+
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user });
+
+      const stakedToFirst = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
+      stakedToFirst.should.be.bignumber.equal(effectiveStakeFirst);
+
+      const stakedToSecond = await this.kernelStakes.totalStakedFor(this.anotherKernelInstance.address);
+      stakedToSecond.should.be.bignumber.equal(effectiveStakeSecond);
+
+      const totalStaked = await this.kernelStakes.totalStaked();
+      totalStaked.should.be.bignumber.equal(totalEffectivelyStaked);
+    });
   });
 
-  it('should transfer stakes', async function () {
-    const stakeValue = 420;
-    const transferValue = 20;
-    const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
-    const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
-    const totalEffectivelyStaked = effectiveStakeFirst+effectiveStakeSecond;
+  describe('staking for unregistered instances', async function() {
+    const stakeValue = 42;
+    const unstakeValue = 24;
+    const transferValue = 10;
 
-    await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
-    await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
-    await this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user });
+    beforeEach(async function () {
+      await this.zepToken.transfer(developer, newVersionCost, { from: owner });
+      await this.zepToken.transfer(anotherDeveloper, newVersionCost, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: anotherDeveloper });
 
-    const stakedToFirst = await this.kernelStakes.totalStakedFor(this.kernelInstance.address);
-    stakedToFirst.should.be.bignumber.equal(effectiveStakeFirst);
+      await this.zepToken.transfer(user, stakeValue, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
+    });
 
-    const stakedToSecond = await this.kernelStakes.totalStakedFor(this.anotherKernelInstance.address);
-    stakedToSecond.should.be.bignumber.equal(effectiveStakeSecond);
+    it('should reject stakes', async function () {
+      await assertRevert(this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user }));
+    });
 
-    const totalStaked = await this.kernelStakes.totalStaked();
-    totalStaked.should.be.bignumber.equal(totalEffectivelyStaked);
+    it('should reject unstakes', async function () {
+      await assertRevert(this.zepCore.unstake(this.kernelInstance.address, unstakeValue, 0, { from: user }));
+    });
+
+    it('should reject stake transfers', async function () {
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+      await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
+      await assertRevert(this.zepCore.transferStake(this.kernelInstance.address, this.anotherKernelInstance.address, transferValue, 0, { from: user }));
+    });
   });
 
   describe('core upgradeability', function () {
-
     beforeEach(async function () {
       const registryManager = new RegistryManager(this.registry);
       await registryManager.deployAndRegister(MockZepCoreV2, 'ZepCore', '1');
@@ -103,6 +136,11 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper]) => {
       const effectiveStake = stakeValue - developerPayout;
       const developerBalanceBefore = await this.zepToken.balanceOf(developer);
 
+      await this.zepToken.transfer(developer, newVersionCost, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+
+      await this.zepToken.transfer(user, stakeValue, { from: owner });
       await this.zepToken.approve(this.zepCore.address, stakeValue, { from: user });
       await this.zepCore.stake(this.kernelInstance.address, stakeValue, 0, { from: user });
 
