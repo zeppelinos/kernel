@@ -1,4 +1,4 @@
-import decodeLogs from '../helpers/decodeLogs';
+import decodeLogs from '../../helpers/decodeLogs';
 import encodeCall from 'zos-core/test/helpers/encodeCall';
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 

@@ -1,6 +1,6 @@
-import Deployer from './Deployer';
-import ZepCoreManager from './ZepCoreManager';
-import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } from './constants';
+import Deployer from '../objects/Deployer';
+import ZepCoreManager from '../objects/ZepCoreManager';
+import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } from '../constants';
 
 const ERC721Token = artifacts.require('ERC721Token');
 

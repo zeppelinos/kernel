@@ -5,4 +5,4 @@ global.artifacts = artifacts;
 global.web3 = web3;
 global.log = true;
 
-module.exports = require('../deploy/deploy');
+module.exports = require('../deploy/scripts/deploy');

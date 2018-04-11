@@ -1,6 +1,6 @@
-import Deployer from '../deploy/Deployer';
-import ZepCoreManager from "../deploy/ZepCoreManager";
-import ProjectControllerManager from "../deploy/ProjectControllerManager";
+import Deployer from '../deploy/objects/Deployer';
+import ZepCoreManager from "../deploy/objects/ZepCoreManager";
+import ProjectControllerManager from "../deploy/objects/ProjectControllerManager";
 
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');

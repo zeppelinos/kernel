@@ -1,7 +1,7 @@
 const ZepToken = artifacts.require('ZepToken');
 const KernelInstance = artifacts.require('KernelInstance');
 
-const log = require('./logger');
+const log = require('../logger');
 
 export default class ZepCoreManager {
   constructor(zepCore, owner) {

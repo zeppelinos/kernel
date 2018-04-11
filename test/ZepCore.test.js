@@ -1,5 +1,5 @@
-import Deployer from '../deploy/Deployer';
-import RegistryManager from '../deploy/RegistryManager';
+import Deployer from '../deploy/objects/Deployer';
+import RegistryManager from '../deploy/objects/RegistryManager';
 
 const BigNumber = web3.BigNumber;
 const MockZepCoreV2 = artifacts.require('MockZepCoreV2');
