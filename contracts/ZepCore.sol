@@ -68,16 +68,20 @@ contract ZepCore is Initializable, ImplementationProvider {
   }
 
   function stake(KernelInstance instance, uint256 amount, bytes data) public {
+    require(_registry.isRegistered(instance));
     _token.transferFrom(msg.sender, this, amount);
     _payoutAndStake(msg.sender, instance, amount, data);
   }
 
   function unstake(KernelInstance instance, uint256 amount, bytes data) public {
+    require(_registry.isRegistered(instance));
     _stakes.unstake(msg.sender, instance, amount, data);
     _token.transfer(msg.sender, amount);
   }
 
   function transferStake(KernelInstance from, KernelInstance to, uint256 amount, bytes data) public {
+    require(_registry.isRegistered(from));
+    require(_registry.isRegistered(to));
     _stakes.unstake(msg.sender, from, amount, data);
     _payoutAndStake(msg.sender, to, amount, data);
   }
