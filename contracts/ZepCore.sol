@@ -5,11 +5,13 @@ import "./KernelInstance.sol";
 import "./KernelRegistry.sol";
 import "./KernelStakes.sol";
 import "zos-core/contracts/Registry.sol";
+import "zos-core/contracts/Initializable.sol";
 import "zos-core/contracts/ProjectController.sol";
+import "zos-core/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 import "zos-core/contracts/ImplementationProvider.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract ZepCore is ImplementationProvider {
+contract ZepCore is Initializable, ImplementationProvider {
   using SafeMath for uint256;
 
   ZepToken private _token;
@@ -19,14 +21,20 @@ contract ZepCore is ImplementationProvider {
   uint256 public newVersionCost;
   uint256 public developerFraction;
 
-  function ZepCore(uint256 _newVersionCost, uint256 _developerFraction) public {
-    _registry = new KernelRegistry();
-    _stakes = new KernelStakes();
-    _token = new ZepToken();
-    _token.transferOwnership(msg.sender);
-    
-    developerFraction = _developerFraction;
-    newVersionCost = _newVersionCost;
+  function ZepCore() public {}
+
+  function initialize(
+    uint256 newVersionCost_,
+    uint256 developerFraction_,
+    ZepToken token_,
+    KernelRegistry registry_,
+    KernelStakes stakes_
+  ) public isInitializer {
+    _registry = registry_;
+    _stakes = stakes_;
+    _token = token_;
+    developerFraction = developerFraction_;
+    newVersionCost = newVersionCost_;
     // TODO: we need to think how we are going to manage variable costs to propose new versions
   }
 
@@ -78,7 +86,7 @@ contract ZepCore is ImplementationProvider {
     _payoutAndStake(msg.sender, to, amount, data);
   }
 
-  function _payoutAndStake(address staker, KernelInstance instance, uint256 amount, bytes data) private {
+  function _payoutAndStake(address staker, KernelInstance instance, uint256 amount, bytes data) internal {
     uint256 developerPayout = amount.div(developerFraction);
     require(developerPayout > 0);
     // TODO: Think how we can manage remainders in a better way

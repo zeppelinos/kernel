@@ -1,10 +1,11 @@
 pragma solidity ^0.4.21;
 
 import "./ZepToken.sol";
+import "zos-core/contracts/Initializable.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract KernelStakes is Ownable {
+contract KernelStakes is Initializable, Ownable {
   using SafeMath for uint256;
 
   event Staked(address indexed staker, address instance, uint256 amount, uint256 total, bytes data);
@@ -15,6 +16,10 @@ contract KernelStakes is Ownable {
   mapping(address => mapping (address => uint256)) private _stakerVouches;
 
   function KernelStakes() public {}
+
+  function initialize(address _owner) public isInitializer {
+    owner = _owner;
+  }
 
   function totalStaked() public view returns (uint256) {
     return _totalStaked;
