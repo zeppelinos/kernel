@@ -21,6 +21,11 @@ contract ZepCore is Initializable, ImplementationProvider {
   uint256 public newVersionCost;
   uint256 public developerFraction;
 
+  modifier isRegistered(KernelInstance instance) {
+    require(_registry.isRegistered(instance));
+    _;
+  }
+
   function ZepCore() public {}
 
   function initialize(
@@ -67,21 +72,17 @@ contract ZepCore is Initializable, ImplementationProvider {
     return instance.getImplementation(contractName);
   }
 
-  function stake(KernelInstance instance, uint256 amount, bytes data) public {
-    require(_registry.isRegistered(instance));
+  function stake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) {
     _token.transferFrom(msg.sender, this, amount);
     _payoutAndStake(msg.sender, instance, amount, data);
   }
 
-  function unstake(KernelInstance instance, uint256 amount, bytes data) public {
-    require(_registry.isRegistered(instance));
+  function unstake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) {
     _stakes.unstake(msg.sender, instance, amount, data);
     _token.transfer(msg.sender, amount);
   }
 
-  function transferStake(KernelInstance from, KernelInstance to, uint256 amount, bytes data) public {
-    require(_registry.isRegistered(from));
-    require(_registry.isRegistered(to));
+  function transferStake(KernelInstance from, KernelInstance to, uint256 amount, bytes data) public isRegistered(from) isRegistered(to) {
     _stakes.unstake(msg.sender, from, amount, data);
     _payoutAndStake(msg.sender, to, amount, data);
   }
