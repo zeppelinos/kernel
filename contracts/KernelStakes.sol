@@ -55,7 +55,7 @@ contract KernelStakes is Initializable, Ownable {
   }
 
   /**
-   * @dev Tells the total staked amount
+   * @dev Retrieves the total staked amount
    * @returns the total staked amount
    */
   function totalStaked() public view returns (uint256) {
@@ -63,7 +63,7 @@ contract KernelStakes is Initializable, Ownable {
   }
 
   /**
-   * @dev Tells the staked amount for a given kernel
+   * @dev Retrieves the staked amount for a given kernel
    * @param instance representing the kernel instance
    * @returns the total staked amount for a given kernel
    */
@@ -72,7 +72,7 @@ contract KernelStakes is Initializable, Ownable {
   }
 
   /**
-   * @dev Tells the staked amount by a staker for a given kernel
+   * @dev Retrieves the staked amount by a staker for a given kernel
    * @param staker representing the staker address
    * @param instance representing the kernel instance
    * @returns the total staked amount by the staker for the given kernel

@@ -32,7 +32,7 @@ contract KernelRegistry is Initializable, Ownable {
   }
 
   /**
-   * @dev Tells the kernel for a version of a given distribution
+   * @dev Retrieves the kernel for a version of a given distribution
    * @param name representing the distribution
    * @param version representing the distribution's version
    */
@@ -42,7 +42,7 @@ contract KernelRegistry is Initializable, Ownable {
   }
 
   /**
-   * @dev Registers a new kernel version
+   * @dev Registers a new kernel version and emits the corresponding event
    * @param _instance representing the kernel to be registered
    */
   function addInstance(KernelInstance _instance) onlyOwner public {
@@ -54,7 +54,7 @@ contract KernelRegistry is Initializable, Ownable {
   }
 
   /**
-   * @dev Tells whether a given kernel has been registered
+   * @dev Retrieves whether a given kernel has been registered
    * @param _instance representing the kernel
    */
   function isRegistered(KernelInstance _instance) public view returns (bool) {

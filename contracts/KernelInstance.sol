@@ -56,7 +56,7 @@ contract KernelInstance is Ownable {
   }
 
   /**
-   * @dev Tells the hash representing the KernelInstance
+   * @dev Retrieves the hash representing the KernelInstance
    * @return the hash representing the KernelInstance
    */
   function getHash() public view returns(bytes32) {
@@ -76,7 +76,7 @@ contract KernelInstance is Ownable {
   }
 
   /**
-   * @dev Tells the implementation address for a given contract
+   * @dev Retrieves the implementation address for a given contract
    * @param contractName representing the name of the contract
    * @return the implementation address or 0 if it does not exist
    */
