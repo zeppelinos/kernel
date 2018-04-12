@@ -17,6 +17,22 @@ const Deployer = {
     return await ProjectController.new(projectName, registry.address, factory.address, fallbackProvider, { from: projectOwner });
   },
 
+  async deployAndRegister(projectController, contractKlazz, contractName, version) {
+    const registry = await projectController.registry();
+    const registryManager = new RegistryManager(Registry.at(registry));
+    return await registryManager.deployAndRegister(contractKlazz, contractName, version);
+  },
+
+  async createProxy(projectController, contractClazz, contractName, distribution, version) {
+    const controllerManager = new ProjectControllerManager(controller, owner);
+    return await controllerManager.createProxy(contractClazz, contractName, distribution, version);
+  },
+
+  async createProxyAndCall(controller, owner, contractKlazz, contractName, distribution, version, initArgTypes, initArgs) {
+    const controllerManager = new ProjectControllerManager(controller, owner);
+    return await controllerManager.createProxyAndCall(contractKlazz, contractName, distribution, version, initArgTypes, initArgs);
+  },
+
   async zepCore(owner, newVersionCost, developerFraction, distribution = 'ZeppelinOS') {
     const controller = await this.projectController(owner, distribution)
     const registry = Registry.at(await controller.registry())
