@@ -64,7 +64,7 @@ contract KernelInstance is Ownable {
   }
 
   /**
-   * @dev Adds an implementation for a contract to the KernelInstance and emits an event accordingly
+   * @dev Adds an implementation for a contract to the KernelInstance and emits the corresponding event
    * @param contractName representing the name of the contract
    * @param implementation representing the address of the implementation
    */
