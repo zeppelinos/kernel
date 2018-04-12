@@ -18,7 +18,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param instance representing the kernel staked for
    * @param amount representing the staked amount
    * @param total representing the new total amount staked by the staker
-   * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
+   * @param data representing additional information for complex staking models
    */
   event Staked(address indexed staker, address instance, uint256 amount, uint256 total, bytes data);
 
@@ -28,7 +28,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param instance representing the kernel unstaked for
    * @param amount representing the unstaked amount
    * @param total representing the new total amount staked by the staker
-   * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
+   * @param data representing additional information for complex staking models
    */
   event Unstaked(address indexed staker, address instance, uint256 amount, uint256 total, bytes data);
 
@@ -86,7 +86,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param staker representing the staker address
    * @param instance representing the kernel instance being staked for
    * @param amount representing the amount being staked
-   * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
+   * @param data representing additional information for complex staking models
    */
   function stake(address staker, address instance, uint256 amount, bytes data) public onlyOwner {
     _totalStaked = _totalStaked.add(amount);
@@ -101,7 +101,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param staker representing the staker address
    * @param instance representing the kernel instance being unstaked for
    * @param amount representing the amount being unstaked
-   * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
+   * @param data representing additional information for complex staking models
    */
   function unstake(address staker, address instance, uint256 amount, bytes data) public onlyOwner {
     uint256 currentStake = _stakerVouches[staker][instance];
