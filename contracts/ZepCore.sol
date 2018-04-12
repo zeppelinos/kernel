@@ -143,7 +143,7 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @param amount representing the amount being unstaked
    * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
    */
- function unstake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) {
+  function unstake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) { 
     _stakes.unstake(msg.sender, instance, amount, data);
     _token.transfer(msg.sender, amount);
   }
