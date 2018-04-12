@@ -50,9 +50,9 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @dev Initialization function
    * @param newVersionCost_ representing the price of registering a kernel version
    * @param developerFraction_ representing the fraction of stakes rewarded to the developer of a kernel instance
-   * @param _owner representing the address of the owner
-   * @param _owner representing the address of the owner
-   * @param _owner representing the address of the owner
+   * @param token_ representing the address of the staking token
+   * @param registry_ representing the versions registry contract
+   * @param stakes_ representing the address of staking contract
    */
   function initialize(
     uint256 newVersionCost_,
@@ -71,7 +71,7 @@ contract ZepCore is Initializable, ImplementationProvider {
 
   /**
    * @dev Retrieves the token used for staking
-   * @returns the token used for staking
+   * @return the token used for staking
    */
   function token() public view returns (ZepToken) {
     return _token;
@@ -79,7 +79,7 @@ contract ZepCore is Initializable, ImplementationProvider {
 
   /**
    * @dev Retrieves the registry of kernel versions
-   * @returns the registry of kernel versions
+   * @return the registry of kernel versions
    */
   function registry() public view returns (KernelRegistry) {
     return _registry;
@@ -87,7 +87,7 @@ contract ZepCore is Initializable, ImplementationProvider {
 
   /**
    * @dev Retrieves the staking contract
-   * @returns the staking contract
+   * @return the staking contract
    */
   function stakes() public view returns (KernelStakes) {
     return _stakes;
@@ -109,7 +109,7 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @dev Retrieves the kernel instance for a given distribution name and version
    * @param name representing the distribution name
    * @param version representing the distribution version
-   * @returns the kernel instance
+   * @return the kernel instance
    */
   function getInstance(string name, string version) public view returns(KernelInstance) {
     return _registry.getInstance(name, version);
@@ -119,7 +119,7 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @dev Retrieves the implementation for a given distribution name and version
    * @param name representing the distribution name
    * @param version representing the distribution version
-   * @returns the implementation address
+   * @return the implementation address
    */
   function getImplementation(string distribution, string version, string contractName) public view returns (address) {
     KernelInstance instance = getInstance(distribution, version);

@@ -17,7 +17,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param staker representing the address of the staker
    * @param instance representing the kernel staked for
    * @param amount representing the staked amount
-   * @param total representing the new total amount staked
+   * @param total representing the new total amount staked by the staker
    * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
    */
   event Staked(address indexed staker, address instance, uint256 amount, uint256 total, bytes data);
@@ -27,7 +27,7 @@ contract KernelStakes is Initializable, Ownable {
    * @param staker representing the address of the staker
    * @param instance representing the kernel unstaked for
    * @param amount representing the unstaked amount
-   * @param total representing the new total amount staked
+   * @param total representing the new total amount staked by the staker
    * @param data representing additional information for complex staking models. Included to comply with the ERC900 staking interface (https://github.com/ethereum/EIPs/pull/910)
    */
   event Unstaked(address indexed staker, address instance, uint256 amount, uint256 total, bytes data);
@@ -56,7 +56,7 @@ contract KernelStakes is Initializable, Ownable {
 
   /**
    * @dev Retrieves the total staked amount
-   * @returns the total staked amount
+   * @return the total staked amount
    */
   function totalStaked() public view returns (uint256) {
     return _totalStaked;
@@ -65,7 +65,7 @@ contract KernelStakes is Initializable, Ownable {
   /**
    * @dev Retrieves the staked amount for a given kernel
    * @param instance representing the kernel instance
-   * @returns the total staked amount for a given kernel
+   * @return the total staked amount for a given kernel
    */
   function totalStakedFor(address instance) public view returns (uint256) {
     return _instanceVouches[instance];
@@ -75,7 +75,7 @@ contract KernelStakes is Initializable, Ownable {
    * @dev Retrieves the staked amount by a staker for a given kernel
    * @param staker representing the staker address
    * @param instance representing the kernel instance
-   * @returns the total staked amount by the staker for the given kernel
+   * @return the total staked amount by the staker for the given kernel
    */
   function stakedFor(address staker, address instance) public view returns (uint256) {
     return _stakerVouches[staker][instance];
