@@ -27,8 +27,8 @@ contract KernelInstance is Ownable {
   mapping(string => address) private implementations;
 
   /**
-   * @dev This event will be emitted every time an implementation is added
-   * @param contractName representing the name of the contract for which an implementation was added
+   * @dev Event signaling that a new implementation for a contract has been added
+   * @param contractName representing the name of the contract
    * @param implementation representing the address of the implementation
    */
   event ImplementationAdded(string contractName, address implementation);
