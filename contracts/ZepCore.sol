@@ -116,9 +116,10 @@ contract ZepCore is Initializable, ImplementationProvider {
   }
 
   /**
-   * @dev Retrieves the implementation for a given distribution name and version
-   * @param name representing the distribution name
+   * @dev Retrieves the implementation of a contract for a given distribution and version
+   * @param distribution representing the distribution name
    * @param version representing the distribution version
+   * @param contractName representing the contract name
    * @return the implementation address
    */
   function getImplementation(string distribution, string version, string contractName) public view returns (address) {
