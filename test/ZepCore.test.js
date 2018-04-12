@@ -1,7 +1,6 @@
 import assertRevert from './helpers/assertRevert';
 import Deployer from '../deploy/objects/Deployer';
 import RegistryManager from '../deploy/objects/RegistryManager';
-import { beforeEach } from 'mocha';
 
 const decodeLogs = require('./helpers/decodeLogs');
 
