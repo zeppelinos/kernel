@@ -38,7 +38,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser, 
     assert.equal(await this.zepToken.decimals(), 18);
   });
 
-  describe.only('working with instances', function () {
+  describe('working with instances', function () {
     const instanceVersion3 = "0.3";
 
     beforeEach(async function () {
