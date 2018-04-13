@@ -11,5 +11,6 @@ export default class RegistryManager {
     const owner = await this.owner()
     const implementation = await contractKlazz.new();
     await this.registry.addImplementation(version, contractName, implementation.address, { from: owner });
+    return implementation;
   }
 }

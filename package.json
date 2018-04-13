@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "scripts/test.sh",
+    "deploy-development": "truffle exec scripts/deploy.js --network development",
     "deploy-ropsten": "truffle exec scripts/deploy.js --network ropsten"
   },
   "devDependencies": {
