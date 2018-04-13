@@ -40,13 +40,13 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
     await this.zepCore.register(this.kernelInstance.address, { from: developer }).should.be.fulfilled;
   });
 
-  describe('staking', async function() {
+  describe('staking', function() {
     const stakeValue = 42;
     const unstakeValue = 24;
     const transferValue = 10;
     const tooSmallStake = developerFraction - 1; 
 
-    describe('registered instances', async function() {
+    describe('registered instances', function() {
       
       beforeEach(async function () {
         await this.zepToken.transfer(developer, newVersionCost, { from: owner });
@@ -127,7 +127,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
         });
       });
 
-      describe('transfers', async function () {
+      describe('transfers', function () {
         it('should transfer stakes', async function () {
           const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
           const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
@@ -147,7 +147,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
         });
       });
 
-      describe('restakes', async function (){
+      describe('restakes', function (){
         const anotherStake = 47;
         const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction) + anotherStake - Math.floor(anotherStake/developerFraction);        
 
@@ -175,7 +175,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
       });
     });
 
-    describe('unregistered instances', async function() {
+    describe('unregistered instances', function() {
       beforeEach(async function () {
         await this.zepToken.transfer(developer, newVersionCost, { from: owner });
         await this.zepToken.transfer(anotherDeveloper, newVersionCost, { from: owner });
