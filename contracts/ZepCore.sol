@@ -42,8 +42,8 @@ contract ZepCore is Initializable, ImplementationProvider {
   }
 
   /**
-  * @dev Constructor function
-  */
+   * @dev Constructor function
+   */
   function ZepCore() public {}
 
   /**
