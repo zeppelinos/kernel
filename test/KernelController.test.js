@@ -1,6 +1,6 @@
-import Deployer from '../deploy/objects/Deployer';
-import ZepCoreManager from "../deploy/objects/ZepCoreManager";
-import ProjectControllerManager from "../deploy/objects/ProjectControllerManager";
+// import Deployer from '../deploy/objects/Deployer';
+// import ZepCoreManager from "../deploy/objects/ZepCoreManager";
+// import ProjectControllerManager from "../deploy/objects/ProjectControllerManager";
 
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');
@@ -18,19 +18,19 @@ contract.skip('KernelController', ([_, zeppelin, developer, someone, anotherone]
 
   beforeEach(async function () {
     // deploy ZepCore instance
-    const deployed = await Deployer.zepCore(zeppelin, newVersionCost, developerFraction);
-    this.zepCore = deployed.zepCore;
+    // const deployed = await Deployer.zepCore(zeppelin, newVersionCost, developerFraction);
+    // this.zepCore = deployed.zepCore;
 
     // register a new kernel instance
-    const zepCoreManager = new ZepCoreManager(this.zepCore, zeppelin)
-    await zepCoreManager.mintZepTokens(developer, newVersionCost)
-    await zepCoreManager.registerKernelInstance(zeppelinDistro, version_180, ERC721Token, erc721Name, developer)
+    // const zepCoreManager = new ZepCoreManager(this.zepCore, zeppelin)
+    // await zepCoreManager.mintZepTokens(developer, newVersionCost)
+    // await zepCoreManager.registerKernelInstance(zeppelinDistro, version_180, ERC721Token, erc721Name, developer)
 
     // deploy a project controller using zos
-    const controller = await Deployer.projectController(someone, 'My Project', this.zepCore.address)
-    this.controllerManager = new ProjectControllerManager(controller, someone);
-    const erc721Proxy = await this.controllerManager.createProxy(ERC721Token, erc721Name, zeppelinDistro, version_180)
-    this.mock = await PickACard.new(erc721Proxy.address);
+    // const controller = await Deployer.projectController(someone, 'My Project', this.zepCore.address)
+    // this.controllerManager = new ProjectControllerManager(controller, someone);
+    // const erc721Proxy = await this.controllerManager.createProxy(ERC721Token, erc721Name, zeppelinDistro, version_180)
+    // this.mock = await PickACard.new(erc721Proxy.address);
   });
 
   it('uses the selected zos kernel instance', async function () {

@@ -1,37 +1,37 @@
 import assertRevert from './helpers/assertRevert';
-const KernelInstance = artifacts.require('KernelInstance');
+const Release = artifacts.require('Release');
 
 require('chai')
   .use(require('chai-as-promised'))
   .should();
 
-contract('KernelInstance', ([developer, implementationAddress1, implementationAddress2]) => {
+contract('Release', ([developer, implementationAddress1, implementationAddress2]) => {
   const contractName = "TestContract";
   const anotherContractName = "AnotherContract";
 
   beforeEach(async function () {
-    this.kernelInstance = await KernelInstance.new();
+    this.release = await Release.new();
   });
 
   it('stores developer', async function () {
-    const instanceDeveloper = await this.kernelInstance.developer();
+    const instanceDeveloper = await this.release.developer();
     instanceDeveloper.should.eq(developer);
   });
 
   it('starts unfrozen', async function () {
-    const frozen = await this.kernelInstance.frozen();      
+    const frozen = await this.release.frozen();      
     frozen.should.be.false;
   });
 
   it('should return 0 if no implementation', async function () {
-    const instanceImplementation1 = await this.kernelInstance.getImplementation(contractName);
+    const instanceImplementation1 = await this.release.getImplementation(contractName);
     instanceImplementation1.should.eq('0x0000000000000000000000000000000000000000');
   })
 
   describe('adding implementations', async function () {
     
     beforeEach(async function () {
-      this.receipt = await this.kernelInstance.addImplementation(contractName, implementationAddress1);
+      this.receipt = await this.release.addImplementation(contractName, implementationAddress1);
     });
 
     it('emits correct event', async function () {
@@ -42,17 +42,17 @@ contract('KernelInstance', ([developer, implementationAddress1, implementationAd
     });
 
     it('returns correct address', async function () {
-      const instanceImplementation1 = await this.kernelInstance.getImplementation(contractName);
+      const instanceImplementation1 = await this.release.getImplementation(contractName);
       assert.equal(instanceImplementation1, implementationAddress1);
     });
 
     it('should not add implementation for same contract twice', async function () {
-      await assertRevert(this.kernelInstance.addImplementation(contractName, implementationAddress2));
+      await assertRevert(this.release.addImplementation(contractName, implementationAddress2));
     });
 
     it('should fail if frozen', async function () {
-      await this.kernelInstance.freeze();
-      await assertRevert(this.kernelInstance.addImplementation(anotherContractName, implementationAddress2));
+      await this.release.freeze();
+      await assertRevert(this.release.addImplementation(anotherContractName, implementationAddress2));
     });
 
   });
