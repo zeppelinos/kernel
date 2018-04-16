@@ -2,7 +2,6 @@ pragma solidity ^0.4.21;
 
 import "./ZepToken.sol";
 import "./KernelInstance.sol";
-import "./KernelRegistry.sol";
 import "./KernelStakes.sol";
 import "zos-core/contracts/Registry.sol";
 import "zos-core/contracts/Initializable.sol";
@@ -19,13 +18,10 @@ contract ZepCore is Initializable, ImplementationProvider {
   using SafeMath for uint256;
 
   // Token used for staking
-  ZepToken private _token;
-
-  // Registry of kernel versions
-  KernelRegistry private _registry;
+  ZepToken public token;
 
   // Staking contract
-  KernelStakes private _stakes;
+  KernelStakes public stakes;
 
   // Price of registering a new kernel version
   uint256 public newVersionCost;
@@ -33,64 +29,41 @@ contract ZepCore is Initializable, ImplementationProvider {
   // Fraction of stakes rewarded to the developer of a kernel instance
   uint256 public developerFraction;
 
+  // Keep track of registered kernel instances given their address
+  mapping(address => bool) internal instances;
+
+  /**
+   * @dev Event signaling that a new instance has been registered
+   * @param instance representing the new KernelInstance
+   */
+  event NewInstance(KernelInstance indexed instance);
+
   /**
   * @dev Guarantees that a given kernel instance is registered
   */
-  modifier isRegistered(KernelInstance instance) {
-    require(_registry.isRegistered(instance));
+  modifier onlyWhenRegistered(KernelInstance instance) {
+    require(instances[instance]);
     _;
   }
 
   /**
-  * @dev Constructor function
-  */
-  function ZepCore() public {}
-
-  /**
    * @dev Initialization function
-   * @param newVersionCost_ representing the price of registering a kernel version
-   * @param developerFraction_ representing the fraction of stakes rewarded to the developer of a kernel instance
-   * @param token_ representing the address of the staking token
-   * @param registry_ representing the versions registry contract
-   * @param stakes_ representing the address of staking contract
+   * @param _newVersionCost representing the price of registering a kernel version
+   * @param _developerFraction representing the fraction of stakes rewarded to the developer of a kernel instance
+   * @param _token representing the address of the staking token
+   * @param _stakes representing the address of staking contract
    */
   function initialize(
-    uint256 newVersionCost_,
-    uint256 developerFraction_,
-    ZepToken token_,
-    KernelRegistry registry_,
-    KernelStakes stakes_
+    uint256 _newVersionCost,
+    uint256 _developerFraction,
+    ZepToken _token,
+    KernelStakes _stakes
   ) public isInitializer {
-    _registry = registry_;
-    _stakes = stakes_;
-    _token = token_;
-    developerFraction = developerFraction_;
-    newVersionCost = newVersionCost_;
+    stakes = _stakes;
+    token = _token;
+    developerFraction = _developerFraction;
+    newVersionCost = _newVersionCost;
     // TODO: we need to think how we are going to manage variable costs to propose new versions
-  }
-
-  /**
-   * @dev Retrieves the token used for staking
-   * @return the token used for staking
-   */
-  function token() public view returns (ZepToken) {
-    return _token;
-  }
-
-  /**
-   * @dev Retrieves the registry of kernel versions
-   * @return the registry of kernel versions
-   */
-  function registry() public view returns (KernelRegistry) {
-    return _registry;
-  }
-
-  /**
-   * @dev Retrieves the staking contract
-   * @return the staking contract
-   */
-  function stakes() public view returns (KernelStakes) {
-    return _stakes;
   }
 
   /**
@@ -98,33 +71,12 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @param instance representing the kernel instance to be registered
    */
   function register(KernelInstance instance) public {
-    _registry.addInstance(instance);
+    require(!instances[instance]);
+    instances[instance] = true;
     
     // TODO: Update to burnFrom once https://github.com/OpenZeppelin/zeppelin-solidity/pull/870 is merged
-    _token.transferFrom(msg.sender, this, newVersionCost);
-    _token.burn(newVersionCost);
-  }
-
-  /**
-   * @dev Retrieves the kernel instance for a given distribution name and version
-   * @param name representing the distribution name
-   * @param version representing the distribution version
-   * @return the kernel instance
-   */
-  function getInstance(string name, string version) public view returns(KernelInstance) {
-    return _registry.getInstance(name, version);
-  }
-
-  /**
-   * @dev Retrieves the implementation of a contract for a given distribution and version
-   * @param distribution representing the distribution name
-   * @param version representing the distribution version
-   * @param contractName representing the contract name
-   * @return the implementation address
-   */
-  function getImplementation(string distribution, string version, string contractName) public view returns (address) {
-    KernelInstance instance = getInstance(distribution, version);
-    return instance.getImplementation(contractName);
+    require(token.transferFrom(msg.sender, this, newVersionCost));
+    token.burn(newVersionCost);
   }
 
   /**
@@ -133,8 +85,8 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @param amount representing the amount being staked
    * @param data representing additional information for complex staking models
    */
-  function stake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) {
-    _token.transferFrom(msg.sender, this, amount);
+  function stake(KernelInstance instance, uint256 amount, bytes data) public onlyWhenRegistered(instance) {
+    require(token.transferFrom(msg.sender, this, amount));
     _payoutAndStake(msg.sender, instance, amount, data);
   }
 
@@ -144,9 +96,9 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @param amount representing the amount being unstaked
    * @param data representing additional information for complex staking models
    */
-  function unstake(KernelInstance instance, uint256 amount, bytes data) public isRegistered(instance) { 
-    _stakes.unstake(msg.sender, instance, amount, data);
-    _token.transfer(msg.sender, amount);
+  function unstake(KernelInstance instance, uint256 amount, bytes data) public onlyWhenRegistered(instance) { 
+    stakes.unstake(msg.sender, instance, amount, data);
+    token.transfer(msg.sender, amount);
   }
 
   /**
@@ -156,8 +108,8 @@ contract ZepCore is Initializable, ImplementationProvider {
    * @param amount representing the amount of stakes being transferred
    * @param data representing additional information for complex staking models
    */
-  function transferStake(KernelInstance from, KernelInstance to, uint256 amount, bytes data) public isRegistered(from) isRegistered(to) {
-    _stakes.unstake(msg.sender, from, amount, data);
+  function transferStake(KernelInstance from, KernelInstance to, uint256 amount, bytes data) public onlyWhenRegistered(from) onlyWhenRegistered(to) {
+    stakes.unstake(msg.sender, from, amount, data);
     _payoutAndStake(msg.sender, to, amount, data);
   }
 
@@ -175,7 +127,11 @@ contract ZepCore is Initializable, ImplementationProvider {
     // TODO: Think how we can manage remainders in a better way
 
     uint256 stakedAmount = amount.sub(developerPayout);
-    _stakes.stake(staker, instance, stakedAmount, data);
-    _token.transfer(instance.developer(), developerPayout);
+    stakes.stake(staker, instance, stakedAmount, data);
+    token.transfer(instance.developer(), developerPayout);
+  }
+
+  function isRegistered(KernelInstance instance) public view returns (bool) {
+    return instances[instance];
   }
 }

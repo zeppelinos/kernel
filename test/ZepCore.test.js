@@ -14,16 +14,16 @@ const should = require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
+contract.skip('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const newVersionCost = 2;
   const developerFraction = 10;
 
   beforeEach(async function () {
     const deployed = await Deployer.zepCore(owner, newVersionCost, developerFraction)
     Object.assign(this, deployed)
-    this.kernelInstance = await KernelInstance.new("Zeppelin", "0.1", 0, { from: developer });
-    this.anotherKernelInstance = await KernelInstance.new("Zeppelin", "0.2", 0, { from: anotherDeveloper });
-    await this.zepToken.mint(owner, 10000, { from: owner });
+    this.kernelInstance = await KernelInstance.new({ from: developer });
+    this.anotherKernelInstance = await KernelInstance.new({ from: anotherDeveloper });
+    await this.zepToken.mint(owner, newVersionCost * 10, { from: owner });
   });
 
   it('has a ZepToken', async function () {
@@ -34,10 +34,29 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
     assert.equal(await this.zepToken.decimals(), 18);
   });
 
-  it('registers instances', async function () {
-    await this.zepToken.transfer(developer, newVersionCost, { from: owner });
-    await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
-    await this.zepCore.register(this.kernelInstance.address, { from: developer }).should.be.fulfilled;
+  describe('registering', async function() {
+
+    beforeEach(async function () {
+      await this.zepToken.transfer(developer, newVersionCost * 2, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost * 2, { from: developer });
+      ({ logs: this.logs } = await this.zepCore.register(this.kernelInstance.address, { from: developer }));
+    });
+
+    it('should mark instance as registered', async function () {
+      await this.zepCore.isRegistered(this.kernelInstance.address).should.eventually.be.true;
+    });
+
+    it('should emit an event on registration', async function () {
+      logs.length.should.eq(1);
+      const event = receipt.logs.find(e => e.event === 'NewInstance');
+      should.exist(event);
+      event.args.instance.should.eq(this.kernelInstance_0.address);
+    });
+
+    it('should not allow to register an instance twice', async function () {
+      await assertRevert(this.zepCore.register(this.kernelInstance.address, { from: developer }));
+    });
+
   });
 
   describe('staking', async function() {

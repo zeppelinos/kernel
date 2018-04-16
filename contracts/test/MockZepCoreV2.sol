@@ -10,8 +10,8 @@ contract MockZepCoreV2 is ZepCore {
     require(developerPayout > 0);
    
     uint256 stakedAmount = amount.sub(developerPayout);
-    stakes().stake(staker, instance, stakedAmount, data);
-    token().transfer(instance.developer(), developerPayout);
+    stakes.stake(staker, instance, stakedAmount, data);
+    token.transfer(instance.developer(), developerPayout);
   }
 
 }

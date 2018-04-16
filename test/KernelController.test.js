@@ -9,7 +9,7 @@ const should = require('chai')
   .use(require('chai-as-promised'))
   .should();
 
-contract('KernelController', ([_, zeppelin, developer, someone, anotherone]) => {
+contract.skip('KernelController', ([_, zeppelin, developer, someone, anotherone]) => {
   const version_180 = '1.8.0';
   const zeppelinDistro = 'Zeppelin';
   const erc721Name = 'ERC721Token';

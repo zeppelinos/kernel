@@ -42,11 +42,6 @@ contract KernelStakes is Initializable, Ownable {
   mapping(address => mapping (address => uint256)) private _stakerVouches;
 
   /**
-  * @dev Constructor function
-  */
-  function KernelStakes() public {}
-
-  /**
    * @dev Initialization function, sets the owner
    * @param _owner representing the address of the owner
    */
