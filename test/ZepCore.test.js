@@ -14,15 +14,19 @@ const should = require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
+contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser, implementationAddress]) => {
   const newVersionCost = 2;
   const developerFraction = 10;
+  const instanceName = "Zeppelin";
+  const instanceVersion1 = "0.1";
+  const instanceVersion2 = "0.2";
+  const someContractName = "SomeContract";
 
   beforeEach(async function () {
     const deployed = await Deployer.zepCore(owner, newVersionCost, developerFraction)
     Object.assign(this, deployed)
-    this.kernelInstance = await KernelInstance.new("Zeppelin", "0.1", 0, { from: developer });
-    this.anotherKernelInstance = await KernelInstance.new("Zeppelin", "0.2", 0, { from: anotherDeveloper });
+    this.kernelInstance = await KernelInstance.new(instanceName, instanceVersion1, 0, { from: developer });
+    this.anotherKernelInstance = await KernelInstance.new(instanceName, instanceVersion2, 0, { from: anotherDeveloper });
     await this.zepToken.mint(owner, 10000, { from: owner });
   });
 
@@ -34,19 +38,57 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
     assert.equal(await this.zepToken.decimals(), 18);
   });
 
-  it('registers instances', async function () {
-    await this.zepToken.transfer(developer, newVersionCost, { from: owner });
-    await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
-    await this.zepCore.register(this.kernelInstance.address, { from: developer }).should.be.fulfilled;
+  describe('working with instances', function () {
+    const instanceVersion3 = "0.3";
+
+    beforeEach(async function () {
+      await this.zepToken.transfer(developer, newVersionCost, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: developer });
+      await this.kernelInstance.addImplementation(someContractName, implementationAddress, { from: developer });
+      await this.zepCore.register(this.kernelInstance.address, { from: developer });
+    });
+  
+    it('should get instances', async function () {
+      const instanceAddress = await this.zepCore.getInstance(instanceName, instanceVersion1);
+      assert.equal(instanceAddress, this.kernelInstance.address);
+    });
+
+    it('should return 0 address for unregistered instances', async function (){
+      const unregisteredInstance = await this.zepCore.getInstance(instanceName, instanceVersion2);
+      assert.equal(unregisteredInstance, 0);
+    });
+
+    it('should get implementations', async function () {
+      const implementation = await this.zepCore.getImplementation(instanceName, instanceVersion1, someContractName);
+      assert.equal(implementation, implementationAddress);
+    });
+
+    it('should get instance hash', async function () {
+      const instanceAddress = await this.zepCore.getInstance(instanceName, instanceVersion1);
+      const instance = KernelInstance.at(instanceAddress);
+      const instance_hash = await instance.getHash();
+      const hash = web3.sha3(instanceName.concat(instanceVersion1));
+      assert.equal(instance_hash, hash);   
+    });
+
+    it('should resort to parent implementation if none availabe in child', async function () {
+      await this.kernelInstance.freeze({ from: developer });
+      this.derivedKernelInstance = await KernelInstance.new(instanceName, instanceVersion3, this.kernelInstance.address, { from: anotherDeveloper });
+      await this.zepToken.transfer(anotherDeveloper, newVersionCost, { from: owner });
+      await this.zepToken.approve(this.zepCore.address, newVersionCost, { from: anotherDeveloper });
+      await this.zepCore.register(this.derivedKernelInstance.address, { from: anotherDeveloper });
+      const implementation = await this.zepCore.getImplementation(instanceName, instanceVersion3, someContractName);
+      assert.equal(implementation, implementationAddress);
+    });
   });
 
-  describe('staking', async function() {
+  describe('staking', function() {
     const stakeValue = 42;
     const unstakeValue = 24;
     const transferValue = 10;
     const tooSmallStake = developerFraction - 1; 
 
-    describe('registered instances', async function() {
+    describe('registered instances', function() {
       
       beforeEach(async function () {
         await this.zepToken.transfer(developer, newVersionCost, { from: owner });
@@ -127,7 +169,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
         });
       });
 
-      describe('transfers', async function () {
+      describe('transfers', function () {
         it('should transfer stakes', async function () {
           const effectiveStakeFirst = stakeValue - Math.floor(stakeValue/developerFraction) - transferValue;
           const effectiveStakeSecond = transferValue - Math.floor(transferValue/developerFraction);
@@ -147,7 +189,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
         });
       });
 
-      describe('restakes', async function (){
+      describe('restakes', function (){
         const anotherStake = 47;
         const effectiveStake = stakeValue - Math.floor(stakeValue/developerFraction) + anotherStake - Math.floor(anotherStake/developerFraction);        
 
@@ -175,7 +217,7 @@ contract('ZepCore', ([_, owner, developer, user, anotherDeveloper, anotherUser])
       });
     });
 
-    describe('unregistered instances', async function() {
+    describe('unregistered instances', function() {
       beforeEach(async function () {
         await this.zepToken.transfer(developer, newVersionCost, { from: owner });
         await this.zepToken.transfer(anotherDeveloper, newVersionCost, { from: owner });
