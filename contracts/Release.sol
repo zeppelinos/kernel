@@ -3,10 +3,10 @@ pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
- * @title KernelInstance
+ * @title Release
  * @dev This contract represents a particular Kernel version from a distribution. Has an immutable reference to all contract implementations that comprise this version.
  */
-contract KernelInstance is Ownable {
+contract Release is Ownable {
 
   // Developer address to which staking payouts will be sent
   address public developer;
@@ -25,7 +25,7 @@ contract KernelInstance is Ownable {
   event ImplementationAdded(string contractName, address implementation);
 
   /**
-  * @dev Guarantees the KernelInstance is not frozen
+  * @dev Guarantees the Release is not frozen
   */
   modifier whenNotFrozen() {
     require(!frozen);
@@ -33,14 +33,14 @@ contract KernelInstance is Ownable {
   }
 
   /**
-   * @dev Constructor function that sets the developer of this instance
+   * @dev Constructor function that sets the developer of this release
    */
-  function KernelInstance() public {
+  function Release() public {
     developer = msg.sender;
   }
 
   /**
-   * @dev Adds an implementation for a contract to the KernelInstance and emits the corresponding event
+   * @dev Adds an implementation for a contract to the Release and emits the corresponding event
    * @param contractName representing the name of the contract
    * @param implementation representing the address of the implementation
    */
@@ -61,7 +61,7 @@ contract KernelInstance is Ownable {
   }
 
   /**
-   * @dev Locks the KernelInstance to avoid adding new implementations
+   * @dev Locks the Release to avoid adding new implementations
    */
   function freeze() onlyOwner whenNotFrozen public {
     frozen = true;
