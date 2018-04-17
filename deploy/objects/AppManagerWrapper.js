@@ -22,4 +22,13 @@ export default class AppManagerWrapper {
     const address = logs.find(l => l.event === 'ProxyCreated').args.proxy;
     return contractKlazz.at(address);
   }
+
+  async upgradeProxy(proxyAddress, contractName) {
+    return this.appManager.upgradeTo(proxyAddress, contractName, { from: this.owner });
+  }
+
+  async upgradeProxyAndCall(proxyAddress, contractName, methodName, argTypes, args) {
+    const callData = encodeCall(methodName, argTypes, args);
+    return this.appManager.upgradeToAndCall(proxyAddress, contractName, callData, { from: this.owner });
+  }
 }
