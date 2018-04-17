@@ -1,6 +1,5 @@
 import assertRevert from './helpers/assertRevert';
 import Deployer from '../deploy/objects/Deployer';
-// import RegistryManager from '../deploy/objects/RegistryManager';
 
 const decodeLogs = require('./helpers/decodeLogs');
 
