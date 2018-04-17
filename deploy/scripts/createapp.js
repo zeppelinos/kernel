@@ -5,14 +5,14 @@ import deploy from "./deploy";
 import { PROJECT_ACCOUNT, ERC721_CONTRACT_NAME } from '../constants'
 
 const ERC721Token = artifacts.require('ERC721Token');
-const AppContractDirectory = artifacts.require('AppContractDirectory');
+const AppDirectory = artifacts.require('AppDirectory');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 const UnversionedAppManager = artifacts.require('UnversionedAppManager');
 
 async function createapp() {
   const { kernel, release } = await deploy.kernel();
   
-  const provider = await AppContractDirectory.new(release.address, { from: PROJECT_ACCOUNT });
+  const provider = await AppDirectory.new(release.address, { from: PROJECT_ACCOUNT });
   const factory = await UpgradeabilityProxyFactory.new({ from: PROJECT_ACCOUNT });
   const appManager = await UnversionedAppManager.new(provider.address, factory.address, { from: PROJECT_ACCOUNT });
 

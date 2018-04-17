@@ -4,7 +4,7 @@ const Kernel = artifacts.require('Kernel');
 const ZepToken = artifacts.require('ZepToken');
 const Vouching = artifacts.require('Vouching');
 const Package = artifacts.require('Package');
-const AppManager = artifacts.require('AppManager');
+const AppManager = artifacts.require('PackagedAppManager');
 const ContractDirectory = artifacts.require('ContractDirectory');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 

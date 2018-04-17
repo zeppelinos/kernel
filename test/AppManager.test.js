@@ -4,7 +4,7 @@ import AppManagerWrapper from '../deploy/objects/AppManagerWrapper';
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');
 const Release = artifacts.require('Release');
-const AppContractDirectory = artifacts.require('AppContractDirectory');
+const AppDirectory = artifacts.require('AppDirectory');
 const UnversionedAppManager = artifacts.require('UnversionedAppManager');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 
@@ -37,7 +37,7 @@ contract('AppManager', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, an
   });
 
   beforeEach("creating a new application", async function () {
-    const provider = await AppContractDirectory.new(this.release.address, { from: appDeveloper });
+    const provider = await AppDirectory.new(this.release.address, { from: appDeveloper });
     const pickACardImpl = await PickACard.new({ from: appDeveloper });
     await provider.setImplementation("PickACard", pickACardImpl.address, { from: appDeveloper });    
     
