@@ -3,18 +3,15 @@ pragma solidity ^0.4.21;
 import "./ZepToken.sol";
 import "./Release.sol";
 import "./Vouching.sol";
-import "zos-core/contracts/Registry.sol";
 import "zos-core/contracts/Initializable.sol";
-import "zos-core/contracts/ProjectController.sol";
 import "zos-core/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
-import "zos-core/contracts/ImplementationProvider.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
 /**
  * @title Kernel
  * @dev This contract controls the kernel distributions and versions for ZeppelinOS
  */
-contract Kernel is Initializable, ImplementationProvider {
+contract Kernel is Initializable {
   using SafeMath for uint256;
 
   // Token used for vouching
@@ -36,7 +33,7 @@ contract Kernel is Initializable, ImplementationProvider {
    * @dev Event signaling that a new release has been registered
    * @param release representing the new Release
    */
-  event NewInstance(Release indexed release);
+  event ReleaseRegistered(Release release);
 
   /**
   * @dev Guarantees that a given kernel release is registered
@@ -73,6 +70,7 @@ contract Kernel is Initializable, ImplementationProvider {
   function register(Release release) public {
     require(!releases[release]);
     releases[release] = true;
+    emit ReleaseRegistered(release);
     
     // TODO: Update to burnFrom once https://github.com/OpenZeppelin/zeppelin-solidity/pull/870 is merged
     require(token.transferFrom(msg.sender, this, newVersionCost));
@@ -87,7 +85,7 @@ contract Kernel is Initializable, ImplementationProvider {
    */
   function vouch(Release release, uint256 amount, bytes data) public onlyWhenRegistered(release) {
     require(token.transferFrom(msg.sender, this, amount));
-    _payoutAndStake(msg.sender, release, amount, data);
+    _payoutAndVouch(msg.sender, release, amount, data);
   }
 
   /**
@@ -110,7 +108,7 @@ contract Kernel is Initializable, ImplementationProvider {
    */
   function transferStake(Release from, Release to, uint256 amount, bytes data) public onlyWhenRegistered(from) onlyWhenRegistered(to) {
     vouches.unvouch(msg.sender, from, amount, data);
-    _payoutAndStake(msg.sender, to, amount, data);
+    _payoutAndVouch(msg.sender, to, amount, data);
   }
 
   /**
@@ -121,7 +119,7 @@ contract Kernel is Initializable, ImplementationProvider {
    * @param data representing additional information for complex vouching models
 
    */
-  function _payoutAndStake(address voucher, Release release, uint256 amount, bytes data) internal {
+  function _payoutAndVouch(address voucher, Release release, uint256 amount, bytes data) internal {
     uint256 developerPayout = amount.div(developerFraction);
     require(developerPayout > 0);
     // TODO: Think how we can manage remainders in a better way
