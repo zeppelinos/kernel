@@ -69,6 +69,7 @@ contract Kernel is Initializable {
    */
   function register(Release release) public {
     require(!releases[release]);
+    require(release.frozen());
     releases[release] = true;
     emit ReleaseRegistered(release);
     

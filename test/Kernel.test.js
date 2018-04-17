@@ -28,7 +28,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
 
   beforeEach("creating a new release", async function () {
     this.release = await Release.new({ from: developer });
-    this.anotherRelease = await Release.new({ from: anotherDeveloper });
+    await this.release.freeze({ from: developer });
     await this.zepToken.mint(owner, newVersionCost * 100, { from: owner });
   });
 
@@ -43,8 +43,8 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
   describe('registering', async function() {
 
     beforeEach(async function () {
-      await this.zepToken.transfer(developer, newVersionCost * 2, { from: owner });
-      await this.zepToken.approve(this.kernel.address, newVersionCost * 2, { from: developer });
+      await this.zepToken.transfer(developer, newVersionCost * 5, { from: owner });
+      await this.zepToken.approve(this.kernel.address, newVersionCost * 5, { from: developer });
       ({ logs: this.logs } = await this.kernel.register(this.release.address, { from: developer }));
     });
 
@@ -59,8 +59,20 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
       event.args.release.should.eq(this.release.address);
     });
 
+    it('should burn tokens on registration', async function () {
+      const balance = await this.zepToken.balanceOf(developer);
+      balance.should.be.bignumber.equal(newVersionCost * 4);
+      const totalSupply = await this.zepToken.totalSupply();
+      totalSupply.should.be.bignumber.equal(newVersionCost * 99);
+    });
+
     it('should not allow to register a release twice', async function () {
       await assertRevert(this.kernel.register(this.release.address, { from: developer }));
+    });
+
+    it('should not allow to register an unfrozen release', async function () {
+      const unfrozenRelease = await Release.new({ from: developer });
+      await assertRevert(this.kernel.register(unfrozenRelease.address, { from: developer }));
     });
 
   });
@@ -70,6 +82,11 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     const unvouchValue = 24;
     const transferValue = 10;
     const tooSmallStake = developerFraction - 1; 
+
+    beforeEach("creating another release", async function () {
+      this.anotherRelease = await Release.new({ from: anotherDeveloper });
+      await this.anotherRelease.freeze({ from: anotherDeveloper });
+    });
 
     describe('registered instances', async function() {
       
