@@ -1,56 +1,72 @@
+import shouldBehaveLikeContractDirectory from 'zos-core/test/application/versioning/ContractDirectory.behavior';
 import assertRevert from './helpers/assertRevert';
 const Release = artifacts.require('Release');
 
-require('chai')
-  .use(require('chai-as-promised'))
-  .should();
-
-contract('Release', ([developer, implementationAddress1, implementationAddress2]) => {
-  const contractName = "TestContract";
-  const anotherContractName = "AnotherContract";
-  const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+contract('Release', ([_, developer, anotherAddress, implementation_v0, implementation_v1]) => {
 
   beforeEach("initializing a new release", async function () {
-    this.release = await Release.new();
+    this.release = await Release.new({ from: developer });
   });
 
-  it('stores developer', async function () {
+  it('has a developer', async function () {
     const instanceDeveloper = await this.release.developer();
-    instanceDeveloper.should.eq(developer);
+    assert.equal(instanceDeveloper, developer);
   });
 
   it('starts unfrozen', async function () {
-    const frozen = await this.release.frozen();      
-    frozen.should.be.false;
-  });
-
-  it('should return 0 if no implementation', async function () {
-    const instanceImplementation1 = await this.release.getImplementation(contractName);
-    instanceImplementation1.should.eq(ZERO_ADDRESS);
+    const frozen = await this.release.frozen()
+    assert.isFalse(frozen)
   })
 
-  describe('adding implementations', async function () {
-    
-    beforeEach(async function () {
-      this.receipt = await this.release.setImplementation(contractName, implementationAddress1);
-    });
+  describe('freeze', function () {
+    describe('when the sender is not the developer', function () {
+      const from = developer
 
-    it.skip('emits correct event', async function () {
-      assert.equal(this.receipt.logs.length, 1); //Make sure there is a single event
-      const event = this.receipt.logs.find(e => e.event === 'ImplementationAdded');
-      assert.equal(event.args.contractName, contractName);
-      assert.equal(event.args.implementation, implementationAddress1);
-    });
+      describe('when it is not frozen', function () {
+        it('can be frozen', async function () {
+          await this.release.freeze({ from })
+          const frozen = await this.release.frozen()
+          assert.isTrue(frozen)
+        })
+      })
 
-    it('returns correct address', async function () {
-      const instanceImplementation1 = await this.release.getImplementation(contractName);
-      assert.equal(instanceImplementation1, implementationAddress1);
-    });
+      describe('when it is frozen', function () {
+        beforeEach(async function () {
+          await this.release.freeze({ from })
+        })
 
-    it('should fail if frozen', async function () {
-      await this.release.freeze();
-      await assertRevert(this.release.setImplementation(anotherContractName, implementationAddress2));
-    });
+        it('cannot be re-frozen', async function () {
+          await assertRevert(this.release.freeze({ from }))
+        })
+      })
+    })
 
-  });
+    describe('when the sender is not the developer', function () {
+      const from = anotherAddress
+
+      it('reverts', async function () {
+        await assertRevert(this.release.freeze({ from }))
+      })
+    })
+  })
+
+  describe('setImplementation', function () {
+    describe('when it is not frozen', function () {
+      beforeEach(function () {
+        this.directory = this.release
+      })
+
+      shouldBehaveLikeContractDirectory(developer, anotherAddress, implementation_v0, implementation_v1)
+    })
+
+    describe('when it is frozen', function () {
+      beforeEach(async function () {
+        await this.release.freeze({ from: developer })
+      })
+
+      it('reverts', async function () {
+        await assertRevert(this.release.setImplementation('ERC721', implementation_v1, { from: developer }))
+      })
+    })
+  })
 });
