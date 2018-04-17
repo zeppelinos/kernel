@@ -3,7 +3,7 @@ require('babel-polyfill');
 
 module.exports = {
   networks: {
-    development: {
+    local: {
       host: 'localhost',
       network_id: '*', // eslint-disable-line camelcase
       port: 8545,

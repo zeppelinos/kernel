@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "scripts/test.sh",
-    "deploy-development": "truffle exec scripts/deploy.js --network development",
-    "createapp-development": "truffle exec scripts/createapp.js --network development"
+    "deploy-local": "truffle exec scripts/deploy.js --network local",
+    "createapp-local": "truffle exec scripts/createapp.js --network local"
   },
   "devDependencies": {
     "babel": "^6.23.0",
