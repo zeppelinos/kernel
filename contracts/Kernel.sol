@@ -9,7 +9,7 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
 /**
  * @title Kernel
- * @dev This contract controls the kernel distributions and versions for ZeppelinOS
+ * @dev This contract controls the standard library releases for ZeppelinOS
  */
 contract Kernel is Initializable {
   using SafeMath for uint256;
@@ -36,17 +36,17 @@ contract Kernel is Initializable {
   event ReleaseRegistered(Release release);
 
   /**
-  * @dev Guarantees that a given kernel release is registered
+  * @dev Guarantees that a given release is registered
   */
-  modifier onlyWhenRegistered(Release release) {
-    require(releases[release]);
+  modifier whenRegistered(Release release) {
+    require(isRegistered(release));
     _;
   }
 
   /**
    * @dev Initialization function
-   * @param _newVersionCost representing the price of registering a kernel version
-   * @param _developerFraction representing the fraction of vouches rewarded to the developer of a kernel release
+   * @param _newVersionCost representing the price of registering a new release
+   * @param _developerFraction representing the fraction of vouches rewarded to the developer of the release
    * @param _token representing the address of the vouching token
    * @param _vouches representing the address of vouching contract
    */
@@ -64,11 +64,11 @@ contract Kernel is Initializable {
   }
 
   /**
-   * @dev Registers a new kernel release into the registry and burns the sender's required amount of tokens for it
-   * @param release representing the kernel release to be registered
+   * @dev Registers a new release and burns the sender's required amount of tokens for it
+   * @param release representing the stdlib release to be registered
    */
   function register(Release release) public {
-    require(!releases[release]);
+    require(!isRegistered(release));
     require(release.frozen());
     releases[release] = true;
     emit ReleaseRegistered(release);
@@ -79,35 +79,43 @@ contract Kernel is Initializable {
   }
 
   /**
-   * @dev Vouches a given amount for a given kernel release
-   * @param release representing the kernel release being vouched for
+  * @dev Tells whether a given release is registered or not
+  * @param release representing the stdlib release to be checked for
+  */
+  function isRegistered(Release release) public view returns (bool) {
+    return releases[release];
+  }
+
+  /**
+   * @dev Vouches a given amount for a requested release
+   * @param release representing the stdlib release being vouched for
    * @param amount representing the amount being vouched
    * @param data representing additional information for complex vouching models
    */
-  function vouch(Release release, uint256 amount, bytes data) public onlyWhenRegistered(release) {
+  function vouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {
     require(token.transferFrom(msg.sender, this, amount));
     _payoutAndVouch(msg.sender, release, amount, data);
   }
 
   /**
-   * @dev Unvouches a given amount for a given kernel release
-   * @param release representing the kernel release being unvouched for
+   * @dev Unvouches a given amount for a requested release
+   * @param release representing the stdlib release being unvouched for
    * @param amount representing the amount being unvouched
    * @param data representing additional information for complex vouching models
    */
-  function unvouch(Release release, uint256 amount, bytes data) public onlyWhenRegistered(release) { 
+  function unvouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {
     vouches.unvouch(msg.sender, release, amount, data);
     token.transfer(msg.sender, amount);
   }
 
   /**
-   * @dev Transfers vouches from a kernel release to another one
-   * @param from representing the kernel release being unvouched for
-   * @param to representing the kernel release being vouched for
+   * @dev Transfers vouches from a release to another
+   * @param from representing the stdlib release being unvouched for
+   * @param to representing the stdlib release being vouched for
    * @param amount representing the amount of vouches being transferred
    * @param data representing additional information for complex vouching models
    */
-  function transferStake(Release from, Release to, uint256 amount, bytes data) public onlyWhenRegistered(from) onlyWhenRegistered(to) {
+  function transferStake(Release from, Release to, uint256 amount, bytes data) public whenRegistered(from) whenRegistered(to) {
     vouches.unvouch(msg.sender, from, amount, data);
     _payoutAndVouch(msg.sender, to, amount, data);
   }
@@ -115,10 +123,9 @@ contract Kernel is Initializable {
   /**
    * @dev Stakes tokens for a given release and pays the corresponding fraction to its developer
    * @param voucher representing the address of the voucher
-   * @param release representing the kernel release being vouched for
+   * @param release representing the stdlib release being vouched for
    * @param amount representing the amount being vouched
    * @param data representing additional information for complex vouching models
-
    */
   function _payoutAndVouch(address voucher, Release release, uint256 amount, bytes data) internal {
     uint256 developerPayout = amount.div(developerFraction);
@@ -128,9 +135,5 @@ contract Kernel is Initializable {
     uint256 vouchedAmount = amount.sub(developerPayout);
     vouches.vouch(voucher, release, vouchedAmount, data);
     token.transfer(release.developer(), developerPayout);
-  }
-
-  function isRegistered(Release release) public view returns (bool) {
-    return releases[release];
   }
 }
