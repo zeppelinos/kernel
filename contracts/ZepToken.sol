@@ -8,16 +8,12 @@ import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
 
 /**
  * @title ZepToken
- * @dev ZEP token contract including mintable, burnable and pausable functionalities
+ * @dev ZEP token contract including mintable, pausable and burnable functionalities
  */
 contract ZepToken is Initializable, StandardToken, MintableToken, PausableToken, BurnableToken {
-  // Token name
+
   string public constant name = "Zep Token";
-
-  // Token symbol
   string public constant symbol = "ZEP";
-
-  // Token decimals
   uint8 public constant decimals = 18;
 
   /**
@@ -27,7 +23,7 @@ contract ZepToken is Initializable, StandardToken, MintableToken, PausableToken,
 
   /**
    * @dev Initialization function, sets the owner
-   * @param _owner representing the address of the owner
+   * @param _owner the address of the zep token owner
    */
   function initialize(address _owner) public isInitializer {
     owner = _owner;
