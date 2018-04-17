@@ -7,7 +7,7 @@
   "scripts": {
     "test": "scripts/test.sh",
     "deploy-development": "truffle exec scripts/deploy.js --network development",
-    "deploy-ropsten": "truffle exec scripts/deploy.js --network ropsten"
+    "createapp-development": "truffle exec scripts/createapp.js --network development"
   },
   "devDependencies": {
     "babel": "^6.23.0",
