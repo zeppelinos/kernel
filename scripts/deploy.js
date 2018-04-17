@@ -1,4 +1,4 @@
-// Deploy registry with sample kernel instance to target network
+// Deploy the zeppelin OS kernel with a sample release
 // Run as: `npx truffle exec scripts/deploy.js --network NETWORK`
 
 global.artifacts = artifacts;

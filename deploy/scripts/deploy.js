@@ -1,18 +1,30 @@
 import Deployer from '../objects/Deployer';
-import ZepCoreManager from '../objects/ZepCoreManager';
-import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, VERSION, DISTRIBUTION, ERC721_CONTRACT_NAME } from '../constants';
+import KernelWrapper from '../objects/KernelWrapper';
+import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, KERNEL_VERSION, ERC721_CONTRACT_NAME } from '../constants';
 
+const log = require('../logger');
 const ERC721Token = artifacts.require('ERC721Token');
 
+async function deployKernel() {
+  log('Deploying Kernel...')
+  const deployer = new Deployer(ZEPPELIN_ACCOUNT);
+  await deployer.initAppManager(KERNEL_VERSION);
+  await deployer.registerKernel();
+  const { kernel } = await deployer.deployKernel(NEW_VERSION_COST, DEVELOPER_FRACTION);
+
+  log('  Kernel address: ', kernel.address)
+  const kernelWrapper = new KernelWrapper(kernel, ZEPPELIN_ACCOUNT)
+  await kernelWrapper.mintZepTokens(DEVELOPER_ACCOUNT, NEW_VERSION_COST)
+  const release = await kernelWrapper.registerRelease([[ERC721_CONTRACT_NAME, ERC721Token]], DEVELOPER_ACCOUNT)
+  return { kernel, release }
+}
+
 async function deploy() {
-  console.log('Deploying zepCore...')
-  const { zepCore } = await Deployer.zepCore(ZEPPELIN_ACCOUNT, NEW_VERSION_COST, DEVELOPER_FRACTION, DISTRIBUTION)
-  console.log('ZepCore address: ', zepCore.address)
-  const zepCoreManager = new ZepCoreManager(zepCore, ZEPPELIN_ACCOUNT)
-  await zepCoreManager.mintZepTokens(DEVELOPER_ACCOUNT, NEW_VERSION_COST)
-  await zepCoreManager.registerKernelInstance(DISTRIBUTION, VERSION, ERC721Token, ERC721_CONTRACT_NAME, DEVELOPER_ACCOUNT)
+  await deployKernel();
 }
 
 module.exports = function(cb) {
   deploy().then(cb).catch(cb);
 }
+
+module.exports.kernel = deployKernel;

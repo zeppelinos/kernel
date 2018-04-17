@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "scripts/test.sh",
-    "deploy-development": "truffle exec scripts/deploy.js --network development",
-    "deploy-ropsten": "truffle exec scripts/deploy.js --network ropsten"
+    "deploy-local": "truffle exec scripts/deploy.js --network local",
+    "createapp-local": "truffle exec scripts/createapp.js --network local"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-core": "git://github.com/zeppelinos/core.git#519f4a0005113b4c0c7a6f315c30f56032239911"
+    "zos-core": "git://github.com/zeppelinos/upgradeability-lib.git#7e424732969b7867698332d8f25419c69e2345d9"
   }
 }

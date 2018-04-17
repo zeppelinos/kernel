@@ -1,62 +1,62 @@
-import RegistryManager from './RegistryManager';
-import ProjectControllerManager from './ProjectControllerManager';
+import AppManagerWrapper from './AppManagerWrapper';
 
-const ZepCore = artifacts.require('ZepCore');
-const Registry = artifacts.require('Registry');
+const Kernel = artifacts.require('Kernel');
 const ZepToken = artifacts.require('ZepToken');
-const KernelStakes = artifacts.require('KernelStakes');
-const KernelRegistry = artifacts.require('KernelRegistry');
-const KernelInstance = artifacts.require('KernelInstance');
-const ProjectController = artifacts.require('ProjectController');
+const Vouching = artifacts.require('Vouching');
+const Package = artifacts.require('Package');
+const AppManager = artifacts.require('PackagedAppManager');
+const ContractDirectory = artifacts.require('ContractDirectory');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 
-const Deployer = {
-  async projectController(projectOwner, projectName, fallbackProvider = 0) {
-    const factory = await UpgradeabilityProxyFactory.new()
-    const registry = await Registry.new({ from: projectOwner })
-    return await ProjectController.new(projectName, registry.address, factory.address, fallbackProvider, { from: projectOwner });
-  },
+class Deployer {
+  constructor(owner) {
+    this.owner = owner;
+  }
 
-  async deployAndRegister(projectController, contractKlazz, contractName, version) {
-    const registry = await projectController.registry();
-    const registryManager = new RegistryManager(Registry.at(registry));
-    return await registryManager.deployAndRegister(contractKlazz, contractName, version);
-  },
+  async initAppManager(initialVersion) {
+    const factory = await UpgradeabilityProxyFactory.new({ from: this.owner });
+    this.package = await Package.new({ from: this.owner });
+    this.contractDirectory = await ContractDirectory.new(0, { from: this.owner });
+    await this.package.addVersion(initialVersion, this.contractDirectory.address, { from: this.owner });
+    this.appManager = await AppManager.new(this.package.address, initialVersion, factory.address, { from: this.owner });
+  }
 
-  async createProxy(projectController, contractClazz, contractName, distribution, version) {
-    const controllerManager = new ProjectControllerManager(controller, owner);
-    return await controllerManager.createProxy(contractClazz, contractName, distribution, version);
-  },
+  async atAppManager(address) {
+    // TODO: Implement me to set this.(package, contractDirectory, appManager, appManagerWrapper)
+  }
 
-  async createProxyAndCall(controller, owner, contractKlazz, contractName, distribution, version, initArgTypes, initArgs) {
-    const controllerManager = new ProjectControllerManager(controller, owner);
-    return await controllerManager.createProxyAndCall(contractKlazz, contractName, distribution, version, initArgTypes, initArgs);
-  },
+  async newVersion(versionName) {
+    this.contractDirectory = await ContractDirectory.new(0, { from: this.owner });
+    await this.package.addVersion(versionName, this.contractDirectory.address, { from: this.owner });
+    this.appManager.setVersion(versionName, { from: this.owner });
+  }
 
-  async zepCore(owner, newVersionCost, developerFraction, distribution = 'ZeppelinOS') {
-    const controller = await this.projectController(owner, distribution)
-    const registry = Registry.at(await controller.registry())
-    await this._registerZepCoreDependencies(registry);
-    const controllerManager = new ProjectControllerManager(controller, owner);
-    const kernelStakes = await controllerManager.createProxyAndCall(KernelStakes, 'KernelStakes', distribution, '0', ['address'], [owner]);
-    const kernelRegistry = await controllerManager.createProxyAndCall(KernelRegistry, 'KernelRegistry', distribution, '0', ['address'], [owner]);
-    const zepToken = await controllerManager.createProxyAndCall(ZepToken, 'ZepToken', distribution, '0', ['address'], [owner]);
-    const zepCore = await controllerManager.createProxyAndCall(ZepCore, 'ZepCore', distribution, '0',
-      ['uint256', 'uint256', 'address', 'address', 'address'],
-      [newVersionCost, developerFraction, zepToken.address, kernelRegistry.address, kernelStakes.address]
+  async deployAndRegister(contractClass, contractName) {
+    const implementation = await contractClass.new({ from: this.owner });
+    await this.contractDirectory.setImplementation(contractName, implementation.address, { from: this.owner });
+  }
+
+  async registerKernel(impls = {}) {
+    if (this.appManager === undefined) throw "Must call initAppManager or atAppManager first";
+    await this.deployAndRegister(impls.Vouching || Vouching, 'Vouching');
+    await this.deployAndRegister(impls.ZepToken || ZepToken, 'ZepToken');
+    await this.deployAndRegister(impls.Kernel || Kernel, 'Kernel');
+  }
+
+  async deployKernel(newVersionCost, developerFraction) {
+    if (this.appManager === undefined) throw "Must call initAppManager or atAppManager first";
+    const appManagerWrapper = new AppManagerWrapper(this.appManager, this.owner);
+
+    const vouching = await appManagerWrapper.createProxyAndCall(Vouching, 'Vouching', ['address'], [this.owner]);
+    const zepToken = await appManagerWrapper.createProxyAndCall(ZepToken, 'ZepToken', ['address'], [this.owner]);
+    const kernel = await appManagerWrapper.createProxyAndCall(Kernel, 'Kernel',
+      ['uint256', 'uint256', 'address', 'address'],
+      [newVersionCost, developerFraction, zepToken.address, vouching.address]
     );
-    await kernelStakes.transferOwnership(zepCore.address, { from: owner })
-    await kernelRegistry.transferOwnership(zepCore.address, { from: owner })
-    return { registry, zepCore, zepToken, kernelRegistry, kernelStakes, controller }
-  },
 
-  async _registerZepCoreDependencies(registry) {
-    const registryManager = new RegistryManager(registry);
-    await registryManager.deployAndRegister(KernelStakes, 'KernelStakes', '0');
-    await registryManager.deployAndRegister(KernelRegistry, 'KernelRegistry', '0');
-    await registryManager.deployAndRegister(ZepToken, 'ZepToken', '0');
-    await registryManager.deployAndRegister(ZepCore, 'ZepCore', '0');
-  },
+    await vouching.transferOwnership(kernel.address, { from: this.owner });
+    return { kernel, zepToken, vouching };
+  }
 }
 
 export default Deployer
