@@ -7,7 +7,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
  * @title Vouching
- * @dev This contract keeps track of all submitted vouches for kernel releases
+ * @dev This contract keeps track of all submitted vouches for stdlib releases
  */
 contract Vouching is Initializable, Ownable {
   using SafeMath for uint256;
@@ -15,7 +15,7 @@ contract Vouching is Initializable, Ownable {
   /**
    * @dev Event signaling a new vouch
    * @param voucher representing the address of the voucher
-   * @param release representing the kernel vouched for
+   * @param release representing the stdlib release vouched for
    * @param amount representing the vouched amount
    * @param total representing the new total amount vouched by the voucher
    * @param data representing additional information for complex vouching models
@@ -25,7 +25,7 @@ contract Vouching is Initializable, Ownable {
   /**
    * @dev Event signaling an unvouching
    * @param voucher representing the address of the voucher
-   * @param release representing the kernel unvouched for
+   * @param release representing the stdlib release unvouched for
    * @param amount representing the unvouched amount
    * @param total representing the new total amount vouched by the voucher
    * @param data representing additional information for complex vouching models
@@ -35,11 +35,11 @@ contract Vouching is Initializable, Ownable {
   // Total amount of vouched tokens
   uint256 private _totalVouched;
 
-  // Mapping from a kernel address to its vouched amount
+  // Mapping from a release address to its vouched amount
   mapping(address => uint256) private _releaseVouches;
 
-  // Mapping of voucher addresses to their vouched amount for a given kernel address
-  mapping(address => mapping (address => uint256)) private _stakerVouches;
+  // Mapping of voucher addresses to their vouched amount for a given release address
+  mapping(address => mapping (address => uint256)) private _vouches;
 
   /**
    * @dev Initialization function, sets the owner
@@ -67,44 +67,44 @@ contract Vouching is Initializable, Ownable {
   }
 
   /**
-   * @dev Retrieves the vouched amount by a voucher for a given kernel
+   * @dev Retrieves the vouched amount by a voucher for a given release
    * @param voucher representing the voucher address
-   * @param release representing the kernel release
-   * @return the total vouched amount by the voucher for the given kernel
+   * @param release representing the stdlib release
+   * @return the total vouched amount by the voucher for the given release
    */
   function vouchedFor(address voucher, address release) public view returns (uint256) {
-    return _stakerVouches[voucher][release];
+    return _vouches[voucher][release];
   }
 
   /**
-   * @dev Vouches a given amount for a given kernel release and emits the corresponding event
+   * @dev Vouches a given amount for a given release and emits the corresponding event
    * @param voucher representing the voucher address
-   * @param release representing the kernel release being vouched for
+   * @param release representing the release being vouched for
    * @param amount representing the amount being vouched
    * @param data representing additional information for complex vouching models
    */
   function vouch(address voucher, address release, uint256 amount, bytes data) public onlyOwner {
     _totalVouched = _totalVouched.add(amount);
     _releaseVouches[release] = _releaseVouches[release].add(amount);
-    _stakerVouches[voucher][release] = _stakerVouches[voucher][release].add(amount);
+    _vouches[voucher][release] = _vouches[voucher][release].add(amount);
 
     emit Vouched(voucher, release, amount, _releaseVouches[release], data);
   }
 
   /**
-   * @dev Unvouches a given amount for a given kernel release and emits the corresponding event
+   * @dev Unvouches a given amount for a given release and emits the corresponding event
    * @param voucher representing the voucher address
-   * @param release representing the kernel release being unvouched for
+   * @param release representing the release being unvouched for
    * @param amount representing the amount being unvouched
    * @param data representing additional information for complex vouching models
    */
   function unvouch(address voucher, address release, uint256 amount, bytes data) public onlyOwner {
-    uint256 currentVouch = _stakerVouches[voucher][release];
+    uint256 currentVouch = _vouches[voucher][release];
     require(currentVouch >= amount);
 
     _totalVouched = totalVouched().sub(amount);
     _releaseVouches[release] = _releaseVouches[release].sub(amount);
-    _stakerVouches[voucher][release] = currentVouch.sub(amount);
+    _vouches[voucher][release] = currentVouch.sub(amount);
 
     emit Unvouched(voucher, release, amount, _releaseVouches[release], data);
   }
