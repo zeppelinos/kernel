@@ -1,6 +1,6 @@
 # zOS Kernel Registry
-[![Build Status](https://travis-ci.org/zeppelinos/kernel-registry.svg?branch=master)](https://travis-ci.org/zeppelinos/kernel-registry)
-[![Coverage Status](https://coveralls.io/repos/github/zeppelinos/kernel-registry/badge.svg?branch=master)](https://coveralls.io/github/zeppelinos/kernel-registry?branch=master)
+[![Build Status](https://travis-ci.org/zeppelinos/kernel.svg?branch=master)](https://travis-ci.org/zeppelinos/kernel)
+[![Coverage Status](https://coveralls.io/repos/github/zeppelinos/kernel/badge.svg?branch=master)](https://coveralls.io/github/zeppelinos/kernel?branch=master)
 
 :warning: **Under heavy development: do not use in production**
 
