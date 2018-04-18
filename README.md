@@ -10,7 +10,7 @@ The idea of this repository is to hold all the logic related to the kernel regis
 contracts to carry out the registration of new versions, staking or vouching for proposed versions, payout 
 distributions, and the ZepToken. Said contracts can be found in the main `contracts` folder.
 
-In addition, the kernel registry uses all the proxies and upgradeability logic of [zos-core](https://github.com/zeppelinos/zos-core/). 
+In addition, the kernel registry uses all the proxies and upgradeability logic of [zos-core](https://github.com/zeppelinos/upgradeability-lib). 
 
 ## Specs
 
