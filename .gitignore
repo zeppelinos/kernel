@@ -7,5 +7,6 @@ build/*
 !build/contracts
 build/contracts/*
 !build/contracts/Kernel.json
+!build/contracts/Vouching.json
 !build/contracts/Release.json
 !build/contracts/ZepToken.json
