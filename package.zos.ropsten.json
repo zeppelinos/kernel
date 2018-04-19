@@ -1,0 +1,49 @@
+{
+  "app": {
+    "address": "0xd4e6b977d9dea283797aad71a09ec65dfdac98f5",
+    "version": "1.0",
+    "owner": "0x09902a56d04a9446601a0d451e07459dc5af0820"
+  },
+  "releases": [  // TODO: remove this property
+    {
+      "frozen": true,
+      "registered": true,
+      "address": "0x25141b6345378e7558634cf7c2d9b8670bafa417",
+      "ERC721": "0x20b5c742dd8a63400644ba85dd48e8fdb6908a7a"
+    },
+    {
+      "frozen": true,
+      "registered": false,
+      "address": "0xa7e5e34b3a3d5647f999a1c531ec9ba2531c97bf",
+      "ERC721": "0xdb590a7b9a12fdd012297bcdaa2677430e2f3105"
+    }
+  ],
+  "proxies": {
+    "Vouching": [
+      {
+        "address": "0xba9bdcc38631d3dca46de1b71a59f9b54e32e9dd",
+        "version": "1.0"
+      }
+    ],
+    "ZepToken": [
+      {
+        "address": "0x200d35243320233e8c92e05f403e926543678f05",
+        "version": "1.0"
+      }
+    ],
+    "Kernel": [
+      {
+        "address": "0xdf38ad6335299dcaab4e663b40d466140702285d",
+        "version": "1.0"
+      }
+    ]
+  },
+  "package": {
+    "contracts": {
+      "Vouching": "0x65ff7c338fe34cc5c0f0cc97d3fa1b2681e39976",
+      "ZepToken": "0x35b28cb86846382aa6217283f12c13657ff0110b",
+      "Kernel": "0x32a089747130fe7391a7fbaad83d14f699fc7dbd"
+    },
+    "stdlib": {}
+  }
+}

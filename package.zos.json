@@ -1,0 +1,10 @@
+{
+  "name": "zos-kernel",
+  "version": "1.0",
+  "contracts": {
+    "Kernel": "Kernel.sol",
+    "Vouching": "Vouching.sol",
+    "ZepToken": "ZepToken.sol"
+  },
+  "stdlib": {}
+}
