@@ -21,7 +21,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
   beforeEach("deploying the kernel", async function () {
     this.deployer = new Deployer(owner)
     await this.deployer.initAppManager(initialKernelVersion);
-    await this.deployer.registerKernel();
+    await this.deployer.registerKernelContractsInDirectory();
     const deployed = await this.deployer.deployKernel(newVersionCost, developerFraction);
     Object.assign(this, deployed)
   });
@@ -247,8 +247,8 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     const newVersion = "1.1";
 
     beforeEach('upgrading kernel', async function () {
-      await this.deployer.newVersion(newVersion);
-      await this.deployer.registerKernel({ Kernel: MockKernelV2 });
+      await this.deployer.addNewVersion(newVersion);
+      await this.deployer.registerKernelContractsInDirectory({ Kernel: MockKernelV2 });
       await this.deployer.appManager.upgradeTo(this.kernel.address, 'Kernel', { from: owner });
     });
 

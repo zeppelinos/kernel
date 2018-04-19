@@ -20,7 +20,7 @@ contract('AppManager', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, an
   beforeEach("deploying the kernel", async function () {
     this.deployer = new Deployer(zeppelin)
     await this.deployer.initAppManager(initialKernelVersion);
-    await this.deployer.registerKernel();
+    await this.deployer.registerKernelContractsInDirectory();
     const deployed = await this.deployer.deployKernel(newVersionCost, developerFraction);
     Object.assign(this, deployed)
   });

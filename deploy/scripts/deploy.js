@@ -9,10 +9,9 @@ async function deployKernel() {
   log('Deploying Kernel...')
   const deployer = new Deployer(ZEPPELIN_ACCOUNT);
   await deployer.initAppManager(KERNEL_VERSION);
-  await deployer.registerKernel();
+  await deployer.registerKernelContractsInDirectory();
   const { kernel } = await deployer.deployKernel(NEW_VERSION_COST, DEVELOPER_FRACTION);
 
-  log('  Kernel address: ', kernel.address)
   const kernelWrapper = new KernelWrapper(kernel, ZEPPELIN_ACCOUNT)
   await kernelWrapper.mintZepTokens(DEVELOPER_ACCOUNT, NEW_VERSION_COST)
   const release = await kernelWrapper.registerRelease([[ERC721_CONTRACT_NAME, ERC721Token]], DEVELOPER_ACCOUNT)

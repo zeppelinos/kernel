@@ -1,8 +1,7 @@
-const ZepToken = artifacts.require('ZepToken');
-const Release = artifacts.require('Release');
-const ContractDirectory = artifacts.require('ContractDirectory');
-
 const log = require('../logger');
+const Release = artifacts.require('Release');
+const ZepToken = artifacts.require('ZepToken');
+const ContractDirectory = artifacts.require('ContractDirectory');
 
 export default class KernelWrapper {
   constructor(kernel, owner) {
