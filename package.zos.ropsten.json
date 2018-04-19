@@ -4,7 +4,7 @@
     "version": "1.0",
     "owner": "0x09902a56d04a9446601a0d451e07459dc5af0820"
   },
-  "releases": [  // TODO: remove this property
+  "releases": [
     {
       "frozen": true,
       "registered": true,
