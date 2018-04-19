@@ -7,13 +7,13 @@
   "releases": [
     {
       "frozen": true,
-      "registered": true,
+      "registered": false,
       "address": "0x25141b6345378e7558634cf7c2d9b8670bafa417",
       "ERC721": "0x20b5c742dd8a63400644ba85dd48e8fdb6908a7a"
     },
     {
       "frozen": true,
-      "registered": false,
+      "registered": true,
       "address": "0xa7e5e34b3a3d5647f999a1c531ec9ba2531c97bf",
       "ERC721": "0xdb590a7b9a12fdd012297bcdaa2677430e2f3105"
     }
