@@ -54,9 +54,11 @@ contract('Release', ([_, developer, anotherAddress, implementation_v0, implement
     describe('when it is not frozen', function () {
       beforeEach(function () {
         this.directory = this.release
+        this.implementation_v0 = implementation_v0
+        this.implementation_v1 = implementation_v1
       })
 
-      shouldBehaveLikeContractDirectory(developer, anotherAddress, implementation_v0, implementation_v1)
+      shouldBehaveLikeContractDirectory(developer, anotherAddress)
     })
 
     describe('when it is frozen', function () {
@@ -69,4 +71,4 @@ contract('Release', ([_, developer, anotherAddress, implementation_v0, implement
       })
     })
   })
-});
+})
