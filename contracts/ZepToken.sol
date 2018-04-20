@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import 'zos-core/contracts/Initializable.sol';
+import 'zos-lib/contracts/migrations/Initializable.sol';
 import 'zeppelin-solidity/contracts/token/ERC20/PausableToken.sol';
 import 'zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol';

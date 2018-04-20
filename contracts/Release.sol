@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import "zos-core/contracts/application/versioning/FreezableContractDirectory.sol";
+import "zos-lib/contracts/application/versioning/FreezableContractDirectory.sol";
 
 
 /**

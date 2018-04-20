@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "zos-core/contracts/Initializable.sol";
+import "zos-lib/contracts/migrations/Initializable.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 

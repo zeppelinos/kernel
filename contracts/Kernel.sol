@@ -3,9 +3,9 @@ pragma solidity ^0.4.21;
 import "./ZepToken.sol";
 import "./Release.sol";
 import "./Vouching.sol";
-import "zos-core/contracts/Initializable.sol";
-import "zos-core/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
+import "zos-lib/contracts/migrations/Initializable.sol";
+import "zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 
 /**
  * @title Kernel

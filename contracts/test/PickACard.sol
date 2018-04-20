@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 import "./kernel_instance/ERC721Token.sol";
-import "zos-core/contracts/Initializable.sol";
+import "zos-lib/contracts/migrations/Initializable.sol";
 
 contract PickACard is Initializable {
   uint256 public constant MAX_CARD = 10;
