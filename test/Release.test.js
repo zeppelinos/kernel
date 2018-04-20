@@ -1,4 +1,4 @@
-import shouldBehaveLikeContractDirectory from 'zos-core/test/application/versioning/ContractDirectory.behavior';
+import shouldBehaveLikeContractDirectory from 'zos-lib/test/application/versioning/ContractDirectory.behavior';
 import assertRevert from './helpers/assertRevert';
 const Release = artifacts.require('Release');
 

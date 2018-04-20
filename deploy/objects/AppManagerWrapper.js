@@ -1,5 +1,5 @@
 import decodeLogs from '../../helpers/decodeLogs';
-import encodeCall from 'zos-core/test/helpers/encodeCall';
+import encodeCall from 'zos-lib/test/helpers/encodeCall';
 const log = require('../logger');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 
