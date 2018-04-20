@@ -1,6 +1,6 @@
 {
-  "name": "zos-kernel",
-  "version": "1.0",
+  "name": "zOS-Kernel",
+  "version": "0.0.1",
   "contracts": {
     "Kernel": "Kernel",
     "Vouching": "Vouching",
