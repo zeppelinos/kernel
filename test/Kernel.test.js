@@ -1,8 +1,8 @@
 import Deployer from '../deploy/objects/Deployer';
-import assertRevert from './helpers/assertRevert';
+import decodeLogs from 'zos-lib/test/helpers/decodeLogs';
+import assertRevert from 'zos-lib/test/helpers/assertRevert';
 
 const BigNumber = web3.BigNumber;
-const decodeLogs = require('./helpers/decodeLogs');
 const Release = artifacts.require('Release');
 const Vouching = artifacts.require('Vouching');
 const MockKernelV2 = artifacts.require('MockKernelV2');

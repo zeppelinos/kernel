@@ -1,4 +1,4 @@
-import assertRevert from "./helpers/assertRevert";
+import assertRevert from 'zos-lib/test/helpers/assertRevert';
 
 const Vouching = artifacts.require('Vouching');
 const shouldBehaveLikeOwnable = require('zos-lib/test/ownership/Ownable.behavior');
