@@ -12,7 +12,7 @@ const should = require('chai')
   .use(require('chai-as-promised'))
   .should();
 
-contract('AppManager', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, anotherone]) => {
+contract('StdlibExample', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, anotherone]) => {
   const newVersionCost = new web3.BigNumber('2e18');
   const developerFraction = new web3.BigNumber(10);
   const initialKernelVersion = "1.0";

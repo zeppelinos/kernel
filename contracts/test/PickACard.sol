@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "./kernel_instance/ERC721Token.sol";
+import "./stdlib/ERC721Token.sol";
 import "zos-lib/contracts/migrations/Initializable.sol";
 
 contract PickACard is Initializable {
