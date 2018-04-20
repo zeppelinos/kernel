@@ -11,7 +11,7 @@
     "build/contracts/Kernel.json",
     "build/contracts/Release.json",
     "build/contracts/Vouching.json",
-    "build/contracts/ZepToken.json",
+    "build/contracts/ZepToken.json"
   ],
   "scripts": {
     "test": "scripts/test.sh",
