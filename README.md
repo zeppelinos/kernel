@@ -22,6 +22,9 @@ This contract represents a version of the stdlib proposed by a developer. It is 
 
 
 ## Developing kernel standard libraries
+
+Note: For an easier development experience, all of the functionality described below can be accessed through the command line by using the `zos` tool provided in the [zos-cli](https://github.com/zeppelinos/zos-cli) repository. Only continue reading this guide if you want to learn how to programatically submit new zOS Kernel standard library releases, or if you want to learn how they work under the hood.
+
 The **zeppelin_os** kernel handles releases of the standard library. Any developer can register new stdlib releases with the kernel, which can then be vouched for by other users, earning the developer a fraction of the `ZepTokens` staked. In order to register a new stdlib release, developers must first deploy each of the contracts to be included in it, making sure the constructors are replaced by an `initialize` method which initializes the state variables, like is done in the example in `ERC721Token`.
 
 Once all contracts have been deployed, the developer must deploy a new `Release` instance. With the `Release` already on the blockchain, the contracts that are to be part of the release must be included using the `setImplementation` method of the `Release` (defined in [`ContractDirectory`](https://github.com/zeppelinos/zos-lib/contracts/application/versioning/ContractDirectory.sol), upstream in the inheritance hierachy). The method has the following prototype:
@@ -48,8 +51,5 @@ where `version` is the version name and `provider` is the release.
 
 In this case, the interaction with the kernel is still at the release level, but there is an on-chain record of the different versions of the standard library that keeps track of which implementations are associated to the different contracts for each of its releases.
 
-### Command Line Interface
-For improved usability, all of the described functionality can be accessed through the command line by using the `zos` tool provided in the [zos-cli](https://github.com/zeppelinos/zos-cli) repository. This tool is useful for both users creating upgradeable projects using **zeppelin_os** and developers contributing releases of the standard library. A guide on its usage is provided in the linked repository.
-
-### PickACard Example
+## PickACard Example
 The `PickACard` user app is provided as an example of usage of the kernel, together with mock `ERC721` library contracts. These last contracts showcase the simplicity of the modifications required to go from a standard off-chain library like [OpenZeppelin](https://github.com/OpenZeppelin/zeppelin-solidity/) to an on-chain, upgradeable stdlib of the type provided by **zeppelin_os**. As mentioned before, the constructor is replaced by an `initialize` method that takes care of initialzing the state variables, and is typically called upon creation of its upgradeability proxy. The `PickACard` app then uses the library through the kernel to get an implementation of the `ERC721` token. 
