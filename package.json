@@ -1,5 +1,5 @@
 {
-  "name": "kernel",
+  "name": "zos-kernel",
   "version": "0.1.0",
   "private": true,
   "author": "Facundo Spagnuolo <facundo@zeppelin.solutions>",
@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-core": "git://github.com/zeppelinos/upgradeability-lib.git#f2af9ea0c1608d62e20c091ac74f7581b591ed7b"
+    "zos-lib": "0.0.2"
   }
 }
