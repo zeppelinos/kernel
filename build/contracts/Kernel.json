@@ -216,7 +216,7 @@
   "bytecode": "0x6060604052341561000f57600080fd5b6111f48061001e6000396000f3006060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063019e2729146100b4578063094eaa811461011e57806310c11c2b14610147578063392e53cd146101705780634420e4861461019d5780634eaf221b146101d6578063645cdb1b1461025b57806386897d6a146102e0578063c3c5a54714610335578063f98ed53d14610386578063fc0c546a1461042a575b600080fd5b34156100bf57600080fd5b61011c600480803590602001909190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061047f565b005b341561012957600080fd5b61013161054a565b6040518082815260200191505060405180910390f35b341561015257600080fd5b61015a610550565b6040518082815260200191505060405180910390f35b341561017b57600080fd5b610183610556565b604051808215151515815260200191505060405180910390f35b34156101a857600080fd5b6101d4600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061056c565b005b34156101e157600080fd5b610259600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610882565b005b341561026657600080fd5b6102de600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109c3565b005b34156102eb57600080fd5b6102f3610c2f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561034057600080fd5b61036c600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c55565b604051808215151515815260200191505060405180910390f35b341561039157600080fd5b610428600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610cab565b005b341561043557600080fd5b61043d610e5e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000809054906101000a900460ff1615151561049a57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550826003819055508360028190555060016000806101000a81548160ff02191690831515021790555050505050565b60025481565b60035481565b60008060009054906101000a900460ff16905090565b61057581610c55565b15151561058157600080fd5b8073ffffffffffffffffffffffffffffffffffffffff1663054f7d9c6040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156105e457600080fd5b5af115156105f157600080fd5b50505060405180519050151561060657600080fd5b6001600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055507f3e8c92a2bc2776a3bb126f00f2338739e4daf5a8659d9f560c9cd2ad22e95d0881604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166323b872dd33306002546040518463ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019350505050602060405180830381600087803b15156107bb57600080fd5b5af115156107c857600080fd5b5050506040518051905015156107dd57600080fd5b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166342966c686002546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b151561086f57600080fd5b5af1151561087c57600080fd5b50505050565b8261088c81610c55565b151561089757600080fd5b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166323b872dd3330866040518463ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019350505050602060405180830381600087803b151561098f57600080fd5b5af1151561099c57600080fd5b5050506040518051905015156109b157600080fd5b6109bd33858585610e84565b50505050565b826109cd81610c55565b15156109d857600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16639ef8d607338686866040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610aef578082015181840152602081019050610ad4565b50505050905090810190601f168015610b1c5780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b1515610b3d57600080fd5b5af11515610b4a57600080fd5b505050600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb33856040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610c1157600080fd5b5af11515610c1e57600080fd5b505050604051805190505050505050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff169050919050565b83610cb581610c55565b1515610cc057600080fd5b83610cca81610c55565b1515610cd557600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16639ef8d607338887876040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610dec578082015181840152602081019050610dd1565b50505050905090810190601f168015610e195780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b1515610e3a57600080fd5b5af11515610e4757600080fd5b505050610e5633868686610e84565b505050505050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080610e9c6003548561119490919063ffffffff16565b9150600082111515610ead57600080fd5b610ec082856111af90919063ffffffff16565b9050600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663c2dd0a24878784876040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610fd9578082015181840152602081019050610fbe565b50505050905090810190601f1680156110065780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b151561102757600080fd5b5af1151561103457600080fd5b505050600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb8673ffffffffffffffffffffffffffffffffffffffff1663ca4b208b6040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156110d857600080fd5b5af115156110e557600080fd5b50505060405180519050846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561117457600080fd5b5af1151561118157600080fd5b5050506040518051905050505050505050565b60008082848115156111a257fe5b0490508091505092915050565b60008282111515156111bd57fe5b8183039050929150505600a165627a7a72305820a583ddd5c472586694863e3c4365e02335b83bd539f28f8a036f15d6669b09a00029",
   "deployedBytecode": "0x6060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063019e2729146100b4578063094eaa811461011e57806310c11c2b14610147578063392e53cd146101705780634420e4861461019d5780634eaf221b146101d6578063645cdb1b1461025b57806386897d6a146102e0578063c3c5a54714610335578063f98ed53d14610386578063fc0c546a1461042a575b600080fd5b34156100bf57600080fd5b61011c600480803590602001909190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061047f565b005b341561012957600080fd5b61013161054a565b6040518082815260200191505060405180910390f35b341561015257600080fd5b61015a610550565b6040518082815260200191505060405180910390f35b341561017b57600080fd5b610183610556565b604051808215151515815260200191505060405180910390f35b34156101a857600080fd5b6101d4600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061056c565b005b34156101e157600080fd5b610259600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610882565b005b341561026657600080fd5b6102de600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109c3565b005b34156102eb57600080fd5b6102f3610c2f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561034057600080fd5b61036c600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c55565b604051808215151515815260200191505060405180910390f35b341561039157600080fd5b610428600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610cab565b005b341561043557600080fd5b61043d610e5e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000809054906101000a900460ff1615151561049a57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550826003819055508360028190555060016000806101000a81548160ff02191690831515021790555050505050565b60025481565b60035481565b60008060009054906101000a900460ff16905090565b61057581610c55565b15151561058157600080fd5b8073ffffffffffffffffffffffffffffffffffffffff1663054f7d9c6040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156105e457600080fd5b5af115156105f157600080fd5b50505060405180519050151561060657600080fd5b6001600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055507f3e8c92a2bc2776a3bb126f00f2338739e4daf5a8659d9f560c9cd2ad22e95d0881604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166323b872dd33306002546040518463ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019350505050602060405180830381600087803b15156107bb57600080fd5b5af115156107c857600080fd5b5050506040518051905015156107dd57600080fd5b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166342966c686002546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b151561086f57600080fd5b5af1151561087c57600080fd5b50505050565b8261088c81610c55565b151561089757600080fd5b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166323b872dd3330866040518463ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019350505050602060405180830381600087803b151561098f57600080fd5b5af1151561099c57600080fd5b5050506040518051905015156109b157600080fd5b6109bd33858585610e84565b50505050565b826109cd81610c55565b15156109d857600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16639ef8d607338686866040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610aef578082015181840152602081019050610ad4565b50505050905090810190601f168015610b1c5780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b1515610b3d57600080fd5b5af11515610b4a57600080fd5b505050600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb33856040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610c1157600080fd5b5af11515610c1e57600080fd5b505050604051805190505050505050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff169050919050565b83610cb581610c55565b1515610cc057600080fd5b83610cca81610c55565b1515610cd557600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16639ef8d607338887876040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610dec578082015181840152602081019050610dd1565b50505050905090810190601f168015610e195780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b1515610e3a57600080fd5b5af11515610e4757600080fd5b505050610e5633868686610e84565b505050505050565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080610e9c6003548561119490919063ffffffff16565b9150600082111515610ead57600080fd5b610ec082856111af90919063ffffffff16565b9050600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663c2dd0a24878784876040518563ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610fd9578082015181840152602081019050610fbe565b50505050905090810190601f1680156110065780820380516001836020036101000a031916815260200191505b5095505050505050600060405180830381600087803b151561102757600080fd5b5af1151561103457600080fd5b505050600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb8673ffffffffffffffffffffffffffffffffffffffff1663ca4b208b6040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156110d857600080fd5b5af115156110e557600080fd5b50505060405180519050846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561117457600080fd5b5af1151561118157600080fd5b5050506040518051905050505050505050565b60008082848115156111a257fe5b0490508091505092915050565b60008282111515156111bd57fe5b8183039050929150505600a165627a7a72305820a583ddd5c472586694863e3c4365e02335b83bd539f28f8a036f15d6669b09a00029",
   "sourceMap": "389:4742:0:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "389:4742:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1562:377;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;609:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;714:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;177:82:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2114:392:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;3032:211;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3530:194;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;534:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2650:101;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4081:233;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;486:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1562:377;123:12:31;;;;;;;;;;;122:13;114:22;;;;;;;;1728:8:0;1718:7;;:18;;;;;;;;;;;;;;;;;;1750:6;1742:5;;:14;;;;;;;;;;;;;;;;;;1782:18;1762:17;:38;;;;1823:15;1806:14;:32;;;;164:4:31;149:12;;:19;;;;;;;;;;;;;;;;;;1562:377:0;;;;:::o;609:29::-;;;;:::o;714:32::-;;;;:::o;177:82:31:-;223:4;242:12;;;;;;;;;;;235:19;;177:82;:::o;2114:392:0:-;2171:21;2184:7;2171:12;:21::i;:::-;2170:22;2162:31;;;;;;;;2207:7;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2199:25;;;;;;;;2250:4;2230:8;:17;2239:7;2230:17;;;;;;;;;;;;;;;;:24;;;;;;;;;;;;;;;;;;2265:26;2283:7;2265:26;;;;;;;;;;;;;;;;;;;;;;2416:5;;;;;;;;;;;:18;;;2435:10;2447:4;2453:14;;2416:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2408:61;;;;;;;;2475:5;;;;;;;;;;;:10;;;2486:14;;2475:26;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2114:392;:::o;3032:211::-;3114:7;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;3137:5;;;;;;;;;;;:18;;;3156:10;3168:4;3174:6;3137:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3129:53;;;;;;;;3188:50;3204:10;3216:7;3225:6;3233:4;3188:15;:50::i;:::-;3032:211;;;;:::o;3530:194::-;3614:7;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;3629:7;;;;;;;;;;;:15;;;3645:10;3657:7;3666:6;3674:4;3629:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;3629:50:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3685:5;;;;;;;;;;;:14;;;3700:10;3712:6;3685:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3530:194;;;;:::o;534:23::-;;;;;;;;;;;;;:::o;2650:101::-;2710:4;2729:8;:17;2738:7;2729:17;;;;;;;;;;;;;;;;;;;;;;;;;2722:24;;2650:101;;;:::o;4081:233::-;4180:4;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;4201:2;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;4211:7;;;;;;;;;;;:15;;;4227:10;4239:4;4245:6;4253:4;4211:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;4211:47:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4264:45;4280:10;4292:2;4296:6;4304:4;4264:15;:45::i;:::-;1184:1;4081:233;;;;;:::o;486:21::-;;;;;;;;;;;;;:::o;4695:434::-;4797:23;4957:21;4823:29;4834:17;;4823:6;:10;;:29;;;;:::i;:::-;4797:55;;4884:1;4866:15;:19;4858:28;;;;;;;;4981:27;4992:15;4981:6;:10;;:27;;;;:::i;:::-;4957:51;;5014:7;;;;;;;;;;;:13;;;5028:7;5037;5046:13;5061:4;5014:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;5014:52:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5072:5;;;;;;;;;;;:14;;;5087:7;:17;;;:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5108:15;5072:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4695:434;;;;;;:::o;458:265:14:-;516:7;605:9;621:1;617;:5;;;;;;;;605:17;;717:1;710:8;;458:265;;;;;:::o;835:110::-;893:7;920:1;915;:6;;908:14;;;;;;939:1;935;:5;928:12;;835:110;;;;:::o",
+  "deployedSourceMap": "389:4742:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1562:377;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;609:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;714:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;177:82:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2114:392:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;3032:211;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3530:194;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;534:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2650:101;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4081:233;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;486:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1562:377;123:12:30;;;;;;;;;;;122:13;114:22;;;;;;;;1728:8:0;1718:7;;:18;;;;;;;;;;;;;;;;;;1750:6;1742:5;;:14;;;;;;;;;;;;;;;;;;1782:18;1762:17;:38;;;;1823:15;1806:14;:32;;;;164:4:30;149:12;;:19;;;;;;;;;;;;;;;;;;1562:377:0;;;;:::o;609:29::-;;;;:::o;714:32::-;;;;:::o;177:82:30:-;223:4;242:12;;;;;;;;;;;235:19;;177:82;:::o;2114:392:0:-;2171:21;2184:7;2171:12;:21::i;:::-;2170:22;2162:31;;;;;;;;2207:7;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2199:25;;;;;;;;2250:4;2230:8;:17;2239:7;2230:17;;;;;;;;;;;;;;;;:24;;;;;;;;;;;;;;;;;;2265:26;2283:7;2265:26;;;;;;;;;;;;;;;;;;;;;;2416:5;;;;;;;;;;;:18;;;2435:10;2447:4;2453:14;;2416:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2408:61;;;;;;;;2475:5;;;;;;;;;;;:10;;;2486:14;;2475:26;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2114:392;:::o;3032:211::-;3114:7;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;3137:5;;;;;;;;;;;:18;;;3156:10;3168:4;3174:6;3137:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3129:53;;;;;;;;3188:50;3204:10;3216:7;3225:6;3233:4;3188:15;:50::i;:::-;3032:211;;;;:::o;3530:194::-;3614:7;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;3629:7;;;;;;;;;;;:15;;;3645:10;3657:7;3666:6;3674:4;3629:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;3629:50:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3685:5;;;;;;;;;;;:14;;;3700:10;3712:6;3685:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3530:194;;;;:::o;534:23::-;;;;;;;;;;;;;:::o;2650:101::-;2710:4;2729:8;:17;2738:7;2729:17;;;;;;;;;;;;;;;;;;;;;;;;;2722:24;;2650:101;;;:::o;4081:233::-;4180:4;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;4201:2;1156:21;1169:7;1156:12;:21::i;:::-;1148:30;;;;;;;;4211:7;;;;;;;;;;;:15;;;4227:10;4239:4;4245:6;4253:4;4211:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;4211:47:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4264:45;4280:10;4292:2;4296:6;4304:4;4264:15;:45::i;:::-;1184:1;4081:233;;;;;:::o;486:21::-;;;;;;;;;;;;;:::o;4695:434::-;4797:23;4957:21;4823:29;4834:17;;4823:6;:10;;:29;;;;:::i;:::-;4797:55;;4884:1;4866:15;:19;4858:28;;;;;;;;4981:27;4992:15;4981:6;:10;;:27;;;;:::i;:::-;4957:51;;5014:7;;;;;;;;;;;:13;;;5028:7;5037;5046:13;5061:4;5014:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;5014:52:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5072:5;;;;;;;;;;;:14;;;5087:7;:17;;;:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5108:15;5072:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4695:434;;;;;;:::o;458:265:13:-;516:7;605:9;621:1;617;:5;;;;;;;;605:17;;717:1;710:8;;458:265;;;;;:::o;835:110::-;893:7;920:1;915;:6;;908:14;;;;;;939:1;935;:5;928:12;;835:110;;;;:::o",
   "source": "pragma solidity ^0.4.21;\n\nimport \"./ZepToken.sol\";\nimport \"./Release.sol\";\nimport \"./Vouching.sol\";\nimport \"zeppelin-solidity/contracts/math/SafeMath.sol\";\nimport \"zos-lib/contracts/migrations/Initializable.sol\";\nimport \"zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol\";\n\n/**\n * @title Kernel\n * @dev This contract controls the standard library releases for ZeppelinOS\n */\ncontract Kernel is Initializable {\n  using SafeMath for uint256;\n\n  // Token used for vouching\n  ZepToken public token;\n\n  // Staking contract\n  Vouching public vouches;\n\n  // Price of registering a new kernel version\n  uint256 public newVersionCost;\n\n  // Fraction of vouches rewarded to the developer of a kernel release\n  uint256 public developerFraction;\n\n  // Keep track of registered kernel releases given their address\n  mapping(address => bool) internal releases;\n\n  /**\n   * @dev Event signaling that a new release has been registered\n   * @param release representing the new Release\n   */\n  event ReleaseRegistered(Release release);\n\n  /**\n  * @dev Guarantees that a given release is registered\n  */\n  modifier whenRegistered(Release release) {\n    require(isRegistered(release));\n    _;\n  }\n\n  /**\n   * @dev Initialization function\n   * @param _newVersionCost representing the price of registering a new release\n   * @param _developerFraction representing the fraction of vouches rewarded to the developer of the release\n   * @param _token representing the address of the vouching token\n   * @param _vouches representing the address of vouching contract\n   */\n  function initialize(\n    uint256 _newVersionCost,\n    uint256 _developerFraction,\n    ZepToken _token,\n    Vouching _vouches\n  ) public isInitializer {\n    vouches = _vouches;\n    token = _token;\n    developerFraction = _developerFraction;\n    newVersionCost = _newVersionCost;\n    // TODO: we need to think how we are going to manage variable costs to propose new versions\n  }\n\n  /**\n   * @dev Registers a new release and burns the sender's required amount of tokens for it\n   * @param release representing the stdlib release to be registered\n   */\n  function register(Release release) public {\n    require(!isRegistered(release));\n    require(release.frozen());\n    releases[release] = true;\n    emit ReleaseRegistered(release);\n    \n    // TODO: Update to burnFrom once https://github.com/OpenZeppelin/zeppelin-solidity/pull/870 is merged\n    require(token.transferFrom(msg.sender, this, newVersionCost));\n    token.burn(newVersionCost);\n  }\n\n  /**\n  * @dev Tells whether a given release is registered or not\n  * @param release representing the stdlib release to be checked for\n  */\n  function isRegistered(Release release) public view returns (bool) {\n    return releases[release];\n  }\n\n  /**\n   * @dev Vouches a given amount for a requested release\n   * @param release representing the stdlib release being vouched for\n   * @param amount representing the amount being vouched\n   * @param data representing additional information for complex vouching models\n   */\n  function vouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {\n    require(token.transferFrom(msg.sender, this, amount));\n    _payoutAndVouch(msg.sender, release, amount, data);\n  }\n\n  /**\n   * @dev Unvouches a given amount for a requested release\n   * @param release representing the stdlib release being unvouched for\n   * @param amount representing the amount being unvouched\n   * @param data representing additional information for complex vouching models\n   */\n  function unvouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {\n    vouches.unvouch(msg.sender, release, amount, data);\n    token.transfer(msg.sender, amount);\n  }\n\n  /**\n   * @dev Transfers vouches from a release to another\n   * @param from representing the stdlib release being unvouched for\n   * @param to representing the stdlib release being vouched for\n   * @param amount representing the amount of vouches being transferred\n   * @param data representing additional information for complex vouching models\n   */\n  function transferStake(Release from, Release to, uint256 amount, bytes data) public whenRegistered(from) whenRegistered(to) {\n    vouches.unvouch(msg.sender, from, amount, data);\n    _payoutAndVouch(msg.sender, to, amount, data);\n  }\n\n  /**\n   * @dev Stakes tokens for a given release and pays the corresponding fraction to its developer\n   * @param voucher representing the address of the voucher\n   * @param release representing the stdlib release being vouched for\n   * @param amount representing the amount being vouched\n   * @param data representing additional information for complex vouching models\n   */\n  function _payoutAndVouch(address voucher, Release release, uint256 amount, bytes data) internal {\n    uint256 developerPayout = amount.div(developerFraction);\n    require(developerPayout > 0);\n    // TODO: Think how we can manage remainders in a better way\n\n    uint256 vouchedAmount = amount.sub(developerPayout);\n    vouches.vouch(voucher, release, vouchedAmount, data);\n    token.transfer(release.developer(), developerPayout);\n  }\n}\n",
   "sourcePath": "/Users/facu/Documents/Laburo/Zeppelin/ZeppelinOS/kernel/contracts/Kernel.sol",
   "ast": {
@@ -246,7 +246,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 617,
+        "sourceUnit": 560,
         "src": "26:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -257,7 +257,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 352,
+        "sourceUnit": 295,
         "src": "51:23:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -268,7 +268,7 @@
         "id": 4,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 574,
+        "sourceUnit": 517,
         "src": "75:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -279,7 +279,7 @@
         "id": 5,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 1689,
+        "sourceUnit": 1632,
         "src": "100:55:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -290,7 +290,7 @@
         "id": 6,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 3042,
+        "sourceUnit": 2985,
         "src": "156:56:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -301,7 +301,7 @@
         "id": 7,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 3361,
+        "sourceUnit": 3304,
         "src": "213:73:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -315,10 +315,10 @@
               "id": 8,
               "name": "Initializable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3041,
+              "referencedDeclaration": 2984,
               "src": "408:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Initializable_$3041",
+                "typeIdentifier": "t_contract$_Initializable_$2984",
                 "typeString": "contract Initializable"
               }
             },
@@ -328,7 +328,7 @@
           }
         ],
         "contractDependencies": [
-          3041
+          2984
         ],
         "contractKind": "contract",
         "documentation": "@title Kernel\n@dev This contract controls the standard library releases for ZeppelinOS",
@@ -336,7 +336,7 @@
         "id": 276,
         "linearizedBaseContracts": [
           276,
-          3041
+          2984
         ],
         "name": "Kernel",
         "nodeType": "ContractDefinition",
@@ -348,10 +348,10 @@
               "id": 10,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1688,
+              "referencedDeclaration": 1631,
               "src": "432:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1688",
+                "typeIdentifier": "t_contract$_SafeMath_$1631",
                 "typeString": "library SafeMath"
               }
             },
@@ -378,7 +378,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_ZepToken_$616",
+              "typeIdentifier": "t_contract$_ZepToken_$559",
               "typeString": "contract ZepToken"
             },
             "typeName": {
@@ -386,10 +386,10 @@
               "id": 13,
               "name": "ZepToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 616,
+              "referencedDeclaration": 559,
               "src": "486:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ZepToken_$616",
+                "typeIdentifier": "t_contract$_ZepToken_$559",
                 "typeString": "contract ZepToken"
               }
             },
@@ -406,7 +406,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Vouching_$573",
+              "typeIdentifier": "t_contract$_Vouching_$516",
               "typeString": "contract Vouching"
             },
             "typeName": {
@@ -414,10 +414,10 @@
               "id": 15,
               "name": "Vouching",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 573,
+              "referencedDeclaration": 516,
               "src": "534:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Vouching_$573",
+                "typeIdentifier": "t_contract$_Vouching_$516",
                 "typeString": "contract Vouching"
               }
             },
@@ -542,7 +542,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -550,10 +550,10 @@
                     "id": 25,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "1014:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -587,7 +587,7 @@
                             "referencedDeclaration": 30,
                             "src": "1169:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           }
@@ -595,7 +595,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           ],
@@ -606,7 +606,7 @@
                           "referencedDeclaration": 127,
                           "src": "1156:12:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$351_$returns$_t_bool_$",
+                            "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$294_$returns$_t_bool_$",
                             "typeString": "function (contract Release) view returns (bool)"
                           }
                         },
@@ -636,7 +636,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "1148:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -686,7 +686,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -694,10 +694,10 @@
                     "id": 29,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "1125:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -733,7 +733,7 @@
                       "referencedDeclaration": 16,
                       "src": "1718:7:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Vouching_$573",
+                        "typeIdentifier": "t_contract$_Vouching_$516",
                         "typeString": "contract Vouching"
                       }
                     },
@@ -748,13 +748,13 @@
                       "referencedDeclaration": 48,
                       "src": "1728:8:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Vouching_$573",
+                        "typeIdentifier": "t_contract$_Vouching_$516",
                         "typeString": "contract Vouching"
                       }
                     },
                     "src": "1718:18:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Vouching_$573",
+                      "typeIdentifier": "t_contract$_Vouching_$516",
                       "typeString": "contract Vouching"
                     }
                   },
@@ -779,7 +779,7 @@
                       "referencedDeclaration": 14,
                       "src": "1742:5:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_ZepToken_$616",
+                        "typeIdentifier": "t_contract$_ZepToken_$559",
                         "typeString": "contract ZepToken"
                       }
                     },
@@ -794,13 +794,13 @@
                       "referencedDeclaration": 46,
                       "src": "1750:6:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_ZepToken_$616",
+                        "typeIdentifier": "t_contract$_ZepToken_$559",
                         "typeString": "contract ZepToken"
                       }
                     },
                     "src": "1742:14:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_ZepToken_$616",
+                      "typeIdentifier": "t_contract$_ZepToken_$559",
                       "typeString": "contract ZepToken"
                     }
                   },
@@ -917,7 +917,7 @@
                   "name": "isInitializer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3032,
+                  "referencedDeclaration": 2975,
                   "src": "1698:13:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -996,7 +996,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_ZepToken_$616",
+                    "typeIdentifier": "t_contract$_ZepToken_$559",
                     "typeString": "contract ZepToken"
                   },
                   "typeName": {
@@ -1004,10 +1004,10 @@
                     "id": 45,
                     "name": "ZepToken",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 616,
+                    "referencedDeclaration": 559,
                     "src": "1648:8:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_ZepToken_$616",
+                      "typeIdentifier": "t_contract$_ZepToken_$559",
                       "typeString": "contract ZepToken"
                     }
                   },
@@ -1024,7 +1024,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Vouching_$573",
+                    "typeIdentifier": "t_contract$_Vouching_$516",
                     "typeString": "contract Vouching"
                   },
                   "typeName": {
@@ -1032,10 +1032,10 @@
                     "id": 47,
                     "name": "Vouching",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 573,
+                    "referencedDeclaration": 516,
                     "src": "1669:8:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Vouching_$573",
+                      "typeIdentifier": "t_contract$_Vouching_$516",
                       "typeString": "contract Vouching"
                     }
                   },
@@ -1091,7 +1091,7 @@
                               "referencedDeclaration": 72,
                               "src": "2184:7:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_Release_$351",
+                                "typeIdentifier": "t_contract$_Release_$294",
                                 "typeString": "contract Release"
                               }
                             }
@@ -1099,7 +1099,7 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_Release_$351",
+                                "typeIdentifier": "t_contract$_Release_$294",
                                 "typeString": "contract Release"
                               }
                             ],
@@ -1110,7 +1110,7 @@
                             "referencedDeclaration": 127,
                             "src": "2171:12:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$351_$returns$_t_bool_$",
+                              "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$294_$returns$_t_bool_$",
                               "typeString": "function (contract Release) view returns (bool)"
                             }
                           },
@@ -1145,7 +1145,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2162:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1188,7 +1188,7 @@
                             "referencedDeclaration": 72,
                             "src": "2207:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           },
@@ -1199,7 +1199,7 @@
                           "lValueRequested": false,
                           "memberName": "frozen",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2868,
+                          "referencedDeclaration": 2811,
                           "src": "2207:14:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_bool_$",
@@ -1232,7 +1232,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2199:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1290,7 +1290,7 @@
                         "referencedDeclaration": 72,
                         "src": "2239:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -1348,7 +1348,7 @@
                         "referencedDeclaration": 72,
                         "src": "2283:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       }
@@ -1356,7 +1356,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       ],
@@ -1367,7 +1367,7 @@
                       "referencedDeclaration": 28,
                       "src": "2265:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_contract$_Release_$351_$returns$__$",
+                        "typeIdentifier": "t_function_event_nonpayable$_t_contract$_Release_$294_$returns$__$",
                         "typeString": "function (contract Release)"
                       }
                     },
@@ -1404,7 +1404,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3373,
+                              "referencedDeclaration": 3316,
                               "src": "2435:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1431,7 +1431,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3428,
+                            "referencedDeclaration": 3371,
                             "src": "2447:4:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_Kernel_$276",
@@ -1476,7 +1476,7 @@
                             "referencedDeclaration": 14,
                             "src": "2416:5:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_ZepToken_$616",
+                              "typeIdentifier": "t_contract$_ZepToken_$559",
                               "typeString": "contract ZepToken"
                             }
                           },
@@ -1487,7 +1487,7 @@
                           "lValueRequested": false,
                           "memberName": "transferFrom",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2120,
+                          "referencedDeclaration": 2063,
                           "src": "2416:18:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -1520,7 +1520,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2408:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1579,7 +1579,7 @@
                         "referencedDeclaration": 14,
                         "src": "2475:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -1590,7 +1590,7 @@
                       "lValueRequested": false,
                       "memberName": "burn",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1902,
+                      "referencedDeclaration": 1845,
                       "src": "2475:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
@@ -1639,7 +1639,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -1647,10 +1647,10 @@
                     "id": 71,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "2132:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -1705,7 +1705,7 @@
                       "referencedDeclaration": 117,
                       "src": "2738:7:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Release_$351",
+                        "typeIdentifier": "t_contract$_Release_$294",
                         "typeString": "contract Release"
                       }
                     },
@@ -1749,7 +1749,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -1757,10 +1757,10 @@
                     "id": 116,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "2672:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -1831,7 +1831,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3373,
+                              "referencedDeclaration": 3316,
                               "src": "3156:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1858,7 +1858,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3428,
+                            "referencedDeclaration": 3371,
                             "src": "3168:4:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_Kernel_$276",
@@ -1903,7 +1903,7 @@
                             "referencedDeclaration": 14,
                             "src": "3137:5:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_ZepToken_$616",
+                              "typeIdentifier": "t_contract$_ZepToken_$559",
                               "typeString": "contract ZepToken"
                             }
                           },
@@ -1914,7 +1914,7 @@
                           "lValueRequested": false,
                           "memberName": "transferFrom",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2120,
+                          "referencedDeclaration": 2063,
                           "src": "3137:18:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -1947,7 +1947,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "3129:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1984,7 +1984,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3204:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2014,7 +2014,7 @@
                         "referencedDeclaration": 129,
                         "src": "3216:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -2052,7 +2052,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -2071,7 +2071,7 @@
                       "referencedDeclaration": 275,
                       "src": "3188:15:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$351_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$294_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,contract Release,uint256,bytes memory)"
                       }
                     },
@@ -2112,7 +2112,7 @@
                     "referencedDeclaration": 129,
                     "src": "3114:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -2127,7 +2127,7 @@
                   "referencedDeclaration": 40,
                   "src": "3099:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -2151,7 +2151,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -2159,10 +2159,10 @@
                     "id": 128,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "3047:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -2255,7 +2255,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3645:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2285,7 +2285,7 @@
                         "referencedDeclaration": 160,
                         "src": "3657:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -2323,7 +2323,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -2344,7 +2344,7 @@
                         "referencedDeclaration": 16,
                         "src": "3629:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -2355,7 +2355,7 @@
                       "lValueRequested": false,
                       "memberName": "unvouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 572,
+                      "referencedDeclaration": 515,
                       "src": "3629:15:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -2392,7 +2392,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3700:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2447,7 +2447,7 @@
                         "referencedDeclaration": 14,
                         "src": "3685:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -2458,7 +2458,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2099,
+                      "referencedDeclaration": 2042,
                       "src": "3685:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -2502,7 +2502,7 @@
                     "referencedDeclaration": 160,
                     "src": "3614:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -2517,7 +2517,7 @@
                   "referencedDeclaration": 40,
                   "src": "3599:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -2541,7 +2541,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -2549,10 +2549,10 @@
                     "id": 159,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "3547:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -2645,7 +2645,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "4227:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2675,7 +2675,7 @@
                         "referencedDeclaration": 191,
                         "src": "4239:4:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -2713,7 +2713,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -2734,7 +2734,7 @@
                         "referencedDeclaration": 16,
                         "src": "4211:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -2745,7 +2745,7 @@
                       "lValueRequested": false,
                       "memberName": "unvouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 572,
+                      "referencedDeclaration": 515,
                       "src": "4211:15:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -2782,7 +2782,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "4280:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2812,7 +2812,7 @@
                         "referencedDeclaration": 193,
                         "src": "4292:2:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -2850,7 +2850,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -2869,7 +2869,7 @@
                       "referencedDeclaration": 275,
                       "src": "4264:15:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$351_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$294_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,contract Release,uint256,bytes memory)"
                       }
                     },
@@ -2910,7 +2910,7 @@
                     "referencedDeclaration": 191,
                     "src": "4180:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -2925,7 +2925,7 @@
                   "referencedDeclaration": 40,
                   "src": "4165:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -2943,7 +2943,7 @@
                     "referencedDeclaration": 193,
                     "src": "4201:2:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -2958,7 +2958,7 @@
                   "referencedDeclaration": 40,
                   "src": "4186:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -2982,7 +2982,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -2990,10 +2990,10 @@
                     "id": 190,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4104:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -3010,7 +3010,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -3018,10 +3018,10 @@
                     "id": 192,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4118:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -3179,7 +3179,7 @@
                       "lValueRequested": false,
                       "memberName": "div",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1643,
+                      "referencedDeclaration": 1586,
                       "src": "4823:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3269,7 +3269,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "4858:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -3371,7 +3371,7 @@
                       "lValueRequested": false,
                       "memberName": "sub",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1663,
+                      "referencedDeclaration": 1606,
                       "src": "4981:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3421,7 +3421,7 @@
                         "referencedDeclaration": 229,
                         "src": "5037:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -3459,7 +3459,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -3480,7 +3480,7 @@
                         "referencedDeclaration": 16,
                         "src": "5014:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -3491,7 +3491,7 @@
                       "lValueRequested": false,
                       "memberName": "vouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 504,
+                      "referencedDeclaration": 447,
                       "src": "5014:13:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -3534,7 +3534,7 @@
                             "referencedDeclaration": 229,
                             "src": "5087:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           },
@@ -3545,7 +3545,7 @@
                           "lValueRequested": false,
                           "memberName": "developer",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 341,
+                          "referencedDeclaration": 284,
                           "src": "5087:17:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -3600,7 +3600,7 @@
                         "referencedDeclaration": 14,
                         "src": "5072:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -3611,7 +3611,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2099,
+                      "referencedDeclaration": 2042,
                       "src": "5072:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -3686,7 +3686,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -3694,10 +3694,10 @@
                     "id": 228,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4737:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -3806,7 +3806,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 617,
+        "sourceUnit": 560,
         "src": "26:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3817,7 +3817,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 352,
+        "sourceUnit": 295,
         "src": "51:23:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3828,7 +3828,7 @@
         "id": 4,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 574,
+        "sourceUnit": 517,
         "src": "75:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3839,7 +3839,7 @@
         "id": 5,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 1689,
+        "sourceUnit": 1632,
         "src": "100:55:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3850,7 +3850,7 @@
         "id": 6,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 3042,
+        "sourceUnit": 2985,
         "src": "156:56:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3861,7 +3861,7 @@
         "id": 7,
         "nodeType": "ImportDirective",
         "scope": 277,
-        "sourceUnit": 3361,
+        "sourceUnit": 3304,
         "src": "213:73:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -3875,10 +3875,10 @@
               "id": 8,
               "name": "Initializable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3041,
+              "referencedDeclaration": 2984,
               "src": "408:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Initializable_$3041",
+                "typeIdentifier": "t_contract$_Initializable_$2984",
                 "typeString": "contract Initializable"
               }
             },
@@ -3888,7 +3888,7 @@
           }
         ],
         "contractDependencies": [
-          3041
+          2984
         ],
         "contractKind": "contract",
         "documentation": "@title Kernel\n@dev This contract controls the standard library releases for ZeppelinOS",
@@ -3896,7 +3896,7 @@
         "id": 276,
         "linearizedBaseContracts": [
           276,
-          3041
+          2984
         ],
         "name": "Kernel",
         "nodeType": "ContractDefinition",
@@ -3908,10 +3908,10 @@
               "id": 10,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1688,
+              "referencedDeclaration": 1631,
               "src": "432:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1688",
+                "typeIdentifier": "t_contract$_SafeMath_$1631",
                 "typeString": "library SafeMath"
               }
             },
@@ -3938,7 +3938,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_ZepToken_$616",
+              "typeIdentifier": "t_contract$_ZepToken_$559",
               "typeString": "contract ZepToken"
             },
             "typeName": {
@@ -3946,10 +3946,10 @@
               "id": 13,
               "name": "ZepToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 616,
+              "referencedDeclaration": 559,
               "src": "486:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ZepToken_$616",
+                "typeIdentifier": "t_contract$_ZepToken_$559",
                 "typeString": "contract ZepToken"
               }
             },
@@ -3966,7 +3966,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Vouching_$573",
+              "typeIdentifier": "t_contract$_Vouching_$516",
               "typeString": "contract Vouching"
             },
             "typeName": {
@@ -3974,10 +3974,10 @@
               "id": 15,
               "name": "Vouching",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 573,
+              "referencedDeclaration": 516,
               "src": "534:8:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Vouching_$573",
+                "typeIdentifier": "t_contract$_Vouching_$516",
                 "typeString": "contract Vouching"
               }
             },
@@ -4102,7 +4102,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -4110,10 +4110,10 @@
                     "id": 25,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "1014:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -4147,7 +4147,7 @@
                             "referencedDeclaration": 30,
                             "src": "1169:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           }
@@ -4155,7 +4155,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           ],
@@ -4166,7 +4166,7 @@
                           "referencedDeclaration": 127,
                           "src": "1156:12:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$351_$returns$_t_bool_$",
+                            "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$294_$returns$_t_bool_$",
                             "typeString": "function (contract Release) view returns (bool)"
                           }
                         },
@@ -4196,7 +4196,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "1148:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -4246,7 +4246,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -4254,10 +4254,10 @@
                     "id": 29,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "1125:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -4293,7 +4293,7 @@
                       "referencedDeclaration": 16,
                       "src": "1718:7:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Vouching_$573",
+                        "typeIdentifier": "t_contract$_Vouching_$516",
                         "typeString": "contract Vouching"
                       }
                     },
@@ -4308,13 +4308,13 @@
                       "referencedDeclaration": 48,
                       "src": "1728:8:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Vouching_$573",
+                        "typeIdentifier": "t_contract$_Vouching_$516",
                         "typeString": "contract Vouching"
                       }
                     },
                     "src": "1718:18:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Vouching_$573",
+                      "typeIdentifier": "t_contract$_Vouching_$516",
                       "typeString": "contract Vouching"
                     }
                   },
@@ -4339,7 +4339,7 @@
                       "referencedDeclaration": 14,
                       "src": "1742:5:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_ZepToken_$616",
+                        "typeIdentifier": "t_contract$_ZepToken_$559",
                         "typeString": "contract ZepToken"
                       }
                     },
@@ -4354,13 +4354,13 @@
                       "referencedDeclaration": 46,
                       "src": "1750:6:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_ZepToken_$616",
+                        "typeIdentifier": "t_contract$_ZepToken_$559",
                         "typeString": "contract ZepToken"
                       }
                     },
                     "src": "1742:14:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_ZepToken_$616",
+                      "typeIdentifier": "t_contract$_ZepToken_$559",
                       "typeString": "contract ZepToken"
                     }
                   },
@@ -4477,7 +4477,7 @@
                   "name": "isInitializer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3032,
+                  "referencedDeclaration": 2975,
                   "src": "1698:13:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4556,7 +4556,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_ZepToken_$616",
+                    "typeIdentifier": "t_contract$_ZepToken_$559",
                     "typeString": "contract ZepToken"
                   },
                   "typeName": {
@@ -4564,10 +4564,10 @@
                     "id": 45,
                     "name": "ZepToken",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 616,
+                    "referencedDeclaration": 559,
                     "src": "1648:8:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_ZepToken_$616",
+                      "typeIdentifier": "t_contract$_ZepToken_$559",
                       "typeString": "contract ZepToken"
                     }
                   },
@@ -4584,7 +4584,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Vouching_$573",
+                    "typeIdentifier": "t_contract$_Vouching_$516",
                     "typeString": "contract Vouching"
                   },
                   "typeName": {
@@ -4592,10 +4592,10 @@
                     "id": 47,
                     "name": "Vouching",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 573,
+                    "referencedDeclaration": 516,
                     "src": "1669:8:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Vouching_$573",
+                      "typeIdentifier": "t_contract$_Vouching_$516",
                       "typeString": "contract Vouching"
                     }
                   },
@@ -4651,7 +4651,7 @@
                               "referencedDeclaration": 72,
                               "src": "2184:7:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_Release_$351",
+                                "typeIdentifier": "t_contract$_Release_$294",
                                 "typeString": "contract Release"
                               }
                             }
@@ -4659,7 +4659,7 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_Release_$351",
+                                "typeIdentifier": "t_contract$_Release_$294",
                                 "typeString": "contract Release"
                               }
                             ],
@@ -4670,7 +4670,7 @@
                             "referencedDeclaration": 127,
                             "src": "2171:12:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$351_$returns$_t_bool_$",
+                              "typeIdentifier": "t_function_internal_view$_t_contract$_Release_$294_$returns$_t_bool_$",
                               "typeString": "function (contract Release) view returns (bool)"
                             }
                           },
@@ -4705,7 +4705,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2162:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -4748,7 +4748,7 @@
                             "referencedDeclaration": 72,
                             "src": "2207:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           },
@@ -4759,7 +4759,7 @@
                           "lValueRequested": false,
                           "memberName": "frozen",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2868,
+                          "referencedDeclaration": 2811,
                           "src": "2207:14:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_bool_$",
@@ -4792,7 +4792,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2199:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -4850,7 +4850,7 @@
                         "referencedDeclaration": 72,
                         "src": "2239:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -4908,7 +4908,7 @@
                         "referencedDeclaration": 72,
                         "src": "2283:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       }
@@ -4916,7 +4916,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       ],
@@ -4927,7 +4927,7 @@
                       "referencedDeclaration": 28,
                       "src": "2265:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_contract$_Release_$351_$returns$__$",
+                        "typeIdentifier": "t_function_event_nonpayable$_t_contract$_Release_$294_$returns$__$",
                         "typeString": "function (contract Release)"
                       }
                     },
@@ -4964,7 +4964,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3373,
+                              "referencedDeclaration": 3316,
                               "src": "2435:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -4991,7 +4991,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3428,
+                            "referencedDeclaration": 3371,
                             "src": "2447:4:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_Kernel_$276",
@@ -5036,7 +5036,7 @@
                             "referencedDeclaration": 14,
                             "src": "2416:5:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_ZepToken_$616",
+                              "typeIdentifier": "t_contract$_ZepToken_$559",
                               "typeString": "contract ZepToken"
                             }
                           },
@@ -5047,7 +5047,7 @@
                           "lValueRequested": false,
                           "memberName": "transferFrom",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2120,
+                          "referencedDeclaration": 2063,
                           "src": "2416:18:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -5080,7 +5080,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "2408:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -5139,7 +5139,7 @@
                         "referencedDeclaration": 14,
                         "src": "2475:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -5150,7 +5150,7 @@
                       "lValueRequested": false,
                       "memberName": "burn",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1902,
+                      "referencedDeclaration": 1845,
                       "src": "2475:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
@@ -5199,7 +5199,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -5207,10 +5207,10 @@
                     "id": 71,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "2132:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -5265,7 +5265,7 @@
                       "referencedDeclaration": 117,
                       "src": "2738:7:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Release_$351",
+                        "typeIdentifier": "t_contract$_Release_$294",
                         "typeString": "contract Release"
                       }
                     },
@@ -5309,7 +5309,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -5317,10 +5317,10 @@
                     "id": 116,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "2672:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -5391,7 +5391,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3373,
+                              "referencedDeclaration": 3316,
                               "src": "3156:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -5418,7 +5418,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3428,
+                            "referencedDeclaration": 3371,
                             "src": "3168:4:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_Kernel_$276",
@@ -5463,7 +5463,7 @@
                             "referencedDeclaration": 14,
                             "src": "3137:5:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_ZepToken_$616",
+                              "typeIdentifier": "t_contract$_ZepToken_$559",
                               "typeString": "contract ZepToken"
                             }
                           },
@@ -5474,7 +5474,7 @@
                           "lValueRequested": false,
                           "memberName": "transferFrom",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2120,
+                          "referencedDeclaration": 2063,
                           "src": "3137:18:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -5507,7 +5507,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "3129:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -5544,7 +5544,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3204:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -5574,7 +5574,7 @@
                         "referencedDeclaration": 129,
                         "src": "3216:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -5612,7 +5612,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -5631,7 +5631,7 @@
                       "referencedDeclaration": 275,
                       "src": "3188:15:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$351_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$294_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,contract Release,uint256,bytes memory)"
                       }
                     },
@@ -5672,7 +5672,7 @@
                     "referencedDeclaration": 129,
                     "src": "3114:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -5687,7 +5687,7 @@
                   "referencedDeclaration": 40,
                   "src": "3099:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -5711,7 +5711,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -5719,10 +5719,10 @@
                     "id": 128,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "3047:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -5815,7 +5815,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3645:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -5845,7 +5845,7 @@
                         "referencedDeclaration": 160,
                         "src": "3657:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -5883,7 +5883,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -5904,7 +5904,7 @@
                         "referencedDeclaration": 16,
                         "src": "3629:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -5915,7 +5915,7 @@
                       "lValueRequested": false,
                       "memberName": "unvouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 572,
+                      "referencedDeclaration": 515,
                       "src": "3629:15:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -5952,7 +5952,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "3700:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -6007,7 +6007,7 @@
                         "referencedDeclaration": 14,
                         "src": "3685:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -6018,7 +6018,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2099,
+                      "referencedDeclaration": 2042,
                       "src": "3685:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -6062,7 +6062,7 @@
                     "referencedDeclaration": 160,
                     "src": "3614:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -6077,7 +6077,7 @@
                   "referencedDeclaration": 40,
                   "src": "3599:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -6101,7 +6101,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -6109,10 +6109,10 @@
                     "id": 159,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "3547:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -6205,7 +6205,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "4227:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -6235,7 +6235,7 @@
                         "referencedDeclaration": 191,
                         "src": "4239:4:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -6273,7 +6273,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -6294,7 +6294,7 @@
                         "referencedDeclaration": 16,
                         "src": "4211:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -6305,7 +6305,7 @@
                       "lValueRequested": false,
                       "memberName": "unvouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 572,
+                      "referencedDeclaration": 515,
                       "src": "4211:15:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -6342,7 +6342,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3373,
+                          "referencedDeclaration": 3316,
                           "src": "4280:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -6372,7 +6372,7 @@
                         "referencedDeclaration": 193,
                         "src": "4292:2:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -6410,7 +6410,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -6429,7 +6429,7 @@
                       "referencedDeclaration": 275,
                       "src": "4264:15:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$351_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_contract$_Release_$294_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,contract Release,uint256,bytes memory)"
                       }
                     },
@@ -6470,7 +6470,7 @@
                     "referencedDeclaration": 191,
                     "src": "4180:4:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -6485,7 +6485,7 @@
                   "referencedDeclaration": 40,
                   "src": "4165:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -6503,7 +6503,7 @@
                     "referencedDeclaration": 193,
                     "src": "4201:2:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   }
@@ -6518,7 +6518,7 @@
                   "referencedDeclaration": 40,
                   "src": "4186:14:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$_t_contract$_Release_$351_$",
+                    "typeIdentifier": "t_modifier$_t_contract$_Release_$294_$",
                     "typeString": "modifier (contract Release)"
                   }
                 },
@@ -6542,7 +6542,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -6550,10 +6550,10 @@
                     "id": 190,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4104:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -6570,7 +6570,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -6578,10 +6578,10 @@
                     "id": 192,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4118:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -6739,7 +6739,7 @@
                       "lValueRequested": false,
                       "memberName": "div",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1643,
+                      "referencedDeclaration": 1586,
                       "src": "4823:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6829,7 +6829,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3376,
+                      "referencedDeclaration": 3319,
                       "src": "4858:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -6931,7 +6931,7 @@
                       "lValueRequested": false,
                       "memberName": "sub",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1663,
+                      "referencedDeclaration": 1606,
                       "src": "4981:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6981,7 +6981,7 @@
                         "referencedDeclaration": 229,
                         "src": "5037:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         }
                       },
@@ -7019,7 +7019,7 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_contract$_Release_$351",
+                          "typeIdentifier": "t_contract$_Release_$294",
                           "typeString": "contract Release"
                         },
                         {
@@ -7040,7 +7040,7 @@
                         "referencedDeclaration": 16,
                         "src": "5014:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Vouching_$573",
+                          "typeIdentifier": "t_contract$_Vouching_$516",
                           "typeString": "contract Vouching"
                         }
                       },
@@ -7051,7 +7051,7 @@
                       "lValueRequested": false,
                       "memberName": "vouch",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 504,
+                      "referencedDeclaration": 447,
                       "src": "5014:13:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -7094,7 +7094,7 @@
                             "referencedDeclaration": 229,
                             "src": "5087:7:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_Release_$351",
+                              "typeIdentifier": "t_contract$_Release_$294",
                               "typeString": "contract Release"
                             }
                           },
@@ -7105,7 +7105,7 @@
                           "lValueRequested": false,
                           "memberName": "developer",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 341,
+                          "referencedDeclaration": 284,
                           "src": "5087:17:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -7160,7 +7160,7 @@
                         "referencedDeclaration": 14,
                         "src": "5072:5:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ZepToken_$616",
+                          "typeIdentifier": "t_contract$_ZepToken_$559",
                           "typeString": "contract ZepToken"
                         }
                       },
@@ -7171,7 +7171,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2099,
+                      "referencedDeclaration": 2042,
                       "src": "5072:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -7246,7 +7246,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Release_$351",
+                    "typeIdentifier": "t_contract$_Release_$294",
                     "typeString": "contract Release"
                   },
                   "typeName": {
@@ -7254,10 +7254,10 @@
                     "id": 228,
                     "name": "Release",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 351,
+                    "referencedDeclaration": 294,
                     "src": "4737:7:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Release_$351",
+                      "typeIdentifier": "t_contract$_Release_$294",
                       "typeString": "contract Release"
                     }
                   },
@@ -7345,5 +7345,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-20T15:42:00.272Z"
+  "updatedAt": "2018-04-20T19:08:19.330Z"
 }
