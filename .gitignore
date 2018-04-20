@@ -1,12 +1,4 @@
 node_modules/
 coverage/
 coverage.json
-
-# TODO: move this to a pre-publish script
-build/*
-!build/contracts
-build/contracts/*
-!build/contracts/Kernel.json
-!build/contracts/Vouching.json
-!build/contracts/Release.json
-!build/contracts/ZepToken.json
+build
