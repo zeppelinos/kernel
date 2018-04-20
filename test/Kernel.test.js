@@ -1,12 +1,11 @@
-import assertRevert from './helpers/assertRevert';
 import Deployer from '../deploy/objects/Deployer';
-
-const decodeLogs = require('./helpers/decodeLogs');
+import assertRevert from './helpers/assertRevert';
 
 const BigNumber = web3.BigNumber;
-const MockKernelV2 = artifacts.require('MockKernelV2');
+const decodeLogs = require('./helpers/decodeLogs');
 const Release = artifacts.require('Release');
 const Vouching = artifacts.require('Vouching');
+const MockKernelV2 = artifacts.require('MockKernelV2');
 
 const should = require('chai')
   .use(require('chai-as-promised'))
@@ -15,8 +14,8 @@ const should = require('chai')
 
 contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const initialKernelVersion = "1.0";
-  const newVersionCost = 2;
-  const developerFraction = 10;
+  const newVersionCost = new BigNumber('2e18');
+  const developerFraction = new BigNumber(10);
 
   beforeEach("deploying the kernel", async function () {
     this.deployer = new Deployer(owner)
@@ -78,10 +77,10 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
   });
 
   describe('vouching', async function() {
-    const vouchValue = 42;
-    const unvouchValue = 24;
-    const transferValue = 10;
-    const tooSmallStake = developerFraction - 1; 
+    const vouchValue = new BigNumber('42e18');
+    const unvouchValue = new BigNumber('24e18');
+    const transferValue = new BigNumber('10e18');
+    const tooSmallStake = developerFraction.minus(1);
 
     beforeEach("creating another release", async function () {
       this.anotherRelease = await Release.new({ from: anotherDeveloper });
@@ -155,7 +154,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
 
           describe('when the requested amount is higher than the vouched amount', function () {
             it('reverts', async function () {
-              const tooHighUnvouch = vouchValue + 1;
+              const tooHighUnvouch = vouchValue.plus(1);
               await assertRevert(this.kernel.unvouch(this.release.address, tooHighUnvouch, 0, { from: user}));
             });
           });
@@ -189,8 +188,11 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
       });
 
       describe('revouches', async function (){
-        const anotherStake = 47;
-        const effectiveVouching = vouchValue - Math.floor(vouchValue/developerFraction) + anotherStake - Math.floor(anotherStake/developerFraction);        
+        const anotherStake = new BigNumber('47e18');
+        const effectiveVouching = vouchValue
+          .plus(anotherStake)
+          .minus(vouchValue.divToInt(developerFraction))
+          .minus(anotherStake.divToInt(developerFraction));
 
         beforeEach(async function () {
           await this.kernel.vouch(this.release.address, vouchValue, 0, { from: user });
@@ -258,7 +260,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     });
 
     it('should duplicate payout', async function () {
-      const vouchValue = 42;
+      const vouchValue = new BigNumber('42e18');
       const developerPayout = Math.floor(vouchValue / developerFraction) * 2;
       const effectiveVouching = vouchValue - developerPayout;
       const developerBalanceBefore = await this.zepToken.balanceOf(developer);

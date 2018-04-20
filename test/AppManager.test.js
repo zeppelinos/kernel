@@ -13,8 +13,8 @@ const should = require('chai')
   .should();
 
 contract('AppManager', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, anotherone]) => {
-  const newVersionCost = 20;
-  const developerFraction = 10;
+  const newVersionCost = new web3.BigNumber('2e18');
+  const developerFraction = new web3.BigNumber(10);
   const initialKernelVersion = "1.0";
 
   beforeEach("deploying the kernel", async function () {
