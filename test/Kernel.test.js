@@ -1,6 +1,7 @@
 import Deployer from '../deploy/objects/Deployer';
-import decodeLogs from 'zos-lib/test/helpers/decodeLogs';
-import assertRevert from 'zos-lib/test/helpers/assertRevert';
+
+const decodeLogs = require('zos-lib').decodeLogs
+const assertRevert = require('zos-lib').assertRevert;
 
 const BigNumber = web3.BigNumber;
 const Release = artifacts.require('Release');
@@ -115,7 +116,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
         });
         
         it('should emit a Vouched event with correct amount', async function () {
-          this.logs = decodeLogs([this.receipt.logs[1]], Vouching, this.vouching.address);
+          this.logs = decodeLogs([this.receipt.logs[1]], Vouching);
           const total = this.logs.find(l => l.event === 'Vouched').args.total;
           this.totalVouchedFor.should.be.bignumber.equal(total);
         });
@@ -146,7 +147,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
             });
         
             it('should emit an Unvouched event with correct amount', async function () {
-              this.logs = decodeLogs([this.receipt.logs[0]], Vouching, this.vouching.address);
+              this.logs = decodeLogs([this.receipt.logs[0]], Vouching);
               const total = this.logs.find(l => l.event === 'Unvouched').args.total;
               total.should.be.bignumber.equal(effectiveVouching);
             });

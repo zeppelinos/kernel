@@ -1,6 +1,5 @@
-import assertRevert from 'zos-lib/test/helpers/assertRevert';
-
 const Vouching = artifacts.require('Vouching');
+const assertRevert = require('zos-lib').assertRevert;
 const shouldBehaveLikeOwnable = require('zos-lib/test/ownership/Ownable.behavior');
 
 contract('Vouching', ([_, vouchOwner, someone, anotherone, instance]) => {
