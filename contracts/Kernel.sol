@@ -4,14 +4,14 @@ import "./ZepToken.sol";
 import "./Release.sol";
 import "./Vouching.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
-import "zos-lib/contracts/migrations/Initializable.sol";
+import "zos-lib/contracts/migrations/Migratable.sol";
 import "zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 
 /**
  * @title Kernel
  * @dev This contract controls the standard library releases for ZeppelinOS
  */
-contract Kernel is Initializable {
+contract Kernel is Migratable {
   using SafeMath for uint256;
 
   // Token used for vouching
@@ -55,7 +55,7 @@ contract Kernel is Initializable {
     uint256 _developerFraction,
     ZepToken _token,
     Vouching _vouches
-  ) public isInitializer {
+  ) public isInitializer("Kernel", "0") {
     vouches = _vouches;
     token = _token;
     developerFraction = _developerFraction;

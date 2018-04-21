@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "zos-lib/contracts/migrations/Initializable.sol";
+import "zos-lib/contracts/migrations/Migratable.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
@@ -9,7 +9,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
  * @title Vouching
  * @dev This contract keeps track of all submitted vouches for stdlib releases
  */
-contract Vouching is Initializable, Ownable {
+contract Vouching is Migratable, Ownable {
   using SafeMath for uint256;
 
   /**
@@ -45,7 +45,7 @@ contract Vouching is Initializable, Ownable {
    * @dev Initialization function, sets the owner
    * @param _owner representing the address of the owner
    */
-  function initialize(address _owner) public isInitializer {
+  function initialize(address _owner) public isInitializer("Vouching", "0") {
     owner = _owner;
   }
 
