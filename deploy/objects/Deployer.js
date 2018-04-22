@@ -19,7 +19,7 @@ class Deployer {
   }
 
   async initAppManager(initialVersion) {
-    log('\nDeploying a new app manager...')
+    log('Deploying a new app manager...')
     const factory = await UpgradeabilityProxyFactory.new({ from: this.owner });
     log(` UpgradeabilityProxyFactory: ${factory.address}`)
     this.package = await Package.new({ from: this.owner });
@@ -40,7 +40,7 @@ class Deployer {
 
   async registerKernelContractsInDirectory(impls = {}) {
     if (this.appManager === undefined) throw "Must call initAppManager or atAppManager first";
-    log('\nRegistering kernel contract dependencies implementations...')
+    log('Registering kernel contract dependencies implementations...')
     await this._deployAndRegister(impls.Vouching || Vouching, 'Vouching');
     await this._deployAndRegister(impls.ZepToken || ZepToken, 'ZepToken');
     await this._deployAndRegister(impls.Kernel || Kernel, 'Kernel');
@@ -49,7 +49,7 @@ class Deployer {
   async deployKernel(newVersionCost, developerFraction) {
     if (this.appManager === undefined) throw "Must call initAppManager or atAppManager first";
     const appManagerWrapper = new AppManagerWrapper(this.appManager, this.owner);
-    log('\nCreating proxies for the Kernel...')
+    log('Creating proxies for the Kernel...')
     const vouching = await appManagerWrapper.createProxyAndCall(Vouching, 'Vouching', ['address'], [this.owner]);
     log(' Vouching proxy: ', vouching.address)
     const zepToken = await appManagerWrapper.createProxyAndCall(ZepToken, 'ZepToken', ['address'], [this.owner]);
