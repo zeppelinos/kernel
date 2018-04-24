@@ -105,7 +105,7 @@ contract Kernel is Migratable {
    */
   function unvouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {
     vouches.unvouch(msg.sender, release, amount, data);
-    token.transfer(msg.sender, amount);
+    require(token.transfer(msg.sender, amount));
   }
 
   /**
@@ -134,6 +134,6 @@ contract Kernel is Migratable {
 
     uint256 vouchedAmount = amount.sub(developerPayout);
     vouches.vouch(voucher, release, vouchedAmount, data);
-    token.transfer(release.developer(), developerPayout);
+    require(token.transfer(release.developer(), developerPayout));
   }
 }
