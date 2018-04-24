@@ -15,7 +15,7 @@ contract MockKernelV2 is Kernel {
    
     uint256 vouchedAmount = amount.sub(developerPayout);
     vouches.vouch(voucher, release, vouchedAmount, data);
-    token.transfer(release.developer(), developerPayout);
+    require(token.transfer(release.developer(), developerPayout));
   }
 
 }
