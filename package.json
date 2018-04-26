@@ -1,6 +1,6 @@
 {
   "name": "zos-kernel",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Facundo Spagnuolo <facundo@zeppelin.solutions>",
   "license": "MIT",
   "files": [
