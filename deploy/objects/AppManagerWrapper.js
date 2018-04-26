@@ -11,7 +11,7 @@ export default class AppManagerWrapper {
 
   async createProxy(contractKlazz, contractName) {
     const { receipt } = await this.appManager.create(contractName, { from: this.owner });
-    const logs = decodeLogs([receipt.logs[1]], UpgradeabilityProxyFactory);
+    const logs = decodeLogs(receipt.logs, UpgradeabilityProxyFactory);
     const address = logs.find(l => l.event === 'ProxyCreated').args.proxy;
     return contractKlazz.at(address);
   }
@@ -21,7 +21,7 @@ export default class AppManagerWrapper {
     const initializeData = encodeCall('initialize', initArgTypes, initArgs);
     const { receipt } = await this.appManager.createAndCall(contractName, initializeData, { from: this.owner });
     log(`TX receipt received: ${receipt.transactionHash}`)
-    const logs = decodeLogs([receipt.logs[1]], UpgradeabilityProxyFactory);
+    const logs = decodeLogs(receipt.logs, UpgradeabilityProxyFactory);
     const address = logs.find(l => l.event === 'ProxyCreated').args.proxy;
     log(`${contractName} proxy: ${address}`)
     return contractKlazz.at(address);
