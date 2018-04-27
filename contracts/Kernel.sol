@@ -5,7 +5,6 @@ import "./Release.sol";
 import "./Vouching.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zos-lib/contracts/migrations/Migratable.sol";
-import "zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 
 /**
  * @title Kernel
@@ -72,7 +71,7 @@ contract Kernel is Migratable {
     require(release.frozen());
     releases[release] = true;
     emit ReleaseRegistered(release);
-    
+
     // TODO: Update to burnFrom once https://github.com/OpenZeppelin/zeppelin-solidity/pull/870 is merged
     require(token.transferFrom(msg.sender, this, newVersionCost));
     token.burn(newVersionCost);
