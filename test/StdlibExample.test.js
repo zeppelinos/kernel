@@ -1,5 +1,6 @@
-import Deployer from '../deploy/objects/Deployer';
-import AppManagerWrapper from '../deploy/objects/AppManagerWrapper';
+import KernelDeployer from '../lib/kernel/KernelDeployer'
+import ReleaseDeployer from '../lib/release/ReleaseDeployer'
+import { AppManagerDeployer } from 'zos-lib'
 
 const PickACard = artifacts.require('PickACard');
 const ERC721Token = artifacts.require('ERC721Token');
@@ -12,43 +13,27 @@ const should = require('chai')
   .use(require('chai-as-promised'))
   .should();
 
+require('./setup')
 contract('StdlibExample', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, anotherone]) => {
   const newVersionCost = new web3.BigNumber('2e18');
   const developerFraction = new web3.BigNumber(10);
   const initialKernelVersion = "1.0";
 
-  beforeEach("deploying the kernel", async function () {
-    this.deployer = new Deployer(zeppelin)
-    await this.deployer.initAppManager(initialKernelVersion);
-    await this.deployer.registerKernelContractsInDirectory();
-    const deployed = await this.deployer.deployKernel(newVersionCost, developerFraction);
-    Object.assign(this, deployed)
-  });
-
-  beforeEach("creating a new release with ERC721", async function () {
-    this.release = await Release.new({ from: kernelDeveloper });
-    const erc721Implementation = await ERC721Token.new({ from: kernelDeveloper });
-    await this.release.setImplementation("ERC721", erc721Implementation.address, { from: kernelDeveloper });
-    await this.release.freeze({ from: kernelDeveloper });
-    
-    await this.zepToken.mint(kernelDeveloper, newVersionCost * 10, { from: zeppelin });
-    await this.zepToken.approve(this.kernel.address, newVersionCost, { from: kernelDeveloper })
-    await this.kernel.register(this.release.address, { from: kernelDeveloper });
+  beforeEach("deploying the kernel with release including ERC721", async function () {
+    const contracts = [{ name: "ERC721Token", alias: "ERC721" }]
+    this.kernelWrapper = await KernelDeployer.call(initialKernelVersion, newVersionCost, developerFraction, { from: zeppelin })
+    this.releaseWrapper = await ReleaseDeployer.call(contracts, { from: kernelDeveloper })
+    await this.releaseWrapper.freeze()
+    await this.kernelWrapper.mintZepTokens(kernelDeveloper, newVersionCost * 10)
+    this.kernelWrapper.txParams = { from: kernelDeveloper }
+    await this.kernelWrapper.register(this.releaseWrapper.address())
   });
 
   beforeEach("creating a new application", async function () {
-    const provider = await AppDirectory.new(this.release.address, { from: appDeveloper });
-    const pickACardImpl = await PickACard.new({ from: appDeveloper });
-    await provider.setImplementation("PickACard", pickACardImpl.address, { from: appDeveloper });    
-    
-    const factory = await UpgradeabilityProxyFactory.new({ from: appDeveloper });
-    this.appManager = await UnversionedAppManager.new(provider.address, factory.address, { from: appDeveloper });
-    this.appManagerWrapper = new AppManagerWrapper(this.appManager, appDeveloper);
-  });
-
-  beforeEach("creating proxies for the application", async function () {
-    const token = await this.appManagerWrapper.createProxy(ERC721Token, "ERC721", { from: appDeveloper });
-    this.mock = await this.appManagerWrapper.createProxyAndCall(PickACard, "PickACard", ["address"], [token.address], { from: appDeveloper });
+    this.appManagerWrapper = await AppManagerDeployer.withStdlib('1', this.releaseWrapper.address(), { from: appDeveloper })
+    await this.appManagerWrapper.setImplementation(PickACard, "PickACard")
+    const token = await this.appManagerWrapper.createProxy(ERC721Token, "ERC721")
+    this.mock = await this.appManagerWrapper.createProxy(PickACard, "PickACard", 'initialize', [token.address])
   });
 
   it('uses the selected zos kernel instance', async function () {
@@ -66,8 +51,8 @@ contract('StdlibExample', ([_, zeppelin, kernelDeveloper, appDeveloper, someone,
 
   describe('when creating another instance of the testing contract', function () {
     beforeEach(async function () {
-      this.anotherToken = await this.appManagerWrapper.createProxy(ERC721Token, "ERC721", { from: appDeveloper })
-      this.anotherMock = await this.appManagerWrapper.createProxyAndCall(PickACard, "PickACard", ["address"], [this.anotherToken.address], { from: appDeveloper });
+      this.anotherToken = await this.appManagerWrapper.createProxy(ERC721Token, "ERC721")
+      this.anotherMock = await this.appManagerWrapper.createProxy(PickACard, "PickACard", 'initialize', [this.anotherToken.address]);
     })
 
     it('creates different instances of the proxy', async function () {

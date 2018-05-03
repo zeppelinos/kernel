@@ -1,7 +1,9 @@
-const Vouching = artifacts.require('Vouching');
-const assertRevert = require('zos-lib').assertRevert;
-const shouldBehaveLikeOwnable = require('zos-lib/test/ownership/Ownable.behavior');
+import { assertRevert } from 'zos-lib'
+import shouldBehaveLikeOwnable from 'zos-lib/test/ownership/Ownable.behavior'
 
+const Vouching = artifacts.require('Vouching');
+
+require('./setup')
 contract('Vouching', ([_, vouchOwner, someone, anotherone, instance]) => {
 
   beforeEach(async function () {

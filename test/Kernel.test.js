@@ -1,29 +1,30 @@
-import Deployer from '../deploy/objects/Deployer';
-
-const decodeLogs = require('zos-lib').decodeLogs
-const assertRevert = require('zos-lib').assertRevert;
+import { decodeLogs, assertRevert } from 'zos-lib'
+import KernelDeployer from "../lib/kernel/KernelDeployer";
+import ReleaseDeployer from "../lib/release/ReleaseDeployer";
 
 const BigNumber = web3.BigNumber;
+const Kernel = artifacts.require('Kernel');
 const Release = artifacts.require('Release');
 const Vouching = artifacts.require('Vouching');
 const MockKernelV2 = artifacts.require('MockKernelV2');
 
+require('./setup')
 const should = require('chai')
   .use(require('chai-as-promised'))
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
+require('./setup')
 contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const initialKernelVersion = "1.0";
   const newVersionCost = new BigNumber('2e18');
   const developerFraction = new BigNumber(10);
 
   beforeEach("deploying the kernel", async function () {
-    this.deployer = new Deployer(owner)
-    await this.deployer.initAppManager(initialKernelVersion);
-    await this.deployer.registerKernelContractsInDirectory();
-    const deployed = await this.deployer.deployKernel(newVersionCost, developerFraction);
-    Object.assign(this, deployed)
+    this.kernelWrapper = await KernelDeployer.call(initialKernelVersion, newVersionCost, developerFraction, { from: owner })
+    this.kernel = this.kernelWrapper.kernel
+    this.zepToken = this.kernelWrapper.zepToken
+    this.vouching = this.kernelWrapper.vouching
   });
 
   beforeEach("creating a new release", async function () {
@@ -250,9 +251,10 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     const newVersion = "1.1";
 
     beforeEach('upgrading kernel', async function () {
-      await this.deployer.addNewVersion(newVersion);
-      await this.deployer.registerKernelContractsInDirectory({ Kernel: MockKernelV2 });
-      await this.deployer.appManager.upgradeTo(this.kernel.address, 'Kernel', { from: owner });
+      const appManager = KernelDeployer.appManager
+      await appManager.newVersion(newVersion)
+      await KernelDeployer.registerImplementations({ Kernel: MockKernelV2 })
+      await appManager.upgradeProxy(this.kernel.address, Kernel, 'Kernel')
     });
 
     it('should add new method', async function () {

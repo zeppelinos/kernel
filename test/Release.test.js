@@ -1,8 +1,9 @@
+import { assertRevert } from 'zos-lib'
 import shouldBehaveLikeContractDirectory from 'zos-lib/test/application/versioning/ContractDirectory.behavior';
 
 const Release = artifacts.require('Release');
-const assertRevert = require('zos-lib').assertRevert;
 
+require('./setup')
 contract('Release', ([_, developer, anotherAddress, implementation_v0, implementation_v1]) => {
 
   beforeEach("initializing a new release", async function () {
