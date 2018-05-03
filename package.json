@@ -3,7 +3,9 @@
   "version": "0.1.3",
   "author": "Facundo Spagnuolo <facundo@zeppelin.solutions>",
   "license": "MIT",
+  "main": "./lib/index.js",
   "files": [
+    "lib",
     "deploy",
     "scripts",
     "contracts",
@@ -14,13 +16,15 @@
   ],
   "scripts": {
     "test": "scripts/test.sh",
-    "prepack": "truffle compile",
+    "prepack": "truffle compile && babel src --out-dir lib",
     "deploy-local": "truffle exec scripts/deploy.js --network local",
     "createapp-local": "truffle exec scripts/createapp.js --network local"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
@@ -38,6 +42,6 @@
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",
-    "zos-lib": "^0.1.5"
+    "zos-lib": "file:../zos-lib"
   }
 }
