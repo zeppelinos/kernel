@@ -2,8 +2,7 @@
 // Deploys sample zOS along with a sample Kernel (see deploy)
 // Run as: `npx truffle exec scripts/createapp.js --network NETWORK`
 
-global.artifacts = artifacts;
 global.web3 = web3;
-global.log = true;
+global.artifacts = artifacts;
 
-module.exports = require('../deploy/scripts/createapp');
+module.exports = require('../deploy/createapp');
