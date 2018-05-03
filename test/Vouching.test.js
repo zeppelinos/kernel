@@ -1,9 +1,7 @@
-import { assertRevert } from 'zos-lib'
-import shouldBehaveLikeOwnable from 'zos-lib/test/ownership/Ownable.behavior'
+import { behaviors, assertRevert } from 'zos-lib'
 
 const Vouching = artifacts.require('Vouching');
 
-require('./setup')
 contract('Vouching', ([_, vouchOwner, someone, anotherone, instance]) => {
 
   beforeEach(async function () {
@@ -15,7 +13,7 @@ contract('Vouching', ([_, vouchOwner, someone, anotherone, instance]) => {
       this.ownable = this.vouching
     })
 
-    shouldBehaveLikeOwnable(vouchOwner, someone)
+    behaviors.shouldBehaveLikeOwnable(vouchOwner, someone)
   })
 
   describe('vouch', function () {

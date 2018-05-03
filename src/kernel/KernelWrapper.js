@@ -1,5 +1,4 @@
 import { Logger } from 'zos-lib'
-import ContractsProvider from '../utils/ContractsProvider'
 
 const log = new Logger('Kernel')
 

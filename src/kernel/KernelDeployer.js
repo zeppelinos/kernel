@@ -1,5 +1,4 @@
 import KernelWrapper from './KernelWrapper'
-import ContractsProvider from '../utils/ContractsProvider'
 import { AppManagerDeployer, Logger } from 'zos-lib'
 
 const log = new Logger('KernelDeployer')
@@ -30,21 +29,21 @@ export default {
   },
 
   async registerVouchingImplementation(impls = {}) {
-    const Vouching = impls.Vouching || ContractsProvider.getByName('Vouching')
+    const Vouching = impls.Vouching || ContractsProvider.getFromKernel('Vouching')
     log.info('Registering Vouching implementation for Kernel...')
     await this.appManager.setImplementation(Vouching, 'Vouching')
     return Vouching;
   },
 
   async registerZepTokenImplementation(impls = {}) {
-    const ZepToken = impls.ZepToken || ContractsProvider.getByName('ZepToken')
+    const ZepToken = impls.ZepToken || ContractsProvider.getFromKernel('ZepToken')
     log.info('Registering ZepToken implementation for Kernel...')
     await this.appManager.setImplementation(ZepToken, 'ZepToken')
     return ZepToken;
   },
 
   async registerKernelImplementation(impls = {}) {
-    const Kernel = impls.Kernel || ContractsProvider.getByName('Kernel')
+    const Kernel = impls.Kernel || ContractsProvider.getFromKernel('Kernel')
     log.info('Registering Kernel implementation for Kernel...')
     await this.appManager.setImplementation(impls.Kernel || Kernel, 'Kernel')
     return Kernel;

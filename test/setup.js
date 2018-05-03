@@ -1,6 +1,6 @@
 import { Logger } from 'zos-lib'
 import truffleContract from 'truffle-contract'
-import ContractsProvider from '../lib/utils/ContractsProvider'
+import ContractsProvider from '../src/utils/ContractsProvider'
 
 const DEFAULT_TX_PARAMS = {
   gas: 6721975,
@@ -17,10 +17,16 @@ function muteLogging() {
 }
 
 function provideContractsFromTruffle() {
+  ContractsProvider.getFromKernel = contractName => {
+    return ContractsProvider.getFromArtifacts(contractName)
+  }
+
   ContractsProvider.getByJSONData = (data) => {
     const contract = truffleContract(data)
     contract.setProvider(web3.currentProvider)
     contract.defaults(DEFAULT_TX_PARAMS)
     return contract
   }
+
+  global.ContractsProvider = ContractsProvider
 }

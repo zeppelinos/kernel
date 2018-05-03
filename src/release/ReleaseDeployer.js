@@ -1,6 +1,5 @@
 import { Logger, FileSystem } from 'zos-lib'
 import ReleaseWrapper from './ReleaseWrapper'
-import ContractsProvider from '../utils/ContractsProvider'
 
 const log = new Logger('ReleaseDeployer')
 

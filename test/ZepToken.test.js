@@ -2,7 +2,6 @@ const ZepToken = artifacts.require('ZepToken');
 
 // TODO: Add integration tests
 
-require('./setup')
 contract('ZepToken', () => {
   beforeEach(async function () {
     this.zepToken = await ZepToken.new();

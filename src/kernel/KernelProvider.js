@@ -1,5 +1,4 @@
 import KernelWrapper from './KernelWrapper'
-import ContractsProvider from '../utils/ContractsProvider'
 
 export default {
   async fromAddress(address, txParams = {}) {

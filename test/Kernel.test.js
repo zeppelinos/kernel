@@ -8,7 +8,6 @@ const Release = artifacts.require('Release');
 const Vouching = artifacts.require('Vouching');
 const MockKernelV2 = artifacts.require('MockKernelV2');
 
-require('./setup')
 const should = require('chai')
   .use(require('chai-as-promised'))
   .use(require('chai-bignumber')(BigNumber))

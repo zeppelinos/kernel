@@ -1,9 +1,7 @@
-import { assertRevert } from 'zos-lib'
-import shouldBehaveLikeContractDirectory from 'zos-lib/test/application/versioning/ContractDirectory.behavior';
+import { behaviors, assertRevert } from 'zos-lib'
 
 const Release = artifacts.require('Release');
 
-require('./setup')
 contract('Release', ([_, developer, anotherAddress, implementation_v0, implementation_v1]) => {
 
   beforeEach("initializing a new release", async function () {
@@ -60,7 +58,7 @@ contract('Release', ([_, developer, anotherAddress, implementation_v0, implement
         this.implementation_v1 = implementation_v1
       })
 
-      shouldBehaveLikeContractDirectory(developer, anotherAddress)
+      behaviors.shouldBehaveLikeContractDirectory(developer, anotherAddress)
     })
 
     describe('when it is frozen', function () {
