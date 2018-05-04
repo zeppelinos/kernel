@@ -1,6 +1,6 @@
 import { Logger, AppManagerDeployer } from 'zos-lib'
-import KernelDeployer from '../lib/kernel/KernelDeployer'
-import ReleaseDeployer from '../lib/release/ReleaseDeployer'
+import KernelDeployer from '../src/kernel/KernelDeployer'
+import ReleaseDeployer from '../src/release/ReleaseDeployer'
 import { ZEPPELIN_ACCOUNT, DEVELOPER_ACCOUNT, DEVELOPER_FRACTION, NEW_VERSION_COST, KERNEL_VERSION, ERC721_CONTRACT_NAME } from './constants';
 
 async function deployKernelAndReleaseSample() {

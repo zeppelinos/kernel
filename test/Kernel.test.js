@@ -1,6 +1,5 @@
 import { decodeLogs, assertRevert } from 'zos-lib'
-import KernelDeployer from "../lib/kernel/KernelDeployer";
-import ReleaseDeployer from "../lib/release/ReleaseDeployer";
+import KernelDeployer from "../src/kernel/KernelDeployer";
 
 const BigNumber = web3.BigNumber;
 const Kernel = artifacts.require('Kernel');

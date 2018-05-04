@@ -17,6 +17,10 @@ function muteLogging() {
 }
 
 function provideContractsFromTruffle() {
+  ContractsProvider.getByName = contractName => {
+    return ContractsProvider.getFromArtifacts(contractName)
+  }
+
   ContractsProvider.getFromKernel = contractName => {
     return ContractsProvider.getFromArtifacts(contractName)
   }

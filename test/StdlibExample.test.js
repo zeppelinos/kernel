@@ -1,5 +1,5 @@
-import KernelDeployer from '../lib/kernel/KernelDeployer'
-import ReleaseDeployer from '../lib/release/ReleaseDeployer'
+import KernelDeployer from '../src/kernel/KernelDeployer'
+import ReleaseDeployer from '../src/release/ReleaseDeployer'
 import { AppManagerDeployer } from 'zos-lib'
 
 const PickACard = artifacts.require('PickACard');

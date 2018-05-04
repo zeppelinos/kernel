@@ -1,5 +1,5 @@
 import deploy from "./deploy";
-import ContractsProvider from '../lib/utils/ContractsProvider'
+import ContractsProvider from '../src/utils/ContractsProvider'
 import { PROJECT_ACCOUNT, ERC721_CONTRACT_NAME } from './constants'
 
 async function createapp() {
