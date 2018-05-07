@@ -9,7 +9,7 @@ export default {
     return await this.callWithImplementations(appManager, newVersionCost, developerFraction, {}, txParams)
   },
 
-  async withAppManager(appManager, newVersionCost, developerFraction, txParams = {}) {
+  async callWithAppManager(appManager, newVersionCost, developerFraction, txParams = {}) {
     return await this.callWithImplementations(appManager, newVersionCost, developerFraction, {}, txParams)
   },
 

@@ -12,7 +12,6 @@ const should = require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-require('../setup')
 contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const initialKernelVersion = "1.0";
   const newVersionCost = new BigNumber('2e18');

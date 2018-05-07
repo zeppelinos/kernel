@@ -10,8 +10,24 @@ export default class KernelWrapper {
     this.txParams = txParams
   }
 
+  address() {
+    return this.kernel.address
+  }
+
+  async owner() {
+    return this.kernel.owner()
+  }
+
+  async newVersionCost() {
+    return this.kernel.newVersionCost()
+  }
+
+  async developerFraction() {
+    return this.kernel.developerFraction()
+  }
+
   async register(release) {
-    const newVersionCost = await this.kernel.newVersionCost()
+    const newVersionCost = await this.newVersionCost()
     log.info(`Approving ${newVersionCost} ZEP tokens to zOS kernel contract...`)
     await this.zepToken.approve(this.kernel.address, newVersionCost, this.txParams)
     log.info(`Registering release ${release}...`)
@@ -48,7 +64,7 @@ export default class KernelWrapper {
   async validateCanVouch(release, amount) {
     await this._ifNotRegisteredThrow(release, `Given release ${release} is not registered yet.`)
     await this._ifNotEnoughZepBalance(amount, "You don't have enough ZEP tokens to vouch given amount.")
-    await this._ifDoesNotReachPayout(amount, `You have to vouch ${await this.kernel.developerFraction()} ZEP tokens at least.`)
+    await this._ifDoesNotReachPayout(amount, `You have to vouch ${(await this.developerFraction())} ZEP tokens at least.`)
   }
 
   async validateCanUnvouch(release, amount) {
