@@ -1,5 +1,5 @@
 import { decodeLogs, assertRevert } from 'zos-lib'
-import KernelDeployer from "../src/kernel/KernelDeployer";
+import KernelDeployer from "../../src/kernel/KernelDeployer";
 
 const BigNumber = web3.BigNumber;
 const Kernel = artifacts.require('Kernel');
@@ -12,7 +12,7 @@ const should = require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-require('./setup')
+require('../setup')
 contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const initialKernelVersion = "1.0";
   const newVersionCost = new BigNumber('2e18');
