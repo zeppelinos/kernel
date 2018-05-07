@@ -9,7 +9,7 @@ export default {
   },
 
   _fetchKernel(address) {
-    const Kernel = ContractsProvider.getFromKernel('Kernel')()
+    const Kernel = ContractsProvider.getFromKernel('Kernel')
     this.kernel = new Kernel(address)
   },
 

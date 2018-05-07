@@ -5,7 +5,7 @@ import { AppManagerDeployer } from 'zos-lib'
 const MockKernelV2 = artifacts.require('MockKernelV2');
 const UpgradeabilityProxy = artifacts.require('UpgradeabilityProxy');
 
-contract('Kernel', ([_, owner]) => {
+contract('KernelDeployer', ([_, owner]) => {
   const version = '0.0.1'
   const txParams = { from: owner }
   const newVersionConst = new BigNumber(2)
