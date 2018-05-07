@@ -9,4 +9,5 @@ export const ERC721_CONTRACT_NAME = 'ERC721Token';
 export const DEVELOPER_ACCOUNT = web3.eth.accounts[2];
 
 // Project Information
+export const PROJECT_VERSION = "0.0.1";
 export const PROJECT_ACCOUNT = web3.eth.accounts[2];
