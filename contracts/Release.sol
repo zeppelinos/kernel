@@ -4,8 +4,8 @@ import "zos-lib/contracts/application/versioning/FreezableContractDirectory.sol"
 
 /**
  * @title Release
- * @dev This contract represents a particular stdlib version from a developer.
- * @dev Has an immutable reference to all contract implementations that comprise this version.
+ * @dev This contract represents a particular stdlib version from a developer
+ * @dev Has an immutable reference to all contract implementations that comprise this version
  */
 contract Release is FreezableContractDirectory {
 

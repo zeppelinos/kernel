@@ -17,7 +17,7 @@ contract Vouching is Migratable, Ownable {
    * @param voucher the address of the voucher
    * @param release the stdlib release vouched for
    * @param amount the vouched amount
-   * @param total the new total amount vouched by the voucher
+   * @param total the new total amount vouched
    * @param data additional information for complex vouching models
    */
   event Vouched(address indexed voucher, address release, uint256 amount, uint256 total, bytes data);
@@ -27,7 +27,7 @@ contract Vouching is Migratable, Ownable {
    * @param voucher the address of the voucher
    * @param release the stdlib release unvouched for
    * @param amount the unvouched amount
-   * @param total the new total amount vouched by the voucher
+   * @param total the new total amount vouched
    * @param data additional information for complex vouching models
    */
   event Unvouched(address indexed voucher, address release, uint256 amount, uint256 total, bytes data);
