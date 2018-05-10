@@ -9,7 +9,7 @@ import "zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 
 /**
  * @title Kernel
- * @dev This contract controls the standard library releases for ZeppelinOS
+ * @dev Controls the standard library releases for ZeppelinOS
  */
 contract Kernel is Migratable {
   using SafeMath for uint256;
@@ -26,7 +26,7 @@ contract Kernel is Migratable {
   // Fraction of vouches rewarded to the developer of a kernel release
   uint256 public developerFraction;
 
-  // Keep track of registered kernel releases given their address
+  // Keeps track of registered kernel releases
   mapping(address => bool) internal releases;
 
   /**
@@ -36,7 +36,7 @@ contract Kernel is Migratable {
   event ReleaseRegistered(Release release);
 
   /**
-  * @dev Guarantees that a given release is registered
+  * @dev Checks that a given release is registered
   */
   modifier whenRegistered(Release release) {
     require(isRegistered(release));
@@ -60,7 +60,6 @@ contract Kernel is Migratable {
     token = _token;
     developerFraction = _developerFraction;
     newVersionCost = _newVersionCost;
-    // TODO: we need to think how we are going to manage variable costs to propose new versions
   }
 
   /**
@@ -73,13 +72,12 @@ contract Kernel is Migratable {
     releases[release] = true;
     emit ReleaseRegistered(release);
     
-    // TODO: Update to burnFrom once https://github.com/OpenZeppelin/zeppelin-solidity/pull/870 is merged
     require(token.transferFrom(msg.sender, this, newVersionCost));
     token.burn(newVersionCost);
   }
 
   /**
-  * @dev Tells whether a given release is registered or not
+  * @dev Whether a given release is registered or not
   * @param release the stdlib release to be checked for
   */
   function isRegistered(Release release) public view returns (bool) {
@@ -109,7 +107,7 @@ contract Kernel is Migratable {
   }
 
   /**
-   * @dev Transfers vouches from a release to another
+   * @dev Transfers vouches from one release to another
    * @param from the stdlib release being unvouched for
    * @param to the stdlib release being vouched for
    * @param amount the amount of vouches being transferred
@@ -130,7 +128,6 @@ contract Kernel is Migratable {
   function _payoutAndVouch(address voucher, Release release, uint256 amount, bytes data) internal {
     uint256 developerPayout = amount.div(developerFraction);
     require(developerPayout > 0);
-    // TODO: Think how we can manage remainders in a better way
 
     uint256 vouchedAmount = amount.sub(developerPayout);
     vouches.vouch(voucher, release, vouchedAmount, data);
