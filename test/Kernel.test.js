@@ -80,7 +80,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     const vouchValue = new BigNumber('42e18');
     const unvouchValue = new BigNumber('24e18');
     const transferValue = new BigNumber('10e18');
-    const tooSmallStake = developerFraction.minus(1);
+    const tooSmallVouching = developerFraction.minus(1);
 
     beforeEach("creating another release", async function () {
       this.anotherRelease = await Release.new({ from: anotherDeveloper });
@@ -121,7 +121,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
         });
 
         it('should reject vouches that result in no payout to dev', async function () {
-          await assertRevert(this.kernel.vouch(this.release.address, tooSmallStake, 0, { from: user }));
+          await assertRevert(this.kernel.vouch(this.release.address, tooSmallVouching, 0, { from: user }));
         });
       });
 
@@ -174,7 +174,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
           const totalEffectivelyVouched = effectiveVouchingFirst + effectiveVouchingSecond;
 
           await this.kernel.vouch(this.release.address, vouchValue, 0, { from: user });
-          await this.kernel.transferStake(this.release.address, this.anotherRelease.address, transferValue, 0, { from: user });
+          await this.kernel.transferVouch(this.release.address, this.anotherRelease.address, transferValue, 0, { from: user });
 
           const vouchedToFirst = await this.vouching.totalVouchedFor(this.release.address);
           vouchedToFirst.should.be.bignumber.equal(effectiveVouchingFirst);
@@ -188,29 +188,29 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
       });
 
       describe('revouches', async function (){
-        const anotherStake = new BigNumber('47e18');
+        const anotherVouch = new BigNumber('47e18');
         const effectiveVouching = vouchValue
-          .plus(anotherStake)
+          .plus(anotherVouch)
           .minus(vouchValue.divToInt(developerFraction))
-          .minus(anotherStake.divToInt(developerFraction));
+          .minus(anotherVouch.divToInt(developerFraction));
 
         beforeEach(async function () {
           await this.kernel.vouch(this.release.address, vouchValue, 0, { from: user });
         });
 
         it('should accept more than one vouch to the same instance by the same user', async function() {
-          await this.zepToken.transfer(user, anotherStake, { from: owner });
-          await this.zepToken.approve(this.kernel.address, anotherStake, { from: user });
-          await this.kernel.vouch(this.release.address, anotherStake, 0, { from: user });
+          await this.zepToken.transfer(user, anotherVouch, { from: owner });
+          await this.zepToken.approve(this.kernel.address, anotherVouch, { from: user });
+          await this.kernel.vouch(this.release.address, anotherVouch, 0, { from: user });
           
           const vouched = await this.vouching.totalVouchedFor(this.release.address);
           vouched.should.be.bignumber.equal(effectiveVouching);       
         });
 
         it('should accept more than one vouch to the same instance by different users', async function() {
-          await this.zepToken.transfer(anotherUser, anotherStake, { from: owner });
-          await this.zepToken.approve(this.kernel.address, anotherStake, { from: anotherUser });
-          await this.kernel.vouch(this.release.address, anotherStake, 0, { from: anotherUser });
+          await this.zepToken.transfer(anotherUser, anotherVouch, { from: owner });
+          await this.zepToken.approve(this.kernel.address, anotherVouch, { from: anotherUser });
+          await this.kernel.vouch(this.release.address, anotherVouch, 0, { from: anotherUser });
           
           const vouched = await this.vouching.totalVouchedFor(this.release.address);
           vouched.should.be.bignumber.equal(effectiveVouching);
@@ -240,7 +240,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
       it('should reject vouch transfers', async function () {
         await this.kernel.register(this.release.address, { from: developer });
         await this.kernel.vouch(this.release.address, vouchValue, 0, { from: user });
-        await assertRevert(this.kernel.transferStake(this.release.address, this.anotherRelease.address, transferValue, 0, { from: user }));
+        await assertRevert(this.kernel.transferVouch(this.release.address, this.anotherRelease.address, transferValue, 0, { from: user }));
       });
     });
   });

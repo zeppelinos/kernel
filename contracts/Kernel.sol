@@ -113,13 +113,13 @@ contract Kernel is Migratable {
    * @param amount the amount of vouches being transferred
    * @param data additional information for complex vouching models
    */
-  function transferStake(Release from, Release to, uint256 amount, bytes data) public whenRegistered(from) whenRegistered(to) {
+  function transferVouch(Release from, Release to, uint256 amount, bytes data) public whenRegistered(from) whenRegistered(to) {
     vouches.unvouch(msg.sender, from, amount, data);
     _payoutAndVouch(msg.sender, to, amount, data);
   }
 
   /**
-   * @dev Stakes tokens for a given release and pays the corresponding fraction to its developer
+   * @dev Vouches tokens for a given release and pays the corresponding fraction to its developer
    * @param voucher the address of the voucher
    * @param release the stdlib release being vouched for
    * @param amount the amount being vouched
