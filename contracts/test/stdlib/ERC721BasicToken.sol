@@ -50,7 +50,7 @@ contract ERC721BasicToken is ERC721Basic {
   /**
   * @dev Gets the balance of the specified address
   * @param _owner address to query the balance of
-  * @return uint256 representing the amount owned by the passed address
+  * @return uint256 the amount owned by the passed address
   */
   function balanceOf(address _owner) public view returns (uint256) {
     require(_owner != address(0));
@@ -111,7 +111,7 @@ contract ERC721BasicToken is ERC721Basic {
   * @dev Sets or unsets the approval of a given operator
   * @dev An operator is allowed to transfer all tokens of the sender on their behalf
   * @param _to operator address to set the approval
-  * @param _approved representing the status of the approval to be set
+  * @param _approved the status of the approval to be set
   */
   function setApprovalForAll(address _to, bool _approved) public {
     require(_to != msg.sender);
@@ -231,7 +231,7 @@ contract ERC721BasicToken is ERC721Basic {
 
   /**
   * @dev Internal function to add a token ID to the list of a given address
-  * @param _to address representing the new owner of the given token ID
+  * @param _to address the new owner of the given token ID
   * @param _tokenId uint256 ID of the token to be added to the tokens list of the given address
   */
   function addTokenTo(address _to, uint256 _tokenId) internal {
@@ -242,7 +242,7 @@ contract ERC721BasicToken is ERC721Basic {
 
   /**
   * @dev Internal function to remove a token ID from the list of a given address
-  * @param _from address representing the previous owner of the given token ID
+  * @param _from address the previous owner of the given token ID
   * @param _tokenId uint256 ID of the token to be removed from the tokens list of the given address
   */
   function removeTokenFrom(address _from, uint256 _tokenId) internal {
@@ -254,7 +254,7 @@ contract ERC721BasicToken is ERC721Basic {
   /**
   * @dev Internal function to invoke `onERC721Received` on a target address
   * @dev The call is not executed if the target address is not a contract
-  * @param _from address representing the previous owner of the given token ID
+  * @param _from address the previous owner of the given token ID
   * @param _to target address that will receive the tokens
   * @param _tokenId uint256 ID of the token to be transferred
   * @param _data bytes optional data to send along with the call
