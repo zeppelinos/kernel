@@ -36,9 +36,8 @@
     "coveralls": "^3.0.0",
     "ethereumjs-abi": "^0.6.5",
     "solidity-coverage": "^0.4.15",
-    "truffle": "^4.1.5",
-    "web3": "^0.18.4",
-    "zos": "^0.3.13"
+    "truffle": "^4.1.6",
+    "zos": "^0.3.16"
   },
   "dependencies": {
     "zeppelin-solidity": "^1.8.0",

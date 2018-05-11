@@ -14,10 +14,6 @@ export default class KernelWrapper {
     return this.kernel.address
   }
 
-  async owner() {
-    return this.kernel.owner()
-  }
-
   async newVersionCost() {
     return this.kernel.newVersionCost()
   }
@@ -56,7 +52,7 @@ export default class KernelWrapper {
   }
 
   async validateCanRegister(release) {
-    await this._ifRegisteredThrow(release, `Given release ${release} must be frozen to be registered.`)
+    await this._ifRegisteredThrow(release, `Given release ${release} is already registered.`)
     await this._ifFrozenThrow(release, `Given release ${release} must be frozen to be registered.`)
     await this._ifNotEnoughBalanceToRegisterThrow(`You don't have enough ZEP tokens to register a new release.`)
   }
@@ -83,14 +79,14 @@ export default class KernelWrapper {
   }
 
   async _ifFrozenThrow(releaseAddress, error) {
-    const Release = ContractsProvider.release()
+    const Release = ContractsProvider.getFromKernel('Release')
     const release = new Release(releaseAddress)
     const isFrozen = await release.frozen(this.txParams)
     if(!isFrozen) throw error
   }
 
   async _ifNotEnoughBalanceToRegisterThrow(error) {
-    const newVersionCost = await this.kernel.newVersionCost()
+    const newVersionCost = await this.newVersionCost()
     const developerBalance = await this.zepToken.balanceOf(this.txParams.from)
     const doesNotHaveEnoughTokens = developerBalance.lt(newVersionCost)
     if(doesNotHaveEnoughTokens) throw error

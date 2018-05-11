@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js'
 import KernelDeployer from "../../../src/kernel/KernelDeployer"
 import KernelProvider from "../../../src/kernel/KernelProvider"
-import { AppManagerDeployer } from 'zos-lib'
 
 contract('KernelProvider', ([_, owner]) => {
   const version = '0.0.1'
