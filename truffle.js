@@ -6,7 +6,7 @@ module.exports = {
     local: {
       host: 'localhost',
       network_id: '*', // eslint-disable-line camelcase
-      port: 9545,
+      port: 8545,
       gas: 6000000,
       gasPrice: 1,
     },
@@ -17,13 +17,5 @@ module.exports = {
       gas: 0xfffffffffff,
       gasPrice: 0x01,
     },
-    ropsten: {
-      name: 'ropsten',
-      host: 'localhost',
-      port: 8565,
-      network_id: '3',
-      gas: 6000000,
-      gasPrice: 500000000,
-    }
   }
 }
