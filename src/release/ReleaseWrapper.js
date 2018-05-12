@@ -12,8 +12,16 @@ export default class ReleaseWrapper {
     return this.release.address
   }
 
+  async owner() {
+    return this.release.owner(this.txParams)
+  }
+
   async freeze() {
     log.info("Freezing release...")
     await this.release.freeze(this.txParams)
+  }
+
+  async getImplementation(contractName) {
+    return this.release.getImplementation(contractName, this.txParams)
   }
 }
