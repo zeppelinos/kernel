@@ -13,7 +13,7 @@ export default class ReleaseWrapper {
   }
 
   async owner() {
-    return this.release.owner(this.txParams)
+    return await this.release.owner(this.txParams)
   }
 
   async freeze() {
@@ -21,7 +21,11 @@ export default class ReleaseWrapper {
     await this.release.freeze(this.txParams)
   }
 
+  async isFrozen() {
+    return await this.release.frozen(this.txParams)
+  }
+
   async getImplementation(contractName) {
-    return this.release.getImplementation(contractName, this.txParams)
+    return await this.release.getImplementation(contractName, this.txParams)
   }
 }
