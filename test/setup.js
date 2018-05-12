@@ -8,6 +8,11 @@ const DEFAULT_TX_PARAMS = {
   from: web3.eth.accounts[0]
 }
 
+require('chai')
+  .use(require('chai-as-promised'))
+  .use(require('chai-bignumber')(web3.BigNumber))
+  .should()
+
 muteLogging()
 provideContractsFromTruffle()
 

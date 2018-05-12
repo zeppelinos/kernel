@@ -1,7 +1,7 @@
-import BigNumber from 'bignumber.js'
 import KernelDeployer from "../../../src/kernel/KernelDeployer"
 import { AppManagerDeployer } from 'zos-lib'
 
+const BigNumber = web3.BigNumber;
 const MockKernelV2 = artifacts.require('MockKernelV2');
 const UpgradeabilityProxy = artifacts.require('UpgradeabilityProxy');
 

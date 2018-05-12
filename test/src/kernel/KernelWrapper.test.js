@@ -4,11 +4,6 @@ import { assertRevert } from 'zos-lib'
 
 const BigNumber = web3.BigNumber;
 
-require('chai')
-  .use(require('chai-as-promised'))
-  .use(require('chai-bignumber')(BigNumber))
-  .should()
-
 contract('KernelWrapper', ([_, kernelOwner, releaseOwner, voucherAddress]) => {
   const version = '0.0.1'
   const newVersionConst = new BigNumber('2e18')

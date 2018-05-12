@@ -9,10 +9,6 @@ const AppDirectory = artifacts.require('AppDirectory');
 const UnversionedAppManager = artifacts.require('UnversionedAppManager');
 const UpgradeabilityProxyFactory = artifacts.require('UpgradeabilityProxyFactory');
 
-const should = require('chai')
-  .use(require('chai-as-promised'))
-  .should();
-
 contract('StdlibExample', ([_, zeppelin, kernelDeveloper, appDeveloper, someone, anotherone]) => {
   const newVersionCost = new web3.BigNumber('2e18');
   const developerFraction = new web3.BigNumber(10);
