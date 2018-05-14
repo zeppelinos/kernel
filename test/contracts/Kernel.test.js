@@ -1,5 +1,5 @@
 import { decodeLogs, assertRevert } from 'zos-lib'
-import KernelDeployer from "../src/kernel/KernelDeployer";
+import KernelDeployer from "../../src/kernel/KernelDeployer";
 
 const BigNumber = web3.BigNumber;
 const Kernel = artifacts.require('Kernel');
@@ -7,12 +7,6 @@ const Release = artifacts.require('Release');
 const Vouching = artifacts.require('Vouching');
 const MockKernelV2 = artifacts.require('MockKernelV2');
 
-const should = require('chai')
-  .use(require('chai-as-promised'))
-  .use(require('chai-bignumber')(BigNumber))
-  .should();
-
-require('./setup')
 contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) => {
   const initialKernelVersion = "1.0";
   const newVersionCost = new BigNumber('2e18');
@@ -54,7 +48,7 @@ contract('Kernel', ([_, owner, developer, user, anotherDeveloper, anotherUser]) 
     it('should emit an event on registration', async function () {
       this.logs.length.should.eq(1);
       const event = this.logs.find(e => e.event === 'ReleaseRegistered');
-      should.exist(event);
+      event.should.not.be.null
       event.args.release.should.eq(this.release.address);
     });
 
