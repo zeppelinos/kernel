@@ -42,7 +42,7 @@ Finally, the new release can be registered using the `register` method from `Ker
 ### Vouching
 Once deployed, other users can vouch for a release by calling `Kernel`'s `vouch` method. Again, in order to vouch, users must first `approve` the kernel to transfer a share of their `ZepTokens` that is greater or equal than the amount they want to vouch for the release. A fraction of these tokens will be immediately transferred to the release's developer, and the rest will be held in custody by the kernel, until an `unvouch` operation is performed. The fraction of the tokens payed out to the developer is specified in the `Kernel`'s `developerFraction` variable. Note that there is a minimum vouch for a release, given by the contstraint that its developer must receive at least one token.
 
-### Release Pacakges
+### Release Packages
 In order to facilitate the handling of evolving stdlib versions, instead of deploying individual releases for each version, developers can make "packages" that group their associated releases together. One way to do this is through the [`Package`](https://github.com/zeppelinos/zos-lib/contracts/application/versioning/Package.sol) contract, which can hold several releases, each associated with a version of the library. In this case, the developer would proceed as above, but deploying also a `Package`, and then adding releases to it through its `addVersion` method. This method has prototype:
 ```
 function addVersion(string version, ContractProvider provider) public onlyOwner,
