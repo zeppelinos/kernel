@@ -18,7 +18,13 @@
     "test": "scripts/test.sh",
     "prepack": "truffle compile && babel src --out-dir lib",
     "deploy-local": "truffle exec scripts/deploy.js --network local",
-    "createapp-local": "truffle exec scripts/createapp.js --network local"
+    "createapp-local": "truffle exec scripts/createapp.js --network local",
+    "lint:sol": "solium -d .",
+    "lint:sol:fix": "solium -d . --fix",
+    "lint:js": "eslint src",
+    "lint:js:fix": "eslint src --fix",
+    "lint": "npm run lint:sol && npm run lint:js",
+    "lint:fix": "npm run lint:sol:fix && npm run lint:js:fix"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -34,8 +40,15 @@
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
     "coveralls": "^3.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "ethereumjs-abi": "^0.6.5",
     "solidity-coverage": "^0.4.15",
+    "solium": "^1.1.7",
     "truffle": "^4.1.6",
     "zos": "^0.3.16"
   },
