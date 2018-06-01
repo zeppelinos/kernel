@@ -20,7 +20,13 @@ contract Vouching is Migratable, Ownable {
    * @param total the new total amount vouched
    * @param data additional information for complex vouching models
    */
-  event Vouched(address indexed voucher, address release, uint256 amount, uint256 total, bytes data);
+  event Vouched(
+    address indexed voucher,
+    address release,
+    uint256 amount,
+    uint256 total,
+    bytes data
+  );
 
   /**
    * @dev Event signaling an unvouching
@@ -30,7 +36,13 @@ contract Vouching is Migratable, Ownable {
    * @param total the new total amount vouched
    * @param data additional information for complex vouching models
    */
-  event Unvouched(address indexed voucher, address release, uint256 amount, uint256 total, bytes data);
+  event Unvouched(
+    address indexed voucher,
+    address release,
+    uint256 amount,
+    uint256 total,
+    bytes data
+  );
 
   // Total amount of vouched tokens
   uint256 private _totalVouched;
@@ -72,7 +84,9 @@ contract Vouching is Migratable, Ownable {
    * @param release the stdlib release
    * @return the total vouched amount by the voucher for the given release
    */
-  function vouchedFor(address voucher, address release) public view returns (uint256) {
+  function vouchedFor(address voucher, address release)
+    public view returns (uint256)
+  {
     return _vouches[voucher][release];
   }
 
@@ -83,7 +97,15 @@ contract Vouching is Migratable, Ownable {
    * @param amount the amount being vouched
    * @param data additional information for complex vouching models
    */
-  function vouch(address voucher, address release, uint256 amount, bytes data) public onlyOwner {
+  function vouch(
+    address voucher,
+    address release,
+    uint256 amount,
+    bytes data
+  )
+    public
+    onlyOwner
+  {
     _totalVouched = _totalVouched.add(amount);
     _releaseVouches[release] = _releaseVouches[release].add(amount);
     _vouches[voucher][release] = _vouches[voucher][release].add(amount);
@@ -98,7 +120,15 @@ contract Vouching is Migratable, Ownable {
    * @param amount the amount being unvouched
    * @param data additional information for complex vouching models
    */
-  function unvouch(address voucher, address release, uint256 amount, bytes data) public onlyOwner {
+  function unvouch(
+    address voucher,
+    address release,
+    uint256 amount,
+    bytes data
+  )
+    public
+    onlyOwner
+  {
     uint256 currentVouch = _vouches[voucher][release];
     require(currentVouch >= amount);
 

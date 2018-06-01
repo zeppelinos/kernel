@@ -5,6 +5,7 @@ import "./ERC721Receiver.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/AddressUtils.sol";
 
+
 /**
  * @title ERC721 Non-Fungible Token Standard basic implementation
  * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
@@ -106,7 +107,6 @@ contract ERC721BasicToken is ERC721Basic {
     return tokenApprovals[_tokenId];
   }
 
-
   /**
   * @dev Sets or unsets the approval of a given operator
   * @dev An operator is allowed to transfer all tokens of the sender on their behalf
@@ -125,7 +125,9 @@ contract ERC721BasicToken is ERC721Basic {
    * @param _operator operator address which you want to query the approval of
    * @return bool whether the given operator is approved by the given owner
    */
-  function isApprovedForAll(address _owner, address _operator) public view returns (bool) {
+  function isApprovedForAll(address _owner, address _operator)
+    public view returns (bool)
+  {
     return operatorApprovals[_owner][_operator];
   }
 
@@ -137,7 +139,14 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _to address to receive the ownership of the given token ID
   * @param _tokenId uint256 ID of the token to be transferred
   */
-  function transferFrom(address _from, address _to, uint256 _tokenId) public canTransfer(_tokenId) {
+  function transferFrom(
+    address _from,
+    address _to,
+    uint256 _tokenId
+  )
+    public
+    canTransfer(_tokenId)
+  {
     require(_from != address(0));
     require(_to != address(0));
 
@@ -159,7 +168,14 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _to address to receive the ownership of the given token ID
   * @param _tokenId uint256 ID of the token to be transferred
   */
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId) public canTransfer(_tokenId) {
+  function safeTransferFrom(
+    address _from,
+    address _to,
+    uint256 _tokenId
+  )
+    public
+    canTransfer(_tokenId)
+  {
     safeTransferFrom(_from, _to, _tokenId, "");
   }
 
@@ -175,7 +191,15 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _tokenId uint256 ID of the token to be transferred
   * @param _data bytes data to send along with a safe transfer check
   */
-  function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes _data) public canTransfer(_tokenId) {
+  function safeTransferFrom(
+    address _from,
+    address _to,
+    uint256 _tokenId,
+    bytes _data
+  )
+    public
+    canTransfer(_tokenId)
+  {
     transferFrom(_from, _to, _tokenId);
     require(checkAndCallSafeTransfer(_from, _to, _tokenId, _data));
   }
@@ -187,9 +211,23 @@ contract ERC721BasicToken is ERC721Basic {
    * @return bool whether the msg.sender is approved for the given token ID,
    *  is an operator of the owner, or is the owner of the token
    */
-  function isApprovedOrOwner(address _spender, uint256 _tokenId) internal view returns (bool) {
+  function isApprovedOrOwner(
+    address _spender,
+    uint256 _tokenId
+  )
+    internal
+    view
+    returns (bool)
+  {
     address owner = ownerOf(_tokenId);
-    return _spender == owner || getApproved(_tokenId) == _spender || isApprovedForAll(owner, _spender);
+    // Disable solium check because of
+    // https://github.com/duaraghav8/Solium/issues/175
+    // solium-disable-next-line operator-whitespace
+    return (
+      _spender == owner ||
+      getApproved(_tokenId) == _spender ||
+      isApprovedForAll(owner, _spender)
+    );
   }
 
   /**
@@ -260,11 +298,20 @@ contract ERC721BasicToken is ERC721Basic {
   * @param _data bytes optional data to send along with the call
   * @return whether the call correctly returned the expected magic value
   */
-  function checkAndCallSafeTransfer(address _from, address _to, uint256 _tokenId, bytes _data) internal returns (bool) {
+  function checkAndCallSafeTransfer(
+    address _from,
+    address _to,
+    uint256 _tokenId,
+    bytes _data
+  )
+    internal
+    returns (bool)
+  {
     if (!_to.isContract()) {
       return true;
     }
-    bytes4 retval = ERC721Receiver(_to).onERC721Received(_from, _tokenId, _data);
+    bytes4 retval = ERC721Receiver(_to).onERC721Received(
+      _from, _tokenId, _data);
     return (retval == ERC721_RECEIVED);
   }
 }

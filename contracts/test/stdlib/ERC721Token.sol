@@ -3,6 +3,7 @@ pragma solidity ^0.4.21;
 import "./ERC721BasicToken.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
+
 contract ERC721Token is ERC721BasicToken, Ownable {
   bool private _initialized = false;
 
