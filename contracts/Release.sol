@@ -1,6 +1,7 @@
 pragma solidity ^0.4.21;
-
+// solium-disable-next-line max-len
 import "zos-lib/contracts/application/versioning/FreezableContractDirectory.sol";
+
 
 /**
  * @title Release
@@ -11,7 +12,7 @@ contract Release is FreezableContractDirectory {
 
   // Developer address to which staking payouts will be sent, owner of the contract directory
   address public developer;
-  
+
   /**
    * @dev Constructor function that sets the developer of this release
    */

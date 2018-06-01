@@ -7,6 +7,7 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zos-lib/contracts/migrations/Migratable.sol";
 import "zos-lib/contracts/upgradeability/UpgradeabilityProxyFactory.sol";
 
+
 /**
  * @title Kernel
  * @dev Controls the standard library releases for ZeppelinOS
@@ -55,7 +56,10 @@ contract Kernel is Migratable {
     uint256 _developerFraction,
     ZepToken _token,
     Vouching _vouches
-  ) public isInitializer("Kernel", "0") {
+  )
+    public
+    isInitializer("Kernel", "0")
+  {
     vouches = _vouches;
     token = _token;
     developerFraction = _developerFraction;
@@ -71,7 +75,7 @@ contract Kernel is Migratable {
     require(release.frozen());
     releases[release] = true;
     emit ReleaseRegistered(release);
-    
+
     require(token.transferFrom(msg.sender, this, newVersionCost));
     token.burn(newVersionCost);
   }
@@ -90,7 +94,14 @@ contract Kernel is Migratable {
    * @param amount the amount being vouched
    * @param data additional information for complex vouching models
    */
-  function vouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {
+  function vouch(
+    Release release,
+    uint256 amount,
+    bytes data
+  )
+    public
+    whenRegistered(release)
+  {
     require(token.transferFrom(msg.sender, this, amount));
     _payoutAndVouch(msg.sender, release, amount, data);
   }
@@ -101,7 +112,14 @@ contract Kernel is Migratable {
    * @param amount the amount being unvouched
    * @param data additional information for complex vouching models
    */
-  function unvouch(Release release, uint256 amount, bytes data) public whenRegistered(release) {
+  function unvouch(
+    Release release,
+    uint256 amount,
+    bytes data
+  )
+    public
+    whenRegistered(release)
+  {
     vouches.unvouch(msg.sender, release, amount, data);
     require(token.transfer(msg.sender, amount));
   }
@@ -113,7 +131,16 @@ contract Kernel is Migratable {
    * @param amount the amount of vouches being transferred
    * @param data additional information for complex vouching models
    */
-  function transferVouch(Release from, Release to, uint256 amount, bytes data) public whenRegistered(from) whenRegistered(to) {
+  function transferVouch(
+    Release from,
+    Release to,
+    uint256 amount,
+    bytes data
+  )
+    public
+    whenRegistered(from)
+    whenRegistered(to)
+  {
     vouches.unvouch(msg.sender, from, amount, data);
     _payoutAndVouch(msg.sender, to, amount, data);
   }
@@ -125,7 +152,14 @@ contract Kernel is Migratable {
    * @param amount the amount being vouched
    * @param data additional information for complex vouching models
    */
-  function _payoutAndVouch(address voucher, Release release, uint256 amount, bytes data) internal {
+  function _payoutAndVouch(
+    address voucher,
+    Release release,
+    uint256 amount,
+    bytes data
+  )
+    internal
+  {
     uint256 developerPayout = amount.div(developerFraction);
     require(developerPayout > 0);
 
